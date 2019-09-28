@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
-        <link rel="stylesheet" href="try.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="try.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-        <div class="topnav">
-                <a class="active" href="#home">主页</a>
-                <a href="#about">关于</a>
-                <a href="#contact">联系我们</a>
-                <input type="text" placeholder="搜索......">
-        </div>          
-        <div style="margin-left: 16px">
-                <h2>响应式搜索菜单</h2>
-                <p>导航栏里面有一个搜索框。</p>
-                <p>调整浏览器窗口的大小, 查看效果。</p>
-        </div>
+	<div class="topnav">
+		<a class="active" href="#home">主页</a>
+		<a href="#about">关于</a>
+		<a href="#contact">联系我们</a>
+		<div class="search-container">
+			<form action="#">
+				<input type="text" placeholder="搜索.." name="search">
+				<button type="submit"><i class="fa fa-search"></i></button>
+			</form>
+		</div>
+	</div>
+
+	<div style="padding-left:16px">
+		<h2>响应式搜索菜单</h2>
+		<p>导航栏里面有一个搜索框。</p>
+		<p>调整浏览器窗口的大小, 查看效果。</p>
+	</div>
 </body>
+
 </html>
