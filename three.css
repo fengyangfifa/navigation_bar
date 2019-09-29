@@ -1,0 +1,55 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #e6e6e6;
+    color: #ffffff;
+}
+
+.nav {
+    height: 50px;
+    background-color: #000;
+}
+
+.navbar {
+    float: right;
+    margin-right: 10px;
+    list-style-type: none;
+}
+
+.navbar li {
+    position: relative;
+    float: left;            
+    width: 60px;
+    line-height: 50px;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.navbar a {
+    display: block;
+    height: 50px;
+    font-family: "Microsoft Yahei";
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+ul li:hover {
+    background-color: #288add;
+}
+
+.navbar ul {
+    position: absolute;
+    left: 0;
+    display: none;
+    list-style-type: none;
+}
+
+.navbar li:hover ul {
+    display: block;
+    background-color: #000;
+}
