@@ -1,0 +1,51 @@
+*{
+        margin: 0;
+        padding: 0;
+}
+
+#menu{
+        background-color: #eeeeee;
+        width: 600px;
+        height: 40px;
+        margin: 0 auto;
+}
+
+ul{
+        list-style-type: none;
+}
+
+ul li{
+        float: left;
+        position: relative;
+        line-height: 40px;
+        text-align: center;
+}
+
+ul li ul{
+        display: none;
+        width: 90px;
+        position: absolute;
+}
+
+ul li:hover ul{
+        display: block;
+}
+
+a{
+        text-decoration: none;
+        color: #000000;
+        display: block;
+        width: 90px;
+}
+
+a:hover{
+        color: #ffffff;
+        background-color: #666666;
+}
+
+ul li ul li{
+        /* float: none; */
+        /* border-left: none; */
+        margin-top: 2px;
+        background-color: #eeeeee;
+}

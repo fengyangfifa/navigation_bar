@@ -3,53 +3,47 @@
 	padding: 0;
 }
 
-body{
-	background-color: #e6e6e6;
-	color: #ffffff;
+#menu{
+	width: 600px;
+	height: 40px;
+	background-color: #eeeeee;
+	margin: 0 auto;
 }
 
-.nav{
-	background-color: black;
-	height: 50px;
-}
-
-.navbar{
-	float: right;
-	margin-right: 10px;
+ul{
 	list-style-type: none;
 }
 
-.navbar li{
+ul li{
 	float: left;
 	position: relative;
-	width: 60px;
-	line-height: 50px;
-	padding: 0 5px;
-	cursor: pointer;
+	line-height: 40px;
 }
 
-.navbar a{
-	display: block;
-	text-decoration: none;
-	font-size: 15px;
-    font-family: "Microsoft Yahei";
-	height: 50px;
-	text-align: center;
-	color: #ffffff;
-}
-
-.navbar li:hover{
-	background-color: #288add;
-}
-
-.navbar li:hover ul{
-	display: block;
-	background-color: black;
-}
-
-.navbar ul{
-	position: absolute;
-	left: 0;
-	list-style-type: none;
+ul li ul{
 	display: none;
+	width: 90px;
+	position: absolute;
+}
+
+ul li ul li{
+	margin-top: 2px;
+	background-color: #eeeeee;
+}
+
+ul li:hover ul{
+	display: block;
+}
+
+a{
+	display: block;
+	width: 90px;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+}
+
+a:hover{
+        color: #ffffff;
+        background-color: #666666;
 }
