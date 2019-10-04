@@ -1,10 +1,13 @@
-body{
+*{
     margin: 0;
     padding: 0;
 }
 body{
     height: 2500px;
     font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
+ul{
+    list-style-type: none;
 }
 a{
     text-decoration: none;
@@ -16,7 +19,18 @@ a{
 .container{
     margin: 0 auto;
     width: 1226px;
+    /* overflow: hidden; */
+}
+.container::before, .container::after,
+.clearfix::before, .clearfix::after{
+    content: "";
+    height: 0;
     overflow: hidden;
+    display: block;
+    zoom: 1;
+}
+.container::after, .clearfix::after{
+    clear: both;
 }
 .topbar a{
     color: #b0b0b0;
@@ -60,6 +74,12 @@ a{
     margin-left: -4px;
     font-size: 12px;
 }
+.topbar-cart i{
+    font-size: 20px;
+    line-height: 20px;
+    margin-right: 4px;
+    vertical-align: -4px;
+}
 .topbar-info{
     margin-right: 15px;
 }
@@ -80,4 +100,103 @@ a{
 }
 .topbar-info .sep{
     padding: 0 10px;
+}
+/* header */
+.header{
+    height: 100px;
+}
+.header-logo{
+    float: left;
+    width: 62px;
+    height: 55px;
+    margin-top: 22px;
+}
+.header-logo a{
+    display: block;
+    width: 55px;
+    height: 55px;
+    background: #ff6700 url(http://s01.mifile.cn/i/mi-logo.png) no-repeat 50% 50%;
+}
+.header-logo .lr{
+    text-align: left;
+    text-indent: -999em;
+}
+/* header-nav */
+.header-nav{
+    float: left;
+    width: 820px;
+    height: 100px;
+}
+.header-nav .nav-list{
+    width: 820px;
+    height: 88px;
+    font-size: 16px;
+    padding: 12px 0 0 30px;
+}
+.header-nav .nav-list .nav-category{
+    float: left;
+    width: 127px;
+    padding: 0 15px 0 0;
+}
+.header-nav .nav-list .nav-category a{
+    display: block;
+    padding: 26px 0 38px;
+    text-align: right;
+    color: #333333;
+}
+.header-nav .nav-list .nav-item{
+    float: left;
+}
+.header-nav .nav-list .nav-item a{
+    display: block;
+    padding: 26px 10px 38px;
+    color: #333333;
+}
+.header-nav .nav-list .nav-item a:hover{
+    color: #ff6700;
+}
+.header-search{
+    float: right;
+    width: 296px;
+    height: 50px;
+    margin-top: 25px;
+}
+.header-search .search-form{
+    display: block;
+    position: relative;
+    width: 296px;
+    height: 50px;
+}
+input{
+    font-size: 100%;
+}
+.header-search .search-form .search-text{
+    position: absolute;
+    top: 0;
+    right: 51px;
+    display: block;
+    font-size: 14px;
+    width: 245px;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid #e0e0e0;
+    outline: 0;
+}
+.header-search .search-form .search-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 52px;
+    height: 50px;
+    line-height: 24px;
+    border: 1px solid #e0e0e0;
+    font-size: 24px;
+    background-color: #ffffff;
+    color: #616161;
+    outline: 0;
+}
+.header-search .search-form .search-btn:hover{
+    background-color: #ff6700;
+    color: #ffffff;
 }
