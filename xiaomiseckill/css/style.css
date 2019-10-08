@@ -221,9 +221,8 @@ input{
     margin: -68px 0 22px; 
 }
 .seckillNav ul{
-    height: 68px;
+    /* height: 68px; */
     background-color: #414141;
-    overflow: hidden;
 }
 .seckillNav li{
     float: left;
