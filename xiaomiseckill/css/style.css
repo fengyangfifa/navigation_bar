@@ -19,7 +19,6 @@ ul{
 .container{
     width: 1226px;
     margin: 0 auto;
-    overflow: hidden;
 }
 .container::before, .container::after,
 .clearfix::before, .clearfix::after{
@@ -221,7 +220,7 @@ input{
     margin: -68px 0 22px; 
 }
 .seckillNav ul{
-    /* height: 68px; */
+    height: 68px;
     background-color: #414141;
 }
 .seckillNav li{
@@ -248,9 +247,9 @@ input{
 }
 .seckillNav li span{
     display: inline-block;
-    font-size: 15px;
+    font-size: 14px;
     text-align: left;
-    line-height: 15px;
+    line-height: 14px;
     margin-left: 15px;
     vertical-align: middle;
 }
@@ -258,4 +257,85 @@ input{
     line-height: 20px;
     margin-left: 0;
     font-size: 14px;
+} 
+.seckill-goods ul{
+    display: none;
+}
+.seckill-goods ul.active{
+    display: block;
+}
+.seckill-goods ul{
+    margin-right: -13px;
+}
+.seckill-goods li{
+    position: relative;
+    float: left;
+    width: 400px;
+    height: 190px;
+    background-color: #ffffff;
+    margin-right: 13px;
+    margin-bottom: 13px;
+}
+.seckill-goods .bg img{
+    height: 190px;
+    width: 190px;
+}
+.seckill-goods .info{
+    position: absolute;
+    height: 190px;
+    width: 180px;
+    top: 30px;
+    left: 210px;
+}
+.seckill-goods .name{
+    display: block;
+    font-size: 16px;
+    height: 16px;
+    color: #333333;
+    line-height: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.seckill-goods .desc{
+    font-size: 12px;
+    line-height: 12px;
+    color: #999999;
+    margin-top: 7px;
+    height: 32px;
+}
+.seckill-goods .price{
+    font-size: 16px;
+    line-height: 16px;
+    color: #f1393a;
+    margin-top: 14px;
+}
+.seckill-goods .price del{
+    font-size: 12px;
+    line-height: 12px;
+    margin-left: 10px;
+    color: #999999;
+}
+.seckill-goods .btn{
+    font-size: 14px;
+    border: 1px solid #f1393a;
+    text-align: center;
+    background-color: #f1393a;
+    width: 118px;
+    height: 28px;
+    line-height: 28px;
+    color: #ffffff;
+    margin-top: 19px;
+}
+.seckill-goods .person{
+    font-size: 12px;
+    line-height: 12px;
+    margin-top: 10px;
+    color: #999999;
+}
+.seckill-notice{
+    font-size: 12px;
+    color: #999999;
+    margin-top: 100px;
+    margin-bottom: 35px;
 }
