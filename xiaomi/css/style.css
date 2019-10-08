@@ -210,15 +210,16 @@ input{
     background: url(http://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3cba013aa492551729f3a42e1668b9d9.jpg) no-repeat 50% 0;
 }
 .seckill-nav{
-    /* position: sticky;
-    top: 0; */
+    position: sticky;
+    top: 0;
     margin: -68px 0 22px;
+    z-index: 10;
 }
-.seckill-navfixed{
+/* .seckill-navfixed{
     width: 1226px;
     position: fixed;
     top: 68px;
-}
+} */
 .seckill-nav ul{
     height: 68px;
     background-color: #414141;

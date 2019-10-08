@@ -104,16 +104,6 @@ ul{
     vertical-align: -4px;
     line-height: 20px;
 }
-.clearfix::before, .clearfix::after{
-    content: "";
-    height: 0;
-    overflow: hidden;
-    display: block;
-    zoom: 1;
-}
-.clearfix::after{
-    clear: both;
-}
 .topbar-logo{
     float: left;
     height: 55px;
@@ -217,7 +207,16 @@ input{
     background:  url(http://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3cba013aa492551729f3a42e1668b9d9.jpg) no-repeat 50% 0;
 }
 .seckillNav{
+    /* position: sticky;
+    top: 0;
+    z-index: 1; */
     margin: -68px 0 22px; 
+}
+.seckill-navfixe{
+    position: fixed;
+    top: 68px;
+    width: 1226px;
+    z-index: 1;
 }
 .seckillNav ul{
     height: 68px;
@@ -260,12 +259,10 @@ input{
 } 
 .seckill-goods ul{
     display: none;
+    margin-right: -13px;
 }
 .seckill-goods ul.active{
     display: block;
-}
-.seckill-goods ul{
-    margin-right: -13px;
 }
 .seckill-goods li{
     position: relative;
@@ -297,7 +294,7 @@ input{
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.seckill-goods .desc{
+.seckill-goods .tips{
     font-size: 12px;
     line-height: 12px;
     color: #999999;
@@ -317,6 +314,7 @@ input{
     color: #999999;
 }
 .seckill-goods .btn{
+    display: inline-block;
     font-size: 14px;
     border: 1px solid #f1393a;
     text-align: center;
