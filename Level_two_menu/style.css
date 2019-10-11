@@ -86,6 +86,9 @@ body {
 }
 
 .inner-box {
+	position: absolute;
+	top: 0;
+	left: 0;    
 	width: 100%;
 	height: 100%;
 	background: url("img/timg.jpg") no-repeat;
@@ -94,9 +97,14 @@ body {
 .sub-inner-box {
 	width: 652px;
 	margin-left: 40px;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
-
+/* 
+可以将sub-inner-box的注释去掉，将inner-box的position、top、left注释
+或
+保持现在的设置
+具体问题看CSS笔记中的 margin 问题
+ */
 .title {
 	color: #f01414;
 	font-size: 16px;
