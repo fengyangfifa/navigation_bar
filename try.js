@@ -1,33 +1,23 @@
-var  submenu = document.getElementById("sub-menu");
-var innerbox = submenu.getElementsByClassName("inner-box");
-var  menucontent = document.getElementById("menu-content");
-var  menuitem = menucontent.getElementsByClassName("menu-item");
+var data = {"请选择省/市":["请选择区/县"],"河北省":["邯郸","廊坊"],"北京":["海淀","朝阳"],"陕西":["延安","西安"]};
 
-function setMenu() {
-    for (i = 0; i < menuitem.length; i++){
-        menuitem[i].setAttribute("data-index", i);
-        menuitem[i].onmouseover = function () {
-            submenu.style.display = "block";
-            for (j = 0; j < menuitem.length; j++){
-                menuitem[j].style.background = "none";
-                innerbox[j].style.display = "none";
-            }
-            index = this.getAttribute("data-index");
-            innerbox[index].style.display = "block";
-            this.style.background = "rgba(0,0,0,0.1)";
-        };
-        menuitem[i].onmouseout = function () {
-            this.style.background = "none";
-        }
-    }
-    submenu.onmouseover = function () {
-        this.style.display = "block";
-    }
-    submenu.onmouseout = function () {
-        this.style.display = "none";
-    }
-    menucontent.onmouseout = function () {
-        submenu.style.display = "none";
-    }
+function initionProvince(){
+        var pro = document.getElementById("province");
+        for (var i in data){
+                var option_pro = document.createElement("option");
+                option_pro.innerHTML = i;
+                pro.appendChild(option_pro);
+        }        
+        pro.onchange = changeCity;
 }
-setMenu();
+initionProvince();
+
+function changeCity() {
+        var choice = this.options[this.selectedIndex].innerHTML;
+        var city = document.getElementById("city");
+        city.options.length = 0;
+        for(var i in data[choice]){
+                var oprion_city = document.createElement("option");
+                oprion_city.innerHTML = data[choice][i]
+                city.appendChild(oprion_city);
+        }
+}

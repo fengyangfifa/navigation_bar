@@ -30,6 +30,9 @@ nav li:hover{
 .one_level li:hover .two_level{
     display: block;
 }
+.two_level li{
+    position: relative;
+}
 .two_level li, .three_level li{
     border-top: 1px solid #6b727c;
     border-bottom: 1px solid #575f6a;
@@ -39,12 +42,6 @@ nav li:hover{
     color: #ffffff;
     background-color: #333333;
 }
-.two_level{
-    display: none;
-}
-.two_level li{
-    position: relative;
-}
 .two_level li:hover > ul{
     display: block;
 }
@@ -53,6 +50,6 @@ nav li:hover{
     top: 0;
     left: 100%;
 }
-.three_level{
+.two_level, .three_level{
     display: none;
 }
