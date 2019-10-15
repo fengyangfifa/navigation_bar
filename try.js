@@ -12,12 +12,25 @@ function initionProvince() {
 initionProvince();
 
 function changeCity() {
-	var choice = this.options[this.selectedIndex].innerHTML;
+	var choice = this.value;
+	// var choice = this.options[this.selectedIndex].innerHTML;
 	var city = document.getElementById("city");
 	city.options.length = 0;
 	for (var i in data[choice]) {
-		var oprion_city = document.createElement("option");
-		oprion_city.innerHTML = data[choice][i];
-		city.appendChild(oprion_city);
+		var option_city = document.createElement("option");
+		option_city.innerHTML = data[choice][i];
+		city.appendChild(option_city);
+	}
+	city.onchange = changeVillage;
+}
+
+function changeVillage() {
+	var village = document.getElementById("village");
+	// var choice = this.value;
+	village.options.length = 0;
+	for(var i in ["流马镇","黄金镇"]){
+		var option_village = document.createElement("option");
+		option_village.innerHTML = "流马镇";
+		village.appendChild(option_village);
 	}
 }
