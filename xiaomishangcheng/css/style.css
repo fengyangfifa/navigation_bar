@@ -1,0 +1,92 @@
+/* 公共样式 */
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-size: 12px;
+    color: #333333;
+}
+.container{
+    width: 1206px;
+    margin: 0 auto;
+}
+
+/* 顶部样式 */
+.page-top{
+    height: 38px;
+    background-color: #323232;
+}
+.page-top .top-lt{
+    color: #ffffff;
+    line-height: 38px;
+    float: left;
+}
+.page-top .top-lt a{
+    color: #a2a2a2; 
+    text-decoration: none;
+}
+.page-top .top-lt span{
+    color: #3f3f3f;
+    padding: 0 3px;
+}
+.page-top .top-lt a:hover{
+    color: #ffffff;
+}
+.page-top .top-lt .download{
+    position: relative;
+    display: inline-block;
+}
+.page-top .top-lt .down-box{
+    width: 126px;
+    position: absolute;
+    top: 38px;
+    left: 50%;
+    margin-left: -63px;
+    background-color: #ffffff;
+    padding-top: 20px;
+    box-shadow: rgb(170, 170, 170) 0 1px 5px;
+    text-align: center;
+    display: none;
+}
+.page-top .top-lt .down-box img{
+    width: 88px;
+    height: 88px;
+    display: block;
+    margin: 0 auto;
+}
+.page-top .top-lt .download i{
+    font-size: 14px;
+    color: #323232;
+    font-style: normal;
+}
+.page-top .top-lt .download:hover i{
+    color: #323232;
+}
+.page-top .top-lt .download:hover .down-box{
+    display: block;
+}
+.page-top .top-gt{
+    float: right;
+    width: 300px;
+}
+.page-top .top-gt .login{
+    color: #a2a2a2;
+    line-height: 38px;
+    float: right;
+    margin-right: 20px;
+}
+.page-top .top-gt a{
+    color: #a2a2a2; 
+    text-decoration: none;
+}
+.page-top .top-gt span{
+    color: #3f3f3f;
+    padding: 0 3px;
+}
+.page-top .top-gt .car-box{
+    width: 118px;
+    background-color: #424242;
+    float: right;
+    height: 38px;
+}
