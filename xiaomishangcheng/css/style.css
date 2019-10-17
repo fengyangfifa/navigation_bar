@@ -68,7 +68,6 @@ body{
 }
 .page-top .top-gt{
     float: right;
-    width: 300px;
 }
 .page-top .top-gt .login{
     color: #a2a2a2;
@@ -76,17 +75,117 @@ body{
     float: right;
     margin-right: 20px;
 }
-.page-top .top-gt a{
+.page-top .top-gt .login a{
     color: #a2a2a2; 
     text-decoration: none;
+}
+.page-top .top-gt .login a:hover{
+    color: #ffffff; 
 }
 .page-top .top-gt span{
     color: #3f3f3f;
     padding: 0 3px;
 }
-.page-top .top-gt .car-box{
-    width: 118px;
-    background-color: #424242;
+.page-top .userinfo{
     float: right;
+    margin-right: 20px;
+    vertical-align: bottom;
+}
+.page-top .userinfo .link:hover{
+    color: #ffffff;
+}
+.page-top .userinfo span{
+    padding: 0 3px;
+    color: #3f3f3f;
+}
+.page-top .userinfo .user{
+    width: 120px;
+    display: inline-block;
+    position: relative;
+    height: 39px;
+}
+.page-top .userinfo .user .tit{
+    line-height: 38px;
+    text-align: center;
+    display: block;
+    position: relative;
+    z-index: 1000;
+}
+.page-top .userinfo .user ul{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 38px;
+    width: 120px;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+.page-top .userinfo .user li{
+    line-height: 30px;
+    text-align: center;
+}
+.page-top .userinfo li:hover{
+    background-color: #f5f5f5;
+    color: #ff6700;
+}
+.page-top .userinfo a{
+    color: #a2a2a2;
+    text-decoration: none;
+}
+.page-top .userinfo .user li a{
+    color: #323232;
+}
+.page-top .userinfo li:hover > a{
+    display: block;
+    color: #ff6700;
+}
+.page-top .userinfo .user:hover{
+    background-color: #ffffff;
+}
+.page-top .userinfo .user:hover .tit{
+    color: #ff6700;
+}
+.page-top .userinfo .user:hover > ul{
+    display: block;
+}
+.page-top .top-gt .car-box{
+    float: right;
+    position: relative;
+}
+.page-top .car-box .tit{
     height: 38px;
+    width: 118px;
+    display: block;
+    line-height: 38px;
+    text-align: center;
+    background-color: #424242;
+    color: #a2a2a2;
+    text-decoration: none;
+    position: relative;
+    z-index: 1000;
+}
+.page-top .car-box .tit span{
+    color: #a2a2a2;
+}
+.page-top .car-box .tit i{
+    font-size: 18px;
+    vertical-align: top;
+}
+.page-top .car-box .pop{
+    display: none;
+    width: 316px;
+    position: absolute;
+    top: 38px;
+    right: 0;
+    padding: 40px 0;
+    /* height: 100px; */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+.page-top .car-box:hover .tit{
+    background-color: #ffffff;
+    color: #ff6700;
+}
+.page-top .car-box:hover .pop{
+    display: block;
 }
