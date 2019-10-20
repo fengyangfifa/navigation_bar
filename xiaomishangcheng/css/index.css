@@ -1,0 +1,99 @@
+/* 全部分类菜单 */
+.slider-nav{
+    width: 234px;
+    height: 420px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.slider-nav .slider-li .name{
+    color: #ffffff;
+}
+.slider-nav .slider-pop{
+    top: 0;
+    left: 234px;
+    border-left: none;
+}
+#page-all-nav .slider-nav{
+    visibility: visible;
+}
+
+/* 首页轮播 */
+.idx-banner{
+    width: 1206px;
+    height: 460px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+.idx-banner ul{
+    width: 20000px;
+}
+.idx-banner li{
+    width: 1206px;
+    float: left;
+    height: 460px;
+    position: relative;
+}
+.idx-banner li img{
+    width: 1206px;
+    height: 460px;
+}
+.idx-banner li a{
+    position: absolute;
+    width: 972px;
+    height: 460px;
+    top: 0;
+    right: 0;
+}
+.idx-banner .btn{
+    position: absolute;
+    top: 50%;
+    margin-top: -35px;
+    width: 40px;
+    height: 70px;
+    background-image: url(http://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png);
+}
+.idx-banner .btn.prev{
+    background-position: -83px 0;
+    left: 234px;
+}
+.idx-banner .btn.next{
+    background-position: top right;
+    right: 0;
+}
+.idx-banner .btn.prev:hover{
+    background-position: left top;
+}
+.idx-banner .btn.next:hover{
+    background-position: -42px 0;
+}
+.idx-banner .page{
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+    height: 10px;
+    z-index: 1000;
+    width: 100%;
+    text-align: right;
+    padding-right: 35px;
+}
+.idx-banner .page a{
+    display: inline-block;
+    margin: 0 5px;
+    width: 6px;
+    height: 6px;
+    border: 2px solid #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.idx-banner .page a:hover{
+    border-color: #757575;
+    border-color: rgba(0, 0, 0, 0.4);
+    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+.idx-banner .page span{
+    visibility: hidden;
+}
