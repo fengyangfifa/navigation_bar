@@ -1,3 +1,7 @@
+body{
+    min-height: 3000px;
+}
+
 /* 全部分类菜单 */
 .slider-nav{
     width: 234px;
@@ -96,4 +100,119 @@
 }
 .idx-banner .page span{
     visibility: hidden;
+}
+
+/* 菜单区域和广告位 */
+.idx-menu-adv{
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.idx-menu-adv .menu{
+    width: 228px;
+    height: 164px;
+    background-color: #5f5750;
+    float: left;
+    padding: 3px;
+}
+.idx-menu-adv .menu li{
+    position: relative;
+    float: left;
+    width: 70px;
+    height: 82px;
+    padding: 0 3px;
+}
+.idx-menu-adv .menu li a{
+    display: block;
+    padding-top: 18px;
+    text-align: center;
+    width: 70px;
+    height: 46px;
+    color: #ffffff;
+    text-decoration: none;
+    opacity: 0.7;
+}
+.idx-menu-adv .menu li a:hover{
+    color: #ffffff;
+    opacity: 1;
+}
+.idx-menu-adv .menu img{
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin: 0 23px 4px;
+}
+.idx-menu-adv .menu li::before{
+    top: -1px;
+    left: 6px;
+    width: 64px;
+    height: 1px;
+    position: absolute;
+    content: "";
+    background: #665e57;
+}
+.idx-menu-adv .menu li::after{
+    top: 6px;
+    left: 0;
+    width: 1px;
+    height: 70px;
+    position: absolute;
+    background: #665e57;
+    content: "";
+}
+.idx-menu-adv .pic{
+    display: block;
+    width: 304px;
+    height: 165px;
+    margin-left: 20px;
+    float: left;
+}   
+.idx-menu-adv .pic img{
+    width: 304px;
+    height: 170px;
+    display: block;
+}
+
+/* 广告图 */
+.idx-adv img{
+    width: 100%;
+    display: block;
+}
+
+/* 大内容区 */
+.idx-container{
+    background-color: #f5f5f5;
+    margin-top: 40px;
+}
+.idx-title{
+    overflow: hidden;
+    line-height: 60px;
+    margin-top: 20px;
+}
+.idx-title .tit{
+    font-size: 22px;
+    color: #666666;
+}
+.idx-title .see-all{
+    float: right;
+    text-decoration: none;
+    color: #424242;
+    font-size: 16px;
+}
+.idx-title .see-all i{
+    width: 12px;
+    height: 12px;
+    padding: 4px;
+    margin-left: 8px;
+    border-radius: 16px;
+    font-size: 12px;
+    line-height: 12px;
+    background-color: #b0b0b0;
+    color: #ffffff;
+}
+.idx-title .see-all:hover{
+    color: #ff6700;
+}
+.idx-title .see-all:hover > i{
+    background-color: #ff6700;
 }
