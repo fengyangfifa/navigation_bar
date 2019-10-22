@@ -10,7 +10,6 @@ body{
 .container{
     width: 1206px;
     margin: 0 auto;
-    overflow: hidden;
 }
 
 /* 顶部样式 */
