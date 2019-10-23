@@ -184,6 +184,9 @@ body{
     background-color: #f5f5f5;
     margin-top: 40px;
 }
+.idx-container .idx-adv{
+    margin-top: 40px;
+}
 .idx-title{
     overflow: hidden;
     line-height: 60px;
@@ -216,6 +219,29 @@ body{
 .idx-title .see-all:hover > i{
     background-color: #ff6700;
 }
+.idx-title .list{
+    width: 400px;
+    float: right;
+    text-align: right;
+    position: relative;
+}
+.idx-title .list li{
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 30px;
+}
+.idx-title .list li a{
+    text-decoration: none;
+    color: #333333;
+}
+.idx-title .list li.active,
+.idx-title .list li:hover{
+    border-bottom: 2px solid #ff6700;
+}
+.idx-title .list li.active > a,
+.idx-title .list li:hover > a{
+    color: #ff6700;
+}
 .idx-container .idx-box{
     height: 615px;
     clear: both;
@@ -225,10 +251,6 @@ body{
     margin-left: 15px;
     margin-bottom: 15px;
     float: left;
-}
-.idx-container .col-5:hover{
-    transform: translate3d(0,-2px,0);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 .idx-box .adv-box{
     float: left;
@@ -240,6 +262,12 @@ body{
     width: 229px;
     display: block;
     height: 615px;
+}
+.idx-box .adv-box .double img{
+    width: 229px;
+    display: block;
+    height: 300px;
+    margin-bottom: 15px;
 }
 .idx-box .good-box{
     float: right;
@@ -304,4 +332,14 @@ body{
     text-decoration: line-through;
     margin-left: 5px;
     color: #b0b0b0;
+}
+.idx-box .adv-box .single,
+.idx-box .adv-box .double{
+    display: block;
+}
+.idx-box .good-item:hover,
+.idx-box .adv-box .single:hover,
+.idx-box .adv-box .double:hover{
+    transform: translate3d(0,-2px,0);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
