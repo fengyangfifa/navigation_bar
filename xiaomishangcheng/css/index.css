@@ -1,5 +1,5 @@
 body{
-    min-height: 3000px;
+    min-height: 20000px;
 }
 
 /* 全部分类菜单 */
@@ -190,7 +190,7 @@ body{
 .idx-title{
     overflow: hidden;
     line-height: 60px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 .idx-title .tit{
     font-size: 22px;
@@ -333,13 +333,165 @@ body{
     margin-left: 5px;
     color: #b0b0b0;
 }
+.idx-box .good-item .pop{
+    height: 56px;
+    position: absolute;
+    background-color: #ff6700;
+    left: 0;
+    bottom: 0;
+    padding: 10px 25px;
+    display: none;
+}
+.idx-box .good-item:hover .pop{
+    display: block;
+}
+.idx-box .good-item .pop a{
+    text-decoration: none;
+    color: #ffffff;
+}
+.idx-box .good-item .pop h5{
+    font-weight: normal;
+    line-height: 16px;
+    height: 32px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+.idx-box .good-item .pop p a{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #ffffff;
+    color: rgba(255, 255, 255, 0.6);
+}
 .idx-box .adv-box .single,
 .idx-box .adv-box .double{
     display: block;
 }
 .idx-box .good-item:hover,
 .idx-box .adv-box .single:hover,
-.idx-box .adv-box .double:hover{
+.idx-box .adv-box .double:hover,
+.idx-box .last-more .good-top:hover,
+.idx-box .last-more .good-more:hover{
     transform: translate3d(0,-2px,0);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.idx-box .last-more{
+    background-color: #f5f5f5;
+    background-color: transparent;
+}
+.idx-box .last-more:hover{
+    box-shadow: none;
+}
+.idx-box .last-more .good-top,
+.idx-box .last-more .good-more{
+    background-color: #ffffff;
+    height: 142px;
+    margin-bottom: 16px;
+}
+.idx-box .last-more .good-top .sm-img{
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    float: right;
+    margin-top: 25px;
+}
+.idx-box .last-more .good-top img{
+    width: 80px;
+    height: 80px;
+    display: block;
+}
+.idx-box .last-more .txt{
+    margin-left: 30px;
+    overflow: hidden;
+}
+.idx-box .last-more .txt a{
+    text-decoration: none;
+    color: #333333;
+}
+.idx-box .last-more .txt h3{
+    font-weight: normal;
+}
+.idx-box .last-more .good-top .txt{
+    float: left;
+    margin-top: 40px;
+}
+.idx-box .last-more .good-top h3{
+    width: 94px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.idx-box .last-more .good-top p{
+    color: #ff6700;
+    line-height: 30px;
+}
+.idx-box .last-more .good-more{
+    position: relative;
+}
+.idx-box .last-more .good-more h3{
+    font-size: 18px;
+    margin-top: 40px;
+}
+.idx-box .last-more .good-more p{
+    line-height: 30px;
+}
+.idx-box .last-more .good-more i{
+    font-size: 60px;
+    color: #ff6700;
+    position: absolute;
+    top: 35px;
+    right: 40px;
+}
+/* 为你推荐 */
+.idx-title .page-box{
+    width: 71px;
+    height: 24px;
+    float: right;
+    margin-top: 20px;
+}
+.idx-title .page-box a{
+    text-decoration: none;
+    text-align: center;
+    line-height: 22px;
+    display: block;
+    font-size: 22px;
+    float: left;
+    border: 1px solid #e0e0e0;
+    height: 22px;
+    color: #b0b0b0;
+}
+.idx-title .page-box a.prev{
+    width: 34px;
+}
+.idx-title .page-box a.next{
+    width: 34px;
+    border-left: none;
+}
+.idx-title .page-box a.disabled{
+    color: #e0e0e0;
+}
+.idx-title .page-box a:hover{
+    color: #ff6700;
+}
+.idx-title .page-box a.disabled:hover{
+    color: #e0e0e0;
+    cursor: default;
+}
+.idx-box.wntj{
+    overflow: hidden;
+}
+.idx-box.wntj .good-box{
+    width: 3000px;
+    position: relative;
+    float: none;
+}
+.idx-box.wntj .good-item{
+    margin-left: 0;
+    margin-right: 15px;
+}
+.idx-box.wntj .good-item .commit{
+    font-weight: normal;
+    text-align: center;
+    margin-top: 10px;
+    color: #757575;
 }
