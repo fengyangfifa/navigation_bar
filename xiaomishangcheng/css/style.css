@@ -10,8 +10,11 @@ body{
 .container{
     width: 1206px;
     margin: 0 auto;
+    border: 1px solid transparent;
 }
-
+.mt0{
+    margin-top: 0 !important;
+}
 /* 顶部样式 */
 .page-top{
     height: 38px;
@@ -514,4 +517,42 @@ body{
     float: right;
     font-style: normal;
     color: #b0b0b0;
+}
+
+/* 页脚代码 */
+.page-foot .ts{
+    overflow: hidden;
+    margin: 30px auto;
+}
+.page-foot .ts li{
+    float: left;
+    width: 240px;
+    border-right: 1px solid #b0b0b0;
+    line-height: 25px;
+    text-align: center;
+}
+.page-foot .ts li:last-child{
+    border: none;
+}
+.page-foot .ts li i{
+    font-size: 24px;
+    line-height: 24px;
+    margin-right: 5px;
+    vertical-align: -4px;
+}
+.page-foot .ts li a:hover{
+    color: #ff6700;
+}
+.ts li a{
+    font-size: 16px;
+    text-decoration: none;
+    color: #616161;
+}
+.page-foot .nav{
+    border-top: 1px solid #e0e0e0;
+    padding-top: 40px;
+}
+.page-foot .nav .lt{
+    float: left;
+    width: 964px;
 }
