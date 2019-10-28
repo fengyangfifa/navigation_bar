@@ -157,6 +157,7 @@ body{
     position: relative;
 }
 .page-top .car-box .tit{
+    top: -1px;
     height: 38px;
     width: 118px;
     display: block;
@@ -527,7 +528,7 @@ body{
 .page-foot .ts li{
     float: left;
     width: 240px;
-    border-right: 1px solid #b0b0b0;
+    border-right: 1px solid #e0e0e0;
     line-height: 25px;
     text-align: center;
 }
@@ -551,8 +552,121 @@ body{
 .page-foot .nav{
     border-top: 1px solid #e0e0e0;
     padding-top: 40px;
+    overflow: hidden;
 }
 .page-foot .nav .lt{
     float: left;
     width: 964px;
+    overflow: hidden;
+    border-right: 1px solid #e0e0e0;
+}
+.page-foot .nav .lt dl{
+    width: 160px;
+    float: left;
+}
+.page-foot .nav .lt dt{
+    color: #424242;
+    font-size: 14px;
+    line-height: 40px;
+}
+.page-foot .nav .lt dd{
+    line-height: 30px;
+}
+.page-foot .nav .lt dd a{
+    color: #757575;
+    text-decoration: none;
+}
+.page-foot .nav .lt dd a:hover{
+    color: #ff6700;
+}
+.page-foot .nav .gt{
+    width: 240px;
+    float: right;
+    text-align: center;
+}
+.page-foot .nav .gt h3{
+    font-weight: normal;
+    color: #ff6700;
+    font-size: 22px;
+}
+.page-foot .nav .gt h4{
+    line-height: 30px;
+    font-weight: normal;
+    font-size: 12px;
+    color: #616161;
+}
+.page-foot .nav .gt p{
+    color: #616161;
+}
+.page-foot .nav .gt .contact{
+    text-decoration: none;
+    margin: 20px auto;
+    display: block;
+    width: 128px;
+    height: 28px;
+    border: 1px solid #ff6700;
+    line-height: 28px;
+    color: #ff6700;
+}
+.page-foot .nav .gt .contact i{
+    margin-right: 3px;
+}.page-foot .nav .gt .contact:hover{
+    color: #ffffff;
+    background-color: #ff6700;
+}
+.page-foot .bot{
+    height: 230px;
+    margin-top: 20px;
+    padding-top: 30px;
+    overflow: hidden;
+    background: #fafafa url(http://s02.mifile.cn/assets/static/image/slogan2016.png) center 220px no-repeat;
+}
+.page-foot .bot .logo{
+    display: block;
+    float: left;
+    height: 54px;
+    width: 54px;
+    background: #ff6700 url(http://s01.mifile.cn/i/mi-logo.png) no-repeat center center;
+}
+.page-foot .bot .txt{
+    width: 1142px;
+    float: right;
+}
+.page-foot .bot .txt .list{
+    font-weight: normal;
+    line-height: 20px;
+}
+.page-foot .bot .txt .list a{
+    text-decoration: none;
+    color: #b0b0b0;
+}
+.page-foot .bot .txt .list span{
+    color: #b0b0b0;
+    padding: 0 2px;
+}
+.page-foot .bot .txt p{
+    color: #b0b0b0;
+    line-height: 18px;
+}
+.page-foot .bot .txt p a{
+    margin-top: 0 3px;
+    color: #b0b0b0;
+    text-decoration: none;
+}
+.page-foot .bot .txt a:hover{
+    color: #ff6700;
+}
+.page-foot .bot .txt ul{
+    overflow: hidden;
+    margin-top: 8px;
+}
+.page-foot .bot .txt li{
+    float: left;
+    margin-right: 10px;
+}
+.page-foot .bot .txt li img,
+.page-foot .bot .txt li{
+    width: 84px;
+    height: 28px;
+    display: block;
 }
