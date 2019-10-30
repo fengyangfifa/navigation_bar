@@ -716,17 +716,22 @@ body{
     display: none;
 }
 .page-slider li:hover .hover-img,
-.page-slider li:hover .pop{
+.page-slider li:hover .pop,
+.page-slider li:hover .arrow{
     display: block;
 }
 .page-slider li .pop{
     display: none;
     position: absolute;
+    right: 82px;
+    top: -1px;
+    z-index: 1000;
+    padding: 0 8px;
+}
+.page-slider li .pop a{
+    display: block;
     width: 130px;
     height: 188px;
-    right: 90px;
-    top: 0;
-    z-index: 1000;
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
 }
@@ -739,4 +744,18 @@ body{
     text-decoration: none;
     font-size: 14px;
     color: #757575;
+}
+.page-slider li .arrow{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 7px solid #ffffff;
+    position: absolute;
+    top: 48px;
+    left: -8px;
+    z-index: 1000;
+    display: none;
 }
