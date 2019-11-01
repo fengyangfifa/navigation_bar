@@ -819,8 +819,10 @@
     top: 0;
     z-index: 1010;
     background-color: rgba(0, 0, 0, 0.5);
+    /* display: none; */
 }
 .idx-video-box{
+    /* display: none; */
     width: 880px;
     height: 596px;
     position: fixed;
@@ -882,4 +884,106 @@
     z-index: 100;
     display: block;
     background-image: url(http://hd.mi.com/f/zt/hd/miplayer2/images/big_play_btn.png);
+}
+.idx-video-box .controller{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 1100;
+}
+.idx-video-box .bar{
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: #5c5c5c;
+    background-color: rgba(92, 92, 92, 0.6);
+}
+.idx-video-box .bar a{
+    width: 50%;
+    height: 4px;
+    background-color: #ff6700;
+    display: block;
+    position: relative;
+}
+.idx-video-box .bar span{
+    position: absolute;
+    border-radius: 50%;
+    background-color: #ffffff;
+    width: 12px;
+    height: 12px;
+    right: 0;
+    top: -4px;
+}
+.idx-video-box .cont-box{
+    padding: 0 20px;
+}
+.idx-video-box .cont-box .play-icon{
+    width: 20px;
+    height: 20px;
+    display: block;
+    background-image: url(http://hd.mi.com/f/zt/hd/miplayer2/images/btns.png);
+    margin-top: 14px;
+    cursor: pointer;
+}
+.idx-video-box .cont-box .play-icon:hover{
+    background-image: url(http://hd.mi.com/f/zt/hd/miplayer2/images/btns-hover.png);
+}
+.idx-video-box .cont-box .normal{
+    margin-left: 10px;
+    float: left;
+}
+.idx-video-box .cont-box .play-icon.play{
+    background-position: 0 -20px;
+}
+.idx-video-box .cont-box .play-icon.pause{
+    background-position: 0 0;
+}
+.idx-video-box .cont-box .play-times{
+    margin-left: 30px;
+    line-height: 46px;
+    color: #ffffff;
+    float: left;
+}
+.idx-video-box .cont-box .icon-full{
+    float: right;
+    background-position: left -100px;
+}
+.idx-video-box .cont-box .vol{
+    float: right;
+    width: 130px;
+    height: 46px;
+    overflow: hidden;
+    margin-right: 30px;
+}
+.idx-video-box .cont-box .icon-vol{
+    background-position: left -40px;
+    float: left;
+    margin-right: 10px;
+}
+.idx-video-box .cont-box .vol-bar{
+    width: 100px;
+    height: 4px;
+    background-color: #c2c2c2;
+    border-radius: 2px;
+    float: left;
+    margin-top: 22px;
+}
+.idx-video-box .cont-box .vol-bar a{
+    width: 50%;
+    background-color: #ff6700;
+    border-radius: 2px;
+    height: 4px;
+    display: block;
+    position: relative;
+}
+.idx-video-box .cont-box .vol-bar span{
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    top: -3px;
+    right: 0;
 }
