@@ -279,6 +279,7 @@ body{
 .page-nav{
     height: 96px;
     position: relative;
+    z-index: 1;
 }
 .page-nav .logo{
     display: block;

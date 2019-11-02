@@ -3,6 +3,7 @@
     width: 234px;
     height: 420px;
     border: none;
+    background-color: #000; /* 兼容IE8及以下*/
     background-color: rgba(0, 0, 0, 0.6);
 }
 .slider-nav .slider-li .name{
@@ -37,13 +38,6 @@
 .idx-banner li img{
     width: 1206px;
     height: 460px;
-}
-.idx-banner li a{
-    position: absolute;
-    width: 972px;
-    height: 460px;
-    top: 0;
-    right: 0;
 }
 .idx-banner .btn{
     position: absolute;
@@ -191,6 +185,7 @@
 .idx-title .tit{
     font-size: 22px;
     color: #666666;
+    float: left;
 }
 .idx-title .see-all{
     float: right;
@@ -225,6 +220,9 @@
     display: inline-block;
     font-size: 16px;
     margin-left: 30px;
+    /* 兼容IE6、7 */
+    _zoom: 1;
+    *display: inline;
 }
 .idx-title .list li a{
     text-decoration: none;
@@ -468,6 +466,8 @@
 .idx-box.wntj{
     overflow: hidden;
     height: 340px;
+    position: relative;
+    z-index: 1;
 }
 .idx-box.wntj .good-box{
     width: 3000px;
@@ -497,8 +497,10 @@
     float: left;
     margin-right: 15px;
 }
-.idx-container .col-4:last-child,
 .idx-container .col-4.last{
+    margin-right: 0;
+}
+.idx-container .col-4:last-child{
     margin-right: 0;
 }
 .rpcp .item img{
@@ -819,10 +821,10 @@
     top: 0;
     z-index: 1010;
     background-color: rgba(0, 0, 0, 0.5);
-    /* display: none; */
+    display: none;
 }
 .idx-video-box{
-    /* display: none; */
+    display: none;
     width: 880px;
     height: 596px;
     position: fixed;
