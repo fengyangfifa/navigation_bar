@@ -9,16 +9,11 @@
     <script src="index.js"></script>
 </head>
 <body>
-    <div id="app">
-        <p> {{ message }} </p>
+    <div id="app-3">
+        <p v-if="seen">现在你看到我了</p>
     </div>
     <script>
-        var app = new Vue({
-            el: "#app",
-            data: {
-                message: "Hello Vue.js!"
-            }
-        })
+        
     </script>
 </body>
 </html>
