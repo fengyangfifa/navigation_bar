@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 </head>
+
 <body>
-    <div id="example">
-        <p>Original message: "{{ message }}"</p>
-        <p>Computed reversed message: "{{ reversedMessage }}"</p>
-        <p>{{ now() }}</p>
-    </div>
-    <div id="demo">
-        {{ fullName }}
+    <div id="watch-example">
+        <p>
+            Ask a yes/no question:
+            <input v-model="question">
+        </p>
+        <p>{{ answer }}</p>
     </div>
     <script src="index.js"></script>
 </body>
+
 </html>
