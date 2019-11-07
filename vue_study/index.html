@@ -9,18 +9,29 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-    <div id="todo-list-example">
-        <form v-on:submit.prevent="addNewTodo">
-            <label for="new-todo">Add a todo</label>
-            <input v-model="newTodoText" id="new-todo" placeholder="E.g. Feed the cat">
-            <button>Add</button>
-        </form>
-        <ul>
-            <li is="todo-item" v-for="(todo, index) in todos" :key="index" v-bind:title="todo.title" v-on:remove="todos.splice(index, 1)"></li>
-        </ul>
+    <div id="components-demo">
+        <div :style="{ fontSize: postFontSize + 'em' }">
+            <blog-post
+                v-for="item in posts" :key="item.id"
+                v-bind:post="item"
+                v-on:enlarge-text="onEnlargeText"
+            ></blog-post>
+        </div>
+        <custom-input v-model="searchText"></custom-input>
+        <p>{{searchText}}</p>
+        <alert-box>111</alert-box>
+    </div>
+    <div id="dynamic-component-demo" class="demo">
+        <button
+            v-for="tab in tabs" :key="tab"
+            v-bind:class="['tab-button', { active: currentTab === tab }]"
+            v-on:click="currentTab = tab"
+        >{{ tab }}</button>
+        <component :is="currentTabComponent" class="tab"></component>
     </div>
     <script src="index.js"></script>
 </body>
