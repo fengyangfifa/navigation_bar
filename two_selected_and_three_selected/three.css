@@ -1,0 +1,14 @@
+select {
+        width: 200px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #cccccc;
+        border: none;
+        outline: none;
+        height: 40px;
+        line-height: 40px;
+        /* 去除三角箭头 */
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+    
