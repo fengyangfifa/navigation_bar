@@ -14,8 +14,20 @@
 
 <body>
 	<div id="example-2">
-			<input v-model.trim="msg" >
-			<p>{{ msg }}</p>
+		<submit-button>
+			<template v-slot:default>
+				<h1>hhh</h1>
+			</template>
+			<template v-slot:footer><h3>www</h3></template>
+		</submit-button>
+		<!-- <current-user>
+			<template v-slot="slotProps">
+				{{ slotProps.user }}
+			</template>
+		</current-user> -->
+		<current-user #delault="{ user }">
+			{{ user.firstName }}
+		</current-user>
 	</div>
 	<script src="index.js"></script>
 </body>
