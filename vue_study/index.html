@@ -9,25 +9,47 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="index.css">
 </head>
 
 <body>
+	<div id="example-1">
+		<button @click="show = !show">
+			Toggle render
+		</button>
+		<transition name="slide-fade">
+			<p v-if="show">hello</p>
+		</transition>
+	</div>
 	<div id="example-2">
-		<submit-button>
-			<template v-slot:default>
-				<h1>hhh</h1>
-			</template>
-			<template v-slot:footer><h3>www</h3></template>
-		</submit-button>
-		<!-- <current-user>
-			<template v-slot="slotProps">
-				{{ slotProps.user }}
-			</template>
-		</current-user> -->
-		<current-user #delault="{ user }">
-			{{ user.firstName }}
-		</current-user>
+		<button @click="show = !show">Toggle show</button>
+		<transition name="bounce">
+			<p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at
+				lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+		</transition>
+	</div>
+	<div id="example-3">
+		<button @click="show = !show">
+			Toggle render
+		</button>
+		<transition enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+			<p v-if="show">hello</p>
+		</transition>
+	</div>
+	<div id="transition-components-demo">
+		<transition name="component-fade" mode="out-in">
+			<component v-bind:is="view"></component>
+		</transition>
+	</div>
+	<div id="list-demo" class="demo">
+		<button v-on:click="add">Add</button>
+		<button v-on:click="remove">Remove</button>
+		<transition-group name="list" tag="p">
+			<span v-for="item in items" v-bind:key="item" class="list-item">
+				{{ item }}
+			</span>
+		</transition-group>
 	</div>
 	<script src="index.js"></script>
 </body>

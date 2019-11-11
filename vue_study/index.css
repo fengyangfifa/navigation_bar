@@ -1,23 +1,53 @@
-.tab-button {
-    padding: 6px 10px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    background: #f0f0f0;
-    margin-bottom: -1px;
-    margin-right: -1px;
+.bounce-enter-active {
+    animation: bounce-in .5s;
 }
 
-.tab-button:hover {
-    background: #e0e0e0;
+.bounce-leave-active {
+    animation: bounce-in .5s reverse;
 }
 
-.tab-button.active {
-    background: #e0e0e0;
+@keyframes bounce-in {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
-.tab {
-    border: 1px solid #ccc;
-    padding: 10px;
+.component-fade-enter-active,
+.component-fade-leave-active {
+    transition: opacity .3s ease;
+}
+
+.component-fade-enter,
+.component-fade-leave-to
+
+/* .component-fade-leave-active for below version 2.1.8 */
+    {
+    opacity: 0;
+}
+
+.list-item {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.list-enter-active,
+.list-leave-active {
+    transition: all 1s;
+}
+
+.list-enter,
+.list-leave-to
+
+/* .list-leave-active for below version 2.1.8 */
+    {
+    opacity: 0;
+    transform: translateY(30px);
 }
