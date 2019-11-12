@@ -15,11 +15,36 @@
 </head>
 
 <body>
-	<div id="animated-number-demo">
-		<input v-model.number="number" type="number" step="20">
-		<p>{{ animatedNumber }}</p>
+	<div id="app">
+		<input type="text" placeholder="fisrt" v-model="firstname"><br>
+		<input type="text" placeholder="last" v-model="lastname"><br>
+		<!-- <input type="text" placeholder="full 1" v-model="fullname1"><br> -->
+		<input type="text" placeholder="full 2" v-model="fullname2"><br>
+		<input type="text" placeholder="full 3">
 	</div>
-	<script src="index.js"></script>
+	<script>
+		var vm = new Vue({
+			el: "#app",
+			data: {
+				firstname: "A",
+				lastname: "B",
+				fullname2: 'A B'
+			},
+			// computed: {
+			// 	fullname1: function () {
+			// 		return this.firstname + ' ' + this.lastname;
+			// 	}
+			// },
+			watch: {
+				firstname: function (value) {
+					this.fullname2 = value + ' ' + this.lastname;
+				}
+			},
+		});
+		vm.$watch('lastname', function (value) {
+			this.fullname2 = this.firstname + ' ' + value;
+		})
+	</script>
 </body>
 
 </html>
