@@ -12,38 +12,32 @@
 	<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 	<link rel="stylesheet" href="index.css">
+	<style>
+		.aClass{
+			color: red;
+		}
+		.bClass{
+			color: yellow;
+		}
+	</style>
 </head>
 
 <body>
 	<div id="app">
-		<input type="text" placeholder="fisrt" v-model="firstname"><br>
-		<input type="text" placeholder="last" v-model="lastname"><br>
-		<!-- <input type="text" placeholder="full 1" v-model="fullname1"><br> -->
-		<input type="text" placeholder="full 2" v-model="fullname2"><br>
-		<input type="text" placeholder="full 3">
+		<p v-if="ok">成功了</p>
+		<p v-else>失败了</p>
+		<button @click="ok = !ok">却换</button>
+		<p v-show="ok">表白成功</p>
+		<p v-show="!ok">表白失败</p>
 	</div>
+
 	<script>
 		var vm = new Vue({
 			el: "#app",
 			data: {
-				firstname: "A",
-				lastname: "B",
-				fullname2: 'A B'
-			},
-			// computed: {
-			// 	fullname1: function () {
-			// 		return this.firstname + ' ' + this.lastname;
-			// 	}
-			// },
-			watch: {
-				firstname: function (value) {
-					this.fullname2 = value + ' ' + this.lastname;
-				}
+				ok: false
 			},
 		});
-		vm.$watch('lastname', function (value) {
-			this.fullname2 = this.firstname + ' ' + value;
-		})
 	</script>
 </body>
 
