@@ -24,18 +24,46 @@
 
 <body>
 	<div id="app">
-		<p v-if="ok">成功了</p>
-		<p v-else>失败了</p>
-		<button @click="ok = !ok">却换</button>
-		<p v-show="ok">表白成功</p>
-		<p v-show="!ok">表白失败</p>
+		<input type="text" v-model="searchname">
+		<ul>
+			<li v-for="(item, index) in filterPersons" :key="index">
+				{{index}} --- {{item.name}} --- {{item.age}}
+			</li>
+		</ul>
+		<button @click="orderType = 1">年龄升序</button>
+		<button @click="orderType = 2">年龄降序</button>
+		<button @click="orderType = 0">原本排序</button>
 	</div>
 
 	<script>
 		var vm = new Vue({
 			el: "#app",
 			data: {
-				ok: false
+				orderType: 0,
+				searchname: '',
+				persons: [
+					{name: "Tom", age: 18},
+					{name: "Jack", age: 19},
+					{name: "Bob", age: 16},
+					{name: "Rose", age: 17}
+				]
+			},
+			computed: {
+				filterPersons: function () {
+					const {searchname, persons, orderType} = this;
+					let fPersons = [];
+					fPersons = persons.filter(p => p.name.indexOf(searchname) !== -1);
+					if (orderType !== 0){
+						fPersons.sort(function (p1, p2) {
+							if (orderType === 2){
+								return p2.age - p1.age;
+							}else{
+								return p1.age - p2.age;
+							}
+						})
+					}
+					return fPersons;
+				}
 			},
 		});
 	</script>
