@@ -24,32 +24,29 @@
 
 <body>
 	<div id="app">
-		<div style="width: 200px; height: 200px; background: red" @click="test5">
-			<div style="width: 100px; height: 100px; background: blue" @click.stop="test6">
-			</div>
-		</div>
-		<a href="http://www.baidu.com" @click.prevent="test7">去百度</a><br>
-		<input type="text" @keyup.enter="test8">
+		<button @click="destoryVM">destory vm</button>
+		<p v-show="isShow">尚硅谷IT教育</p>
 	</div>
 
 	<script>
-		var vm = new Vue({
+		var vm  = new Vue({
 			el: "#app",
 			data: {
+				isShow: true
 			},
 			methods: {
-				test5: function () {
-					alert('out');
-				},
-				test6: function () {
-					alert('inner');
-				},
-				test7: function () {
-					alert("点击了");
-				},
-				test8: function (event) {
-					alert(event.target.value);
+				destoryVM() {
+					this.$destroy();
 				}
+			},
+			mounted() {
+				this.intervalId = setInterval(() => {
+					console.log('--')
+					this.isShow = !this.isShow;
+				}, 1000);
+			},
+			beforeDestroy() {
+				clearInterval(this.intervalId);
 			},
 		});
 	</script>
