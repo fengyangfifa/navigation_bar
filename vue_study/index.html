@@ -11,44 +11,45 @@
 	<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+	<script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
+	<script src="./vue-myPlugin.js"></script>
+
 	<link rel="stylesheet" href="index.css">
 	<style>
-		.aClass{
-			color: red;
+		.move-enter-active{
+			transition: all 1s;
 		}
-		.bClass{
-			color: yellow;
+		.move-leave-active{
+			transition: all 3s;
+		}
+		.move-enter, .move-leave-to{
+			opacity: 0;
+			transform: translateX(20px);
+		}
+		[v-cloak]{
+			display: none;
 		}
 	</style>
 </head>
 
 <body>
 	<div id="app">
-		<button @click="destoryVM">destory vm</button>
-		<p v-show="isShow">尚硅谷IT教育</p>
+		<p v-my-directive="msg"></p>
 	</div>
 
 	<script>
-		var vm  = new Vue({
+		Vue.use(MyPlugin);
+		Vue.myGlobalMethod();
+		Vue.directive('upper-text', function (el, binding) {
+			el.textContent = binding.value.toUpperCase();
+		})
+		var vm = new Vue({
 			el: "#app",
 			data: {
-				isShow: true
-			},
-			methods: {
-				destoryVM() {
-					this.$destroy();
-				}
-			},
-			mounted() {
-				this.intervalId = setInterval(() => {
-					console.log('--')
-					this.isShow = !this.isShow;
-				}, 1000);
-			},
-			beforeDestroy() {
-				clearInterval(this.intervalId);
+				msg: 'nBa'
 			},
 		});
+		vm.$myMethod();
 	</script>
 </body>
 
