@@ -10,7 +10,7 @@
 					<label for="">评论内容</label>
 					<textarea class="form-control" rows="6" placeholder="评论内容"></textarea>
 				</div>
-				<button type="submit">提交</button>
+				<button>提交</button>
 			</form>
 		</div>
   </div>
