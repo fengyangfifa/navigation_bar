@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     completeSize () {
-      return this.todos.reduce((preTotal, todo) => preTotal + (todo.complete?1:0), 0);
+      return this.todos.reduce((preTotal, todo) => preTotal + (todo.complete ? 1 : 0), 0);
     },
     isAllCheck: {
       get () {

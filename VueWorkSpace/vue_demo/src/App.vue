@@ -31,7 +31,7 @@ export default {
     deleteTodo (index) {
       this.todos.splice(index, 1);
     },
-    deleteCompleteTodos() {
+    deleteCompleteTodos () {
       this.todos = this.todos.filter(todo => !todo.complete);
     },
     selectAllTodos (check) {
