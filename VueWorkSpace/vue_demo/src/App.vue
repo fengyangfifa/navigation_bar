@@ -1,8 +1,15 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <TodoHeader :addTodo="addTodo"/>
-      <TodoList :todos="todos" :deleteTodo="deleteTodo" />
+      <!-- 方法1props -->
+      <!-- <TodoHeader :addTodo="addTodo"/> -->
+
+      <!-- 方法2自定义事件 -->
+      <!-- <TodoHeader @addTodo="addTodo"/> -->
+      <TodoHeader ref="header"/>
+
+      <!-- <TodoList :todos="todos" :deleteTodo="deleteTodo" /> -->
+      <TodoList :todos="todos" />
       <TodoFooter :todos="todos" :deleteCompleteTodos="deleteCompleteTodos" 
       :selectAllTodos="selectAllTodos" />
     </div>
@@ -13,16 +20,35 @@
 import TodoHeader from "./components/TodoHeader.vue";
 import TodoList from "./components/TodoList.vue";
 import TodoFooter from "./components/TodoFooter.vue";
+import storageUtil from './util/storageUtil.js';
+
+import PubSub from 'pubsub-js';
 
 export default {
   data() {
     return {
-      todos: [
-        {title: "吃饭", complete: false},
-        {title: "睡觉", complete: true},
-        {title: "coding", complete: false}
-      ]
+      todos: storageUtil.readTodos()
     }
+  },
+  watch: {
+    // 深度监视数据
+    todos: {
+      deep: true,
+      // handler: function (value) {
+      //   storageUtil.saveTodos(value);
+      // }
+      // 或
+      handler: storageUtil.saveTodos
+    }
+  },
+  mounted() { //执行异步事件
+    // 给<TodoHeader ref="header"/>绑定addTodo事件监听
+    this.$refs.header.$on('addTodo', this.addTodo);
+
+    // 订阅消息
+    PubSub.subscribe("deleteTodo", (msg, index) => {
+      this.deleteTodo(index);
+    })
   },
   methods: {
     addTodo (todo) {

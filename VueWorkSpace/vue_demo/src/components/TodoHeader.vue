@@ -12,9 +12,10 @@ export default {
       title: ''
     }
   },
-  props:{
-    addTodo: Function
-  },
+  // 方法1
+  // props:{
+  //   addTodo: Function
+  // },
   methods: {
     addItem () {
       const title = this.title.trim();
@@ -26,7 +27,11 @@ export default {
         title,
         complete: false
       }
-      this.addTodo(todo);
+      // 方法1
+      // this.addTodo(todo);
+      
+      // 方法2
+      this.$emit("addTodo", todo);
       this.title = '';
     }
   },
