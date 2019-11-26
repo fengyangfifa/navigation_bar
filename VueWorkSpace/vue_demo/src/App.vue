@@ -13,18 +13,14 @@
         <div class="list-group">
           <router-link to="/about" class="list-group-item">About</router-link>
           <router-link to="/home" class="list-group-item">Home</router-link>
-          <!-- <a href="#/about" class="list-group-item router-link-exact-active activeClass">About</a>
-          <a href="#/home" class="list-group-itme">Home</a>-->
         </div>
       </div>
       <div class="col-xs-6">
         <div class="panel">
           <div class="panel-body">
-            <router-view></router-view>
-            <!-- <div>
-                <h2>about组件</h2>
-                <p>接收外部数据: atguigu</p><input type="text">
-            </div>-->
+            <keep-alive>
+              <router-view :msg="msg"></router-view>            
+            </keep-alive>
           </div>
         </div>
       </div>
@@ -33,11 +29,17 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      msg: "abc"
+    }
+  },
+};
 </script>
 
 <style>
-.router-link-active {
+.is-active {
   color: red !important;
 }
 </style>
