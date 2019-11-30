@@ -15,6 +15,7 @@ function MVVM(options) {
 
 	observe(data, this);
 
+	// 编译、模板解析、绑定数据监听
 	this.$compile = new Compile(options.el || document.body, this)
 }
 

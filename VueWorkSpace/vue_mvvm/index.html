@@ -6,24 +6,33 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>mvvm</title>
   <!-- <script src="./vue.js"></script> -->
-  <!-- <script src="./mvvm/compile.js"></script>
+  <script src="./mvvm/compile.js"></script>
   <script src="./mvvm/mvvm.js"></script>
   <script src="./mvvm/observer.js"></script>
-  <script src="./mvvm/watcher.js"></script> -->
+  <script src="./mvvm/watcher.js"></script>
+  <style>
+    .aa{
+      color: red;
+    }
+  </style>
 </head>
 <body>
   <div id="test">
+    <p>{{name}}</p>
+    <button v-on:click="update">更新</button>
   </div>
   <script>
-    const vm = new MVVM({
+    new MVVM({
       el: "#test",
       data: {
-        name: 'fifa',
-        age: 21
-      }
+        name: 'fengyang'
+      },
+      methods: {
+        update () {
+          this.name = "大西瓜";
+        }
+      },
     });
-    console.log(vm);
-    console.log(vm._data.name);
   </script>
 </body>
 </html>
