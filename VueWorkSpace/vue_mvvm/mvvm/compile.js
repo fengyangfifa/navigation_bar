@@ -115,16 +115,20 @@ var compileUtil = {
 	},
 	// 解析v-model
 	model: function (node, vm, exp) {
+		// 初始化，设置watcher
 		this.bind(node, vm, exp, 'model');
 
 		var me = this,
 			val = this._getVMVal(vm, exp);
+		// 给v-model节点添加input事件监听
 		node.addEventListener('input', function (e) {
 			var newValue = e.target.value;
 			if (val === newValue) {
 				return;
 			}
 
+			// 通过初始化设置的defineProperty触发dep.notify();
+			// 然后更新每个订阅者的值
 			me._setVMVal(vm, exp, newValue);
 			val = newValue;
 		});

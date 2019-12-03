@@ -20,23 +20,14 @@
 
 <body>
   <div id="test">
-    <p>{{name}}</p>
-    <p>{{info.age}}</p>
-    <button v-on:click="update">更新</button>
+    <input type="text" v-model="msg">
+    <p>{{msg}}</p>
   </div>
   <script>
     new MVVM({
       el: "#test",
       data: {
-        name: 'fengyang',
-        info: {
-          age: 20
-        }
-      },
-      methods: {
-        update() {
-          this.name = "大西瓜";
-        }
+        msg: 'fengyang',
       },
     });
   </script>
