@@ -1,4 +1,5 @@
-import {ADD_TODO, DELETE_TODO, SELECT_ALL_TODOS, CLEAR_ALL_COMPLETED} from './mutation-types'
+import {ADD_TODO, DELETE_TODO, SELECT_ALL_TODOS, CLEAR_ALL_COMPLETED, RECEIVE_TODOS} from './mutation-types'
+import storageUtil from '../util/storageUtil'
 
 export default {
   addTodo ({commit}, todo) {
@@ -12,5 +13,11 @@ export default {
   },
   clearAllCompleted ({commit}) {
     commit(CLEAR_ALL_COMPLETED);
+  },
+  reqTodos ({commit}) {
+    setTimeout(() => {
+      const todos = storageUtil.readTodos();
+      commit(RECEIVE_TODOS, {todos});
+    }, 1000);
   }
 };

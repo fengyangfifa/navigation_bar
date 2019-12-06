@@ -24,26 +24,9 @@ import storageUtil from './util/storageUtil.js';
 import PubSub from 'pubsub-js';
 
 export default {
-  // watch: {
-  //   // 深度监视数据
-  //   todos: {
-  //     deep: true,
-  //     // handler: function (value) {
-  //     //   storageUtil.saveTodos(value);
-  //     // }
-  //     // 或
-  //     handler: storageUtil.saveTodos
-  //   }
-  // },
-  // mounted() { //执行异步事件
-  //   // 给<TodoHeader ref="header"/>绑定addTodo事件监听
-  //   this.$refs.header.$on('addTodo', this.addTodo);
-
-  //   // 订阅消息
-  //   PubSub.subscribe("deleteTodo", (msg, index) => {
-  //     this.deleteTodo(index);
-  //   })
-  // },
+  mounted() {
+    this.$store.dispatch("reqTodos");
+  },
   components: {
     TodoHeader,
     TodoList,

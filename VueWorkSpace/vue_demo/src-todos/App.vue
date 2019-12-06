@@ -31,7 +31,7 @@ export default {
     }
   },
   watch: {
-    // 深度监视数据
+    // 深度监视数据, 当todos数据发生变化时, 调用handler函数将数据保存到localStorage中
     todos: {
       deep: true,
       // handler: function (value) {
