@@ -23,6 +23,7 @@ export default {
 
 .search  //搜索
   width 100%
+  overflow hidden
   .search_form
     clearFix()
     margin-top 45px
@@ -48,5 +49,4 @@ export default {
         font-size 16px
         color #fff
         background-color #02a774
-
 </style>
