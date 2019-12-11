@@ -1,7 +1,7 @@
 // ajax请求模块
 import axios from 'axios'
 
-export default function ajax (url, data={}, type="GET") {
+export default function ajax (url, data = {}, type = "GET") {
   return new Promise((resovle, reject) => {
     // axios返回的是promise对象
     let promise;

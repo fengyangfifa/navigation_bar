@@ -1,4 +1,5 @@
 <template>
+<!-- 显示头部组件 -->
   <header class="header">
     <slot name="left"></slot>
     <span class="header_title">

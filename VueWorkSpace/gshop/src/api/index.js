@@ -16,9 +16,27 @@ export function reqShops(longitude, latitude) {
   return ajax(`${BASE_URL}/shops`, {latitude, longitude});
 }
 // 4、根据经纬度和关键字搜索商铺列表
+export function reqSearchShops(geohash, keyword) {
+  return ajax(`${BASE_URL}/search_shops`, {geohash, keyword});
+}
 // 5、获取一次性验证码
 // 6、用户名密码登陆
+export function reqPwdLogin({name, pwd, captcha}) {
+  return ajax(`${BASE_URL}/login_pwd`, {name, pwd, captcha}, 'POST');
+}
 // 7、发送短信验证码
+export function reqSendCode(phone) {
+  return ajax(`${BASE_URL}/sendcode`, {phone});
+}
 // 8、手机号验证码登陆
+export function reqSmsLogin(phone, code) {
+  return ajax(`${BASE_URL}/login_sms`, {phone, code}, 'POST');
+}
 // 9、根据会话获取用户信息
+export function reqUserInfo() {
+  return ajax(`${BASE_URL}/userinfo`);
+}
 // 10、用户登出
+export function reqLogout() {
+  return ajax(`${BASE_URL}/logout`);
+}
