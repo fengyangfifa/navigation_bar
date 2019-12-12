@@ -12,9 +12,13 @@ module.exports = {
     assetsPublicPath: '/',
     // 配置代理，开启AJAX跨域
     proxyTable: {
+      // 拦截所有/api开头的请求
       '/api': {
+        // 代理目标的路径
         target: 'http://localhost:4000',
+        // 支持跨域
         changeOrigin: true,
+        // 重写路径，去掉路径中开头的/api
         pathRewrite: {
           '^/api': ''
         }

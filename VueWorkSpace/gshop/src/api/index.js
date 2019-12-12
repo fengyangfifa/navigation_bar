@@ -40,3 +40,15 @@ export function reqUserInfo() {
 export function reqLogout() {
   return ajax(`${BASE_URL}/logout`);
 }
+// 获取商家信息
+export function reqShopInfo() {
+  return ajax('/info');
+}
+// 获取商家评价
+export function reqShopRatings() {
+  return ajax('/ratings');
+}
+// 获取商家商品
+export function reqShopGoods() {
+  return ajax('/goods');
+}
