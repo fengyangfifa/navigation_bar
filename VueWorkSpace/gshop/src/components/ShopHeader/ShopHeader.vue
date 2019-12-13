@@ -26,7 +26,8 @@
         </div>
       </div>
     </div>
-
+    <!-- v-if="info.supports"当页面数据已经加载成功才显示页面 -->
+    <!-- 页面初始化时，异步请求数据，请求未成功时不显示数据 -->
     <div class="shop-header-discounts" v-if="info.supports" @click="toggleSupportShow">
       <div class="discounts-left">
         <div class="activity" :class="supportClasses[info.supports[0].type]">
@@ -430,6 +431,10 @@ export default {
     width 100%
     height 100%
     z-index 99
+    &.fade-enter-active,&.fade-leave-active
+      transition opacity .5s
+    &.fade-enter,&.fade-leave-to
+      opacity 0
     .activity-sheet-content
       position absolute
       background-color #f5f5f5
