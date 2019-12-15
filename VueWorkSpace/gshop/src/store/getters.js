@@ -12,5 +12,12 @@ export default {
     return state.cartFoods.reduce((preTotal, food) => {
       return preTotal + food.count * food.price;
     }, 0); 
+  },
+
+  // 评论数组中满意的评价数量
+  positiveSize (state) {
+    return state.ratings.reduce((preTotal, rating) => {
+      return preTotal + (rating.rateType ? 0 : 1);
+    }, 0)
   }
 }

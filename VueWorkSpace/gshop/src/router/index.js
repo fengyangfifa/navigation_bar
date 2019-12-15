@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MSite from '../pages/MSite/MSite'
+// const MSite = () => import('../pages/MSite/MSite')
 import Order from '../pages/Order/Order'
 import Profile from '../pages/Profile/Profile'
 import Search from '../pages/Search/Search'

@@ -63,7 +63,7 @@ export default {
       // 所有右侧分类li的top组成的数组(列表显示时初始化值,不会变化)
       tops: [],
       // 需要放大显示的food
-      food: {} 
+      food: {}
     }
   },
   components: {
