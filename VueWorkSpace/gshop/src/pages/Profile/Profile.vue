@@ -120,7 +120,7 @@ export default {
         },
         action => {
           // 取消退出
-          console.log('取消了');
+          Toast('取消登出');
         }
       );
     }

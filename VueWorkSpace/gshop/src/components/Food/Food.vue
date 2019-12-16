@@ -1,12 +1,13 @@
 <template>
   <div class="food" v-if="isShow"> 
     <div class="food-content"> 
-      <div class="image-header"> 
-        <img :src="food.image"> 
+      <div class="image-header">
+        <!-- 图片懒加载 -->
+        <img v-lazy="food.image"> 
         <p class="foodpanel-desc">{{food.info}}</p> 
         <div class="back" @click="toggleShow"> 
           <i class="iconfont icon-arrow_left"></i> 
-        </div> 
+        </div>
       </div> 
       <div class="content"> 
         <h1 class="title">{{food.name}}</h1> 
@@ -24,7 +25,7 @@
       </div> 
     </div> 
     <!-- 阴影背景 -->
-    <div class="food-cover"  @click="toggleShow"></div> 
+    <div class="food-cover" @click="toggleShow"></div> 
   </div>
 </template>
 
@@ -40,6 +41,7 @@ export default {
   },
   data() {
     return {
+      // 是否显示大图
       isShow: false
     }
   },

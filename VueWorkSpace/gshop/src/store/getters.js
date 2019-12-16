@@ -18,6 +18,6 @@ export default {
   positiveSize (state) {
     return state.ratings.reduce((preTotal, rating) => {
       return preTotal + (rating.rateType ? 0 : 1);
-    }, 0)
+    }, 0);
   }
 }
