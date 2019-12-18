@@ -5,11 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
 </head>
 <body>
   <div id="app">
     <ul>
-      <li v-for="(item, index) in lis" :key="index">{{item}}</li>
+      <li v-for="(item, index) in movies" :key="index" 
+      :class="{'active': currentIndex===index}" @click="changeIndex(index)">
+        {{item}}
+      </li>
     </ul>
   </div>
 
@@ -18,9 +26,14 @@
     const vm = new Vue({
       el: '#app',
       data: {
-        message: 'hello',
-        lis: [1,2,3,4,5]
-      }
+        currentIndex: 0,
+        movies: ['海王', '进击的巨人', '海尔兄弟']
+      },
+      methods: {
+        changeIndex (index) {
+          this.currentIndex = index;
+        }
+      },
     });
   </script>
 </body>
