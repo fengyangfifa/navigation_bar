@@ -12,29 +12,22 @@
   </style>
 </head>
 <body>
-  <div id="app">
-    <ul>
-      <li v-for="(item, index) in movies" :key="index" 
-      :class="{'active': currentIndex===index}" @click="changeIndex(index)">
-        {{item}}
-      </li>
-    </ul>
-  </div>
-
+  <button>1</button>
+  <button>2</button>
+  <button>3</button>
+  <button>4</button>
+  <button>5</button>
   <script src="./js/vue.js"></script>
   <script>
-    const vm = new Vue({
-      el: '#app',
-      data: {
-        currentIndex: 0,
-        movies: ['海王', '进击的巨人', '海尔兄弟']
-      },
-      methods: {
-        changeIndex (index) {
-          this.currentIndex = index;
-        }
-      },
-    });
+    var bts = document.getElementsByTagName('button');
+    for(var i = 0; i < bts.length; i++){
+      (function (num) {
+        console.log(window.num);
+        bts[i].addEventListener('click', function () {
+          console.log(i);
+        });
+      })(i);
+    }
   </script>
 </body>
 </html>
