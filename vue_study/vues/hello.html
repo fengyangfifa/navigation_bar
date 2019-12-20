@@ -12,22 +12,25 @@
   </style>
 </head>
 <body>
-  <button>1</button>
-  <button>2</button>
-  <button>3</button>
-  <button>4</button>
-  <button>5</button>
+  <div id="app">
+    <span v-if="isShow">
+      <label for="username">用户名</label>
+      <input type="text" id="username" placeholder="用户名">
+    </span>
+    <span v-else>
+      <label for="email">邮箱</label>
+      <input type="text" id="email" placeholder="邮箱">
+    </span>  
+    <button @click="isShow = !isShow">切换</button>
+  </div>
   <script src="./js/vue.js"></script>
   <script>
-    var bts = document.getElementsByTagName('button');
-    for(var i = 0; i < bts.length; i++){
-      (function (num) {
-        console.log(window.num);
-        bts[i].addEventListener('click', function () {
-          console.log(i);
-        });
-      })(i);
-    }
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        isShow: true
+      }
+    });
   </script>
 </body>
 </html>
