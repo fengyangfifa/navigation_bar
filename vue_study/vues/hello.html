@@ -13,22 +13,22 @@
 </head>
 <body>
   <div id="app">
-    <span v-if="isShow">
-      <label for="username">用户名</label>
-      <input type="text" id="username" placeholder="用户名">
-    </span>
-    <span v-else>
-      <label for="email">邮箱</label>
-      <input type="text" id="email" placeholder="邮箱">
-    </span>  
-    <button @click="isShow = !isShow">切换</button>
+    <h2>{{books[0]}}</h2>
+    <h2>{{nums}}</h2>
   </div>
   <script src="./js/vue.js"></script>
   <script>
     var vm = new Vue({
       el: '#app',
       data: {
-        isShow: true
+        books: [
+          {
+            id: 1,
+            name: 'feng',
+            age: 20
+          }
+        ],
+        nums: [0, 1, 2]
       }
     });
   </script>
