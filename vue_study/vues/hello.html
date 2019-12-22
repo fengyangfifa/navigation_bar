@@ -13,22 +13,39 @@
 </head>
 <body>
   <div id="app">
-    <h2>{{books[0]}}</h2>
-    <h2>{{nums}}</h2>
+    <my-cpn1></my-cpn1>
+    <my-cpn2></my-cpn2>
   </div>
+
   <script src="./js/vue.js"></script>
   <script>
+    var cpn2 = Vue.extend({
+      template: `
+        <div>
+          <h2>组件2</h2>
+        </div>
+      `
+    });
+    var cpn1 = Vue.extend({
+      template: `
+        <div>
+          <h2>组件1</h2>
+          <my-cpn2></my-cpn2>
+        </div>
+      `
+    });
+    // Vue.component('my-cpn1', cpn1);
+    // Vue.component('my-cpn2', cpn2);
+
     var vm = new Vue({
       el: '#app',
       data: {
-        books: [
-          {
-            id: 1,
-            name: 'feng',
-            age: 20
-          }
-        ],
-        nums: [0, 1, 2]
+        message: '123',
+        msg: ''
+      },
+      components: {
+        'my-cpn1': cpn1,
+        'my-cpn2': cpn2
       }
     });
   </script>
