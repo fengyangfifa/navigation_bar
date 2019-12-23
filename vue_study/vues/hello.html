@@ -13,8 +13,9 @@
 </head>
 <body>
   <div id="app">
-    <my-cpn1></my-cpn1>
-    <my-cpn2></my-cpn2>
+    <my-cpn1 v-show="isShow">
+      <span v-show="msg">sss</span>
+    </my-cpn1>
   </div>
 
   <script src="./js/vue.js"></script>
@@ -30,9 +31,14 @@
       template: `
         <div>
           <h2>组件1</h2>
-          <my-cpn2></my-cpn2>
+          <slot>hhh</slot>
         </div>
-      `
+      `,
+      data() {
+        return {
+          isShow: false
+        }
+      },
     });
     // Vue.component('my-cpn1', cpn1);
     // Vue.component('my-cpn2', cpn2);
@@ -41,11 +47,11 @@
       el: '#app',
       data: {
         message: '123',
-        msg: ''
+        isShow: true,
+        msg: false
       },
       components: {
         'my-cpn1': cpn1,
-        'my-cpn2': cpn2
       }
     });
   </script>
