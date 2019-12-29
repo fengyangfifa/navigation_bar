@@ -12,48 +12,28 @@
   </style>
 </head>
 <body>
-  <div id="app">
-    <my-cpn1 v-show="isShow">
-      <span v-show="msg">sss</span>
-    </my-cpn1>
-  </div>
-
-  <script src="./js/vue.js"></script>
   <script>
-    var cpn2 = Vue.extend({
-      template: `
-        <div>
-          <h2>组件2</h2>
-        </div>
-      `
-    });
-    var cpn1 = Vue.extend({
-      template: `
-        <div>
-          <h2>组件1</h2>
-          <slot>hhh</slot>
-        </div>
-      `,
-      data() {
-        return {
-          isShow: false
-        }
-      },
-    });
-    // Vue.component('my-cpn1', cpn1);
-    // Vue.component('my-cpn2', cpn2);
-
-    var vm = new Vue({
-      el: '#app',
-      data: {
-        message: '123',
-        isShow: true,
-        msg: false
-      },
-      components: {
-        'my-cpn1': cpn1,
+    const obj = {
+      aaa () {
+        setTimeout(function () {
+          setTimeout(function () {
+            console.log(this);
+          });
+          setTimeout(() => {
+            console.log(this);
+          });
+        });
+        setTimeout(()=>{
+          setTimeout(function () {
+            console.log(this);            
+          });
+          setTimeout(() => {
+            console.log(this);
+          });
+        });
       }
-    });
+    }
+    obj.aaa();
   </script>
 </body>
 </html>

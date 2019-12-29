@@ -78,5 +78,7 @@ export default new VueRouter({
         }
       ]
     }
-  ]
+  ],
+  // 当组件标签激活时，class属性添加active
+  // linkActiveClass: 'active'
 });
