@@ -2,7 +2,10 @@
   <div id="app">
     <router-link to="/home">首页</router-link>
     <router-link to="/about">关于</router-link>
-    <router-view/>
+    <router-link to="/user/shan">用户</router-link>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
     <h2>test</h2>
   </div>
 </template>

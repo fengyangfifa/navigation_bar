@@ -1,9 +1,11 @@
 <template>
   <div>
-    <h2>我是关于</h2>
-    <p>呵呵呵呵</p>
-    <router-link to="/about/test">测试</router-link>
-    <router-view></router-view>
+    <ul>
+      <li>新闻1</li>
+      <li>新闻1</li>
+      <li>新闻1</li>
+      <li>新闻1</li>
+    </ul>
   </div>
 </template>
 
