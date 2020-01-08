@@ -33,18 +33,28 @@ export default {
       pullUpLoad: this.pullUpLoad
     });
     // 监听滚动的位置
-    this.scroll.on('scroll', (position) => {
-      this.$emit('scroll', position);
-    });
+    if (this.probeType === 2 || this.probeType === 3) {
+      this.scroll.on('scroll', (position) => {
+        this.$emit('scroll', position);
+      });
+    }
+    if (this.pullUpLoad) {
+      this.scroll.on('pullingUp', () => {
+        this.$emit('pullingUp');
+      });
+    }
   },
   methods: {
     backtop () {
       this.scroll.scrollTo(0, 0, 500);
+    },
+    refresh () {
+      // 刷新this.scroll
+      this.scroll.refresh();
     }
   },
 }
 </script>
 
 <style scoped>
-
 </style>

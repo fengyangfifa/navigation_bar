@@ -3,12 +3,15 @@
     <nav-bar class="home-nav">
       <div slot="center">购物街</div>
     </nav-bar>
+    <tab-control class="one-tab-control" :titles="titles" 
+    @tabClick="tabClick" ref="tabControlone" v-show="isTabFixed">
+    </tab-control>
     <scroll class="content" ref="scroll" 
-    :probe-type='3' @scroll="contentScroll" :pullUpLoad="true">
-      <home-swiper :banners="banners"></home-swiper>
+    :probe-type='3' @scroll="contentScroll" :pull-up-load="true" @pullingUp="loadMore">
+      <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"></home-swiper>
       <recommend-view :recommends="recommends"></recommend-view>
       <feature-view></feature-view>
-      <tab-control :titles="titles" @tabClick="tabClick"></tab-control>
+      <tab-control :titles="titles" @tabClick="tabClick" ref="tabControltwo"></tab-control>
       <goods-list :goods="showGoods"></goods-list>
     </scroll>
     <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>
@@ -29,6 +32,7 @@ import GoodsList from 'components/content/goods/GoodsList'
 import BackTop from 'components/content/backTop/BackTop' 
 
 import {getHomeMultidata, getHomeGoods} from 'network/home'
+import {debounce} from 'common/utils'
 
 export default {
   components: {
@@ -52,7 +56,10 @@ export default {
         'sell': {page: 0, list: []}
       },
       currentType: 'pop',
-      isShowBackTop: false
+      isShowBackTop: false,
+      tabOffsetTop: 0,
+      isTabFixed: false,
+      saveY: 0
     }
   },
   computed: {
@@ -68,9 +75,11 @@ export default {
     this.getHomeGoods('pop');
     this.getHomeGoods('new');
     this.getHomeGoods('sell');
+
   },
   mounted() {
-    const refresh = this.debounce(this.$refs.scroll.scroll.refresh, 500);
+    // 防抖函数使用
+    const refresh = debounce(this.$refs.scroll.refresh, 500);
 
     // 监听事件总线中图片加载完成的消息
     this.$bus.$on('itemImageLoad', () => {
@@ -86,11 +95,12 @@ export default {
       });
     },
     getHomeGoods (type) {
-      const page = this.goods[type].page + 1;
+      const page = this.goods[type].page + 1; 
       getHomeGoods(type, page).then(res => {
         this.goods[type].list.push(...res.data.list);
         this.goods[type].page++;
-        // console.log(this.$refs.scroll.scroll.scrollerHeight);
+        // 完成上拉加载更多
+        this.$refs.scroll.scroll.finishPullUp();
       });
     },
 
@@ -106,37 +116,52 @@ export default {
         case 2:
           this.currentType = 'sell';
       }
+      // 使两个tabControl保持一致
+      this.$refs.tabControlone.currentIndex = index;
+      this.$refs.tabControltwo.currentIndex = index;
     },
     backClick () {
       this.$refs.scroll.backtop();
     },
-    contentScroll (position) { 
+    // 监听滚动
+    contentScroll (position) {
+      // 决定切换栏是否吸顶
+      if (Math.abs(position.y) > this.tabOffsetTop) {
+        this.isTabFixed = true;
+      } else {
+        this.isTabFixed = false;
+      }
+      // 是否显示backTop
       if (Math.abs(position.y) > 1000) {
         this.isShowBackTop = true;
       } else {
         this.isShowBackTop = false;
       }
     },
-    // 防抖函数
-    debounce (func, delay) {
-      let timer = null;
-
-      return function (...args) {
-        if (timer) {
-          clearTimeout(timer);
-        }
-        timer = setTimeout(() => {
-          func.apply(this, args);
-        }, delay);
-      }
+    loadMore () {
+      this.getHomeGoods(this.currentType);
+    },
+    swiperImageLoad () {
+      // 获取TabControl组件对象，从组件对象中获取切换栏的高度
+      // 所有的组件都有一个属性$el，用于获取组件中的元素
+      this.tabOffsetTop = this.$refs.tabControltwo.$el.offsetTop;
     }
+  },
+  // 离开和进入组件时，保存滑动区域高度的状态
+  activated() {
+    // 进入时刷新scroll，然后回到离开时的高度
+    this.$refs.scroll.refresh();
+    this.$refs.scroll.scroll.scrollTo(0, this.saveY, 0);
+  },
+  deactivated() {
+    // 记录离开时的高度
+    this.saveY = this.$refs.scroll.scroll.y;
   },
 }
 </script>
 
 <style scoped>
 #home {
-  padding-top: 44px;
   /* vh - viewport height */
   height: 100vh;
   position: relative;
@@ -145,18 +170,8 @@ export default {
 .home-nav {
   color: #ffffff;
   background-color: var(--color-tint);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9;
 }
 
-.tab-control {
-  position: sticky;
-  top: 44px;
-  z-index: 9;
-}
 .content {
   position: absolute;
   top: 44px;
@@ -164,6 +179,11 @@ export default {
   left: 0;
   right: 0;
   overflow: hidden;
+}
+
+.one-tab-control {
+  position: relative;
+  z-index: 10;
 }
 /* .content {
   动态计算高度
