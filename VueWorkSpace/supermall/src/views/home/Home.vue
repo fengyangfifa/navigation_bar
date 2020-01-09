@@ -33,6 +33,7 @@ import BackTop from 'components/content/backTop/BackTop'
 
 import {getHomeMultidata, getHomeGoods} from 'network/home'
 import {debounce} from 'common/utils'
+import {itemListenerMixin} from 'common/mixins'
 
 export default {
   components: {
@@ -45,6 +46,7 @@ export default {
     Scroll,
     BackTop
   },
+  mixins: [itemListenerMixin],
   data () {
     return {
       banners: [],
@@ -59,7 +61,8 @@ export default {
       isShowBackTop: false,
       tabOffsetTop: 0,
       isTabFixed: false,
-      saveY: 0
+      saveY: 0,
+      itemImgListener: null
     }
   },
   computed: {
@@ -76,16 +79,6 @@ export default {
     this.getHomeGoods('new');
     this.getHomeGoods('sell');
 
-  },
-  mounted() {
-    // 防抖函数使用
-    const refresh = debounce(this.$refs.scroll.refresh, 500);
-
-    // 监听事件总线中图片加载完成的消息
-    this.$bus.$on('itemImageLoad', () => {
-      // 刷新scroll的可滑动高度
-      refresh();
-    });
   },
   methods: {
     getHomeMultidata () {
@@ -156,6 +149,9 @@ export default {
   deactivated() {
     // 记录离开时的高度
     this.saveY = this.$refs.scroll.scroll.y;
+
+    // 取消以this.itemImgListener作为回调函数的，全局事件的监听
+    this.$bus.$off('itemImageLoad', this.itemImgListener);
   },
 }
 </script>
