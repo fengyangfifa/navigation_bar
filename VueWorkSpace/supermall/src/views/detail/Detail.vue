@@ -1,7 +1,7 @@
 <template>
   <div id="detail">
-    <detail-nav-bar class="detail-nav" @titleclick="titleclick"></detail-nav-bar>
-    <scroll class="content" ref="scroll">
+    <detail-nav-bar class="detail-nav" ref="nav" @titleclick="titleclick"></detail-nav-bar>
+    <scroll class="content" ref="scroll" @scroll="contentScroll" :probeType="3">
       <detail-swiper :topImages="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
@@ -10,6 +10,8 @@
       <detail-comment-info ref="comment" :commentInfo="commentInfo"></detail-comment-info>
       <goods-list ref="recommend" :goods="recommends"></goods-list>
     </scroll>
+    <detail-bottom-bar @addCart="addToCart"></detail-bottom-bar>
+    <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>
   </div>
 </template>
 
@@ -21,17 +23,18 @@ import DetailShopInfo from './childComps/DetailShopInfo'
 import DetailGoodsInfo from './childComps/DetailGoodsInfo'
 import DetailParamInfo from './childComps/DetailParamInfo'
 import DetailCommentInfo from './childComps/DetailCommentInfo'
+import DetailBottomBar from './childComps/DetailBottomBar'
 
 import Scroll from 'components/common/scroll/Scroll'
 import GoodsList from 'components/content/goods/GoodsList'
 
 import {getDetail, Goods, GoodsParam, Shop, getRecommend} from 'network/detail'
 import {debounce} from 'common/utils'
-import {itemListenerMixin} from 'common/mixins'
+import {itemListenerMixin, backTopMixin} from 'common/mixins'
 
 export default {
   name: 'Detail',
-  mixins: [itemListenerMixin],
+  mixins: [itemListenerMixin, backTopMixin],
   data() {
     return {
       iid: null,
@@ -44,7 +47,8 @@ export default {
       recommends: [],
       itemImgListener: null,
       themeTopYs: [],
-      getThemeTopY: null
+      getThemeTopY: null,
+      currentIndex: 0
     }
   },
   components: {
@@ -56,7 +60,8 @@ export default {
     DetailGoodsInfo,
     DetailParamInfo,
     DetailCommentInfo,
-    GoodsList
+    GoodsList,
+    DetailBottomBar
   },
   created() {
     // this.iid = this.$route.params.iid;
@@ -91,14 +96,19 @@ export default {
       this.recommends = res.data.list;
     });
 
+    // 获取商品、参数、评论、推荐的y轴坐标
     this.getThemeTopY = debounce(() => {
       // 获取offsetTop
       this.themeTopYs = [0];
-      this.themeTopYs.push(this.$refs.params.$el.offsetTop);
+      // 需要减去顶部样式栏的高度
+      const TopBarHeight = 44;
+      this.themeTopYs.push((this.$refs.params.$el.offsetTop - TopBarHeight));
       // 有可能出现没有评论的情况
-      this.themeTopYs.push(this.$refs.comment.$el.offsetTop || this.$refs.recommend.$el.offsetTop);
-      this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
-      console.log('----');
+      let commentHeight = (this.$refs.comment.$el.offsetTop || this.$refs.recommend.$el.offsetTop) - TopBarHeight;
+      this.themeTopYs.push(commentHeight);
+      this.themeTopYs.push((this.$refs.recommend.$el.offsetTop - TopBarHeight));
+      // 给数组放入一个非常大的值，利于后面使用
+      this.themeTopYs.push(Number.MAX_SAFE_INTEGER);
     }, 100);
   },
   // updated() {
@@ -120,6 +130,33 @@ export default {
     titleclick (index) {
       // 滚动的对应位置
       this.$refs.scroll.scroll.scrollTo(0, -this.themeTopYs[index], 500);
+    },
+    // 根据内容滚动的位置，修改顶部栏的样式
+    contentScroll (position) {
+      // 获取y值
+      const positionY = Math.abs(position.y);
+
+      // 对比themeTopYs中的值，修改对应顶部的样式
+      this.currentIndex = this.themeTopYs.findIndex((top, index) => {
+        return positionY >= top && positionY < this.themeTopYs[index + 1];
+      });
+      if (this.$refs.nav.currentIndex != this.currentIndex) {
+        this.$refs.nav.currentIndex = this.currentIndex;      
+      }
+
+      // 是否显示backTop
+      this.isShowBackTop = Math.abs(position.y) > 1000;
+    },
+
+    // 响应添加购物车的事件
+    addToCart () {
+      const product = {};
+      product.image = this.topImages[0];
+      product.title = this.goods.title;
+      product.desc = this.goods.desc;
+      product.price = this.goods.newPrice;
+      product.iid = this.iid;
+      this.$store.dispatch('addCart', {product});
     }
   },
   destroyed() {
@@ -139,12 +176,12 @@ export default {
 
 .detail-nav {
   position: relative;
-  z-index: 10;
+  z-index: 9;
   background-color: #ffffff;
 }
 
 .content {
   /* 根据屏幕动态计算高度 */
-  height: calc(100% - 44px);
+  height: calc(100% - 44px - 49px);
 }
 </style>

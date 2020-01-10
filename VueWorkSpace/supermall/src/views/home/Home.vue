@@ -29,11 +29,10 @@ import NavBar from 'components/common/navbar/NavBar'
 import Scroll from 'components/common/scroll/Scroll' 
 import TabControl from 'components/content/tabControl/TabControl'
 import GoodsList from 'components/content/goods/GoodsList' 
-import BackTop from 'components/content/backTop/BackTop' 
 
 import {getHomeMultidata, getHomeGoods} from 'network/home'
 import {debounce} from 'common/utils'
-import {itemListenerMixin} from 'common/mixins'
+import {itemListenerMixin, backTopMixin} from 'common/mixins'
 
 export default {
   components: {
@@ -44,9 +43,8 @@ export default {
     TabControl,
     GoodsList,
     Scroll,
-    BackTop
   },
-  mixins: [itemListenerMixin],
+  mixins: [itemListenerMixin, backTopMixin],
   data () {
     return {
       banners: [],
@@ -58,7 +56,6 @@ export default {
         'sell': {page: 0, list: []}
       },
       currentType: 'pop',
-      isShowBackTop: false,
       tabOffsetTop: 0,
       isTabFixed: false,
       saveY: 0,
@@ -113,9 +110,6 @@ export default {
       this.$refs.tabControlone.currentIndex = index;
       this.$refs.tabControltwo.currentIndex = index;
     },
-    backClick () {
-      this.$refs.scroll.backtop();
-    },
     // 监听滚动
     contentScroll (position) {
       // 决定切换栏是否吸顶
@@ -125,11 +119,7 @@ export default {
         this.isTabFixed = false;
       }
       // 是否显示backTop
-      if (Math.abs(position.y) > 1000) {
-        this.isShowBackTop = true;
-      } else {
-        this.isShowBackTop = false;
-      }
+      this.isShowBackTop = Math.abs(position.y) > 1000;
     },
     loadMore () {
       this.getHomeGoods(this.currentType);

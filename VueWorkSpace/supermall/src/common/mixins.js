@@ -1,4 +1,6 @@
 import {debounce} from './utils'
+import BackTop from 'components/content/backTop/BackTop' 
+
 
 export const itemListenerMixin = {
   mounted() {
@@ -36,3 +38,20 @@ export const itemListenerMixin = {
 //     this.$bus.$on('itemImageLoad', this.itemImgListener);
 //   },
 // }
+
+// 返回顶部组件的混入
+export const backTopMixin = {
+  components: {
+    BackTop
+  },
+  data() {
+    return {
+      isShowBackTop: false
+    }
+  },
+  methods: {
+    backClick () {
+      this.$refs.scroll.backtop();
+    }
+  },
+}

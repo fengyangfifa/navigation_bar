@@ -21,6 +21,10 @@ export default {
   components: {
     NavBar
   },
+  props: {
+    externalIndex: Number,
+    default: 0
+  },
   data() {
     return {
       titles: ['商品', '参数', '评论', '推荐'],
