@@ -156,7 +156,9 @@ export default {
       product.desc = this.goods.desc;
       product.price = this.goods.newPrice;
       product.iid = this.iid;
-      this.$store.dispatch('addCart', {product});
+      product.realprice = parseFloat(this.goods.realPrice);
+      this.$store.dispatch('addCart', {product}).then(res => {
+      });
     }
   },
   destroyed() {
