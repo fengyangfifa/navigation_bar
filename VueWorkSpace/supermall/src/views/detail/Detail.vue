@@ -172,6 +172,7 @@ export default {
   z-index: 9;
   background-color: #ffffff;
   height: 100vh;
+  overflow: hidden;
 }
 
 .detail-nav {
