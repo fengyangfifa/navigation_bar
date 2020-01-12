@@ -158,6 +158,7 @@ export default {
       product.iid = this.iid;
       product.realprice = parseFloat(this.goods.realPrice);
       this.$store.dispatch('addCart', {product}).then(res => {
+        this.$toast.show(res);
       });
     }
   },

@@ -13,7 +13,7 @@ export default {
       });
       if (oldProduct){
         commit(ADD_COUNTER, {oldProduct});
-        resolve('当前的商品数量加 + 1');
+        resolve('当前的商品数量+1');
       } else {
         product.count = 1;
         product.checked = true;
