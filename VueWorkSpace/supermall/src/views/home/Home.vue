@@ -59,7 +59,8 @@ export default {
       tabOffsetTop: 0,
       isTabFixed: false,
       saveY: 0,
-      itemImgListener: null
+      itemImgListener: null,
+      firstClickTab: [0, 1, 1]
     }
   },
   computed: {
@@ -96,6 +97,7 @@ export default {
 
     // 事件监听
     tabClick (index) {
+      let preType = this.currentType;
       switch (index) {
         case 0:
           this.currentType = 'pop';
@@ -109,6 +111,12 @@ export default {
       // 使两个tabControl保持一致
       this.$refs.tabControlone.currentIndex = index;
       this.$refs.tabControltwo.currentIndex = index;
+      // 当第一次点击不同的tab-control时，跳转到对应的顶部
+      if (preType !== this.currentType && this.firstClickTab[index]) {
+        let top = this.$refs.tabControltwo.$el.offsetTop;
+        this.$refs.scroll.scroll.scrollTo(0, -top, 300);
+        this.firstClickTab[index] = 0;
+      }
     },
     // 监听滚动
     contentScroll (position) {
