@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-bar-item" @click="itemClick">
+  <div class="tab-bar-item" @touchstart="itemClick">
     <div v-if="!isActive">
       <slot name="item-icon"></slot>
     </div>

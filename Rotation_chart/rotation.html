@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		#scroll {
+			margin-top: 100px;
+			margin-left: 400px;
+			width: 240px;
+			overflow: hidden;
+		}
+		ul{
+			width: 1200px;
+			height: 200px;
+		}
+		ul li {
+			list-style: none;
+			float: left;
+		}
+		ul li img {
+			height: 200px;
+			width: 240px;
+		}
+	</style>
+</head>
+<body>
+	<div id="scroll">
+		<ul id="uls">
+			<li><img src="https://s10.mogucdn.com/mlcdn/c45406/180926_45fkj8ifdj4l824l42dgf9hd0h495_750x390.jpg" alt=""></li>
+			<li><img src="https://s10.mogucdn.com/mlcdn/c45406/180926_31eb9h75jc217k7iej24i2dd0jba3_750x390.jpg" alt=""></li>
+			<li><img src="https://s10.mogucdn.com/mlcdn/c45406/180919_3f62ijgkj656k2lj03dh0di4iflea_750x390.jpg" alt=""></li>
+			<li><img src="https://s10.mogucdn.com/mlcdn/c45406/180917_18l981g6clk33fbl3833ja357aaa0_750x390.jpg" alt=""></li>
+			<li><img src="https://s10.mogucdn.com/mlcdn/c45406/180926_45fkj8ifdj4l824l42dgf9hd0h495_750x390.jpg" alt=""></li>
+		</ul>
+	</div>
+	<script>
+		const scrollDiv = document.getElementById('uls');
+		function move(index, time) {
+      // 执行滑动
+			let position = -index * 240;
+			scrollDiv.style = `transform: translate3d(${position}px, 0, 0); transition: all ${time}ms;`
+		}
+		let index = 0;
+		function start() {
+			setInterval(() => {
+				index++;
+				move(index, 300);
+				if (index === 4) {
+          // 当是最后一张图片时，等待1s再将图片滑动到第一张，避免产生闪动效果
+					setTimeout(() => {
+						index = 0;
+						move(index, 0);
+					}, 1000);
+				}
+			}, 3000);
+		}
+		start();
+	</script>
+</body>
+</html>

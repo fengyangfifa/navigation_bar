@@ -50,7 +50,7 @@
 
         // 2.开启定时器
         this.startTimer();
-      }, 100);
+      }, 300);
     },
     methods: {
 		  /**
@@ -147,7 +147,6 @@
 
         // 2.停止定时器
         this.stopTimer();
-
         // 3.保存开始滚动的位置
         this.startX = e.touches[0].pageX;
       },
