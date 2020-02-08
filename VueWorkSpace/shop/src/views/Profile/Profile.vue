@@ -3,8 +3,8 @@
     <!-- 顶部样式 -->
     <header-top :title="title"></header-top>
     <!-- 登录和头像部分 -->
-    <div class="profile-info">
-      <a href="" class="profile-link">
+    <div class="profile-info" @click="goTo">
+      <a href="javascript:;" class="profile-link">
         <div class="profile-image">
           <i class="iconfont icon-person"></i>
         </div>
@@ -83,6 +83,11 @@ export default {
   data() {
     return {
       title: '我的'  
+    }
+  },
+  methods: {
+    goTo () {
+      this.$router.push('/login');
     }
   },
 }

@@ -6,6 +6,7 @@ const Home = () => import('views/Home/Home');
 const Search = () => import('views/Search/Search');
 const Order = () => import('views/Order/Order');
 const Profile = () => import('views/Profile/Profile');
+const Login = () => import('views/Login/Login');
 
 // 声明使用插件
 Vue.use(VueRouter);
@@ -41,6 +42,10 @@ const router = new VueRouter({
     {
       path: '/profile',
       component: Profile
+    },
+    {
+      path: '/login',
+      component: Login
     }
   ]
 });

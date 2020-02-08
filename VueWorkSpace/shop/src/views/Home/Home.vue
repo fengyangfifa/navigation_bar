@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div class="home">
     <!-- 顶部样式 -->
     <header-top :title="title">
       <router-link to="/search" class="header-search" slot="left">
