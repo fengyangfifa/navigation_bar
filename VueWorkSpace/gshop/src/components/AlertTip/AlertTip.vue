@@ -22,7 +22,7 @@
     methods: {
       closeTip() {
         // 分发自定义事件(事件名: closeTip，使用close-tip也可以)
-        this.$emit('closeTip')
+        this.$emit('closeTip');
       }
     }
   }

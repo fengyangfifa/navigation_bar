@@ -9,14 +9,17 @@
         </div>
       </div>
       <div class="login-content">
-        <form>
+        <form @submit.prevent="login">
           <div :class="{'on': loginWay}">
             <section class="login-message">
-              <input type="tel" placeholder="手机号" maxlength="11">
-              <button class="get-verification">获取验证码</button>
+              <input type="tel" placeholder="手机号" maxlength="11" v-model="phone">
+              <button class="get-verification" :disabled="!rightPhone" :class="{'on': rightPhone && !computeTime}"
+              @click.prevent="getCode">
+              {{computeTime ? `已发送(${computeTime}s)` : '获取验证码'}}
+              </button>
             </section>
             <section class="login-verification">
-              <input type="tel" placeholder="验证码" maxlength="8">
+              <input type="tel" placeholder="验证码" maxlength="8" v-model="code">
             </section>
             <section class="login-hint">
               温馨提示：未注册硅谷外卖帐号的手机号，登录时将自动注册，且代表已同意
@@ -25,19 +28,19 @@
           </div>
           <div :class="{'on': !loginWay}">
             <section class="login-message">
-              <input type="text" placeholder="手机/邮箱/用户名" maxlength="11">
+              <input type="text" placeholder="手机/邮箱/用户名" maxlength="11" v-model="name">
             </section>
             <section class="login-verification">
-              <input type="password" placeholder="密码" maxlength="8" v-if="!showPwd">
-              <input type="text" placeholder="密码" maxlength="8" v-else>
+              <input type="password" placeholder="密码" maxlength="8" v-if="!showPwd" v-model="pwd">
+              <input type="text" placeholder="密码" maxlength="8" v-model="pwd" v-else>
               <div class="switch-button" :class="showPwd ? 'on' : 'off'" @click="showPwd = !showPwd">
                 <div class="switch-circle" :class="{'right': showPwd}"></div>
                 <div class="switch-text">{{showPwd ? 'abc' : ''}}</div>
               </div>
             </section>
             <section class="login-message">
-              <input type="text" placeholder="验证码" maxlength="11">
-              <img src="http://localhost:4000/captcha" alt="captcha" class="get-verification">
+              <input type="text" placeholder="验证码" maxlength="11" v-model="captcha">
+              <img src="http://localhost:4000/captcha" alt="captcha" class="get-verification" ref="captcha">
             </section>
           </div>
           <button class="login-submit">登录</button>
@@ -52,19 +55,141 @@
 </template>
 
 <script>
+import { reqSendCode, reqSmsLogin, reqPwdLogin } from 'api'
+import { Dialog } from 'vant'
+
 export default {
   name: 'Login',
   data() {
     return {
+      // 登录方式
       loginWay: true,
-      showPwd: false
+      // 是否明文显示密码
+      showPwd: false,
+      // 手机号
+      phone: '',
+      // 短信验证码
+      code: '',
+      // 发送验证码的时间
+      computeTime: 0,
+      // 定时器code
+      intervalCode: null,
+      // 用户名
+      name: '',
+      // 密码
+      pwd: '',
+      // 图片验证码
+      captcha: ''
     }
   },
   methods: {
+    // 改变验证码
+    getCaptcha () {
+      // 通过时间戳改变每次请求的src链接, 实现更新图片验证码
+      this.$refs.captcha.src = 'http://localhost:4000/captcha?time=' + Date.now();
+    },
+    // 改变登录方式
     loginWayChange () {
       this.loginWay = !this.loginWay;
+    },
+    // 异步获取验证码
+    async getCode () {
+      // 如果还在上次发送验证码的等待时间内,不允许再次发送验证码
+      if (!this.intervalCode) {
+        // 重新发送短信验证码的等待时间
+        this.computeTime = 30;
+        this.intervalCode = setInterval(() => {
+            this.computeTime--;
+            if (this.computeTime === 0){
+            // 时间结束,取消setInterval函数
+            clearInterval(this.intervalCode);
+            this.intervalCode = null;
+          }
+        }, 1000);
+
+        // 发送验证码请求
+        const result = await reqSendCode(this.phone);
+        if (result.code === 1) {
+          // 失败显示提示
+          Dialog({message: '短信验证码发送失败'});
+          // 停止计时
+          if (this.computeTime > 0) {
+            this.computeTime = 0;
+            clearInterval(this.intervalCode);
+            this.intervalCode = null;
+          }
+        }
+      }
+    },
+    // 登录函数
+    async login () {
+      let result = {};
+      if (this.loginWay) {
+        const {rightPhone, phone, code} = this;
+        if (!rightPhone) {
+          // 手机号格式不正确
+          this.showAlertText('手机号格式不正确');
+          return undefined;
+        } else if (!(/^\d{6}$/.test(code))) {
+          // 验证码格式不正确
+          this.showAlertText('验证码格式不正确');
+          return undefined;
+        }
+
+        // 发送AJAX请求，短信验证码登录
+        result = await reqSmsLogin(phone, code);
+      } else {
+        const {name, pwd, captcha} = this;
+        if (!name) {
+          // 用户名不能为空
+          this.showAlertText('用户名不能为空');
+          return undefined;
+        } else if (!pwd) {
+          // 密码不能为空
+          this.showAlertText('密码不能为空');
+          return undefined;
+        } else if (!captcha) {
+          // 验证码不能为空
+          this.showAlertText('验证码不能为空');
+          return undefined;
+        }
+        // 发送AJAX请求，用户密码登录
+        result = await reqPwdLogin(name, pwd, captcha);
+      }
+      // 停止计时
+      if (this.computeTime > 0) {
+        this.computeTime = 0;
+        clearInterval(this.intervalCode);
+        this.intervalCode = null;
+      }
+      if (result.code === 0) {
+        // 登录成功
+        const user = result.data;
+        // 做持久化处理
+        
+        // 跳转到个人中心
+        this.$router.push('/profile');
+      } else {
+        // 登录失败
+        const msg = result.msg;
+        this.showAlertText(msg);
+        if (!this.loginWay) {
+          // 刷新验证码
+          this.getCaptcha();
+        }
+      }
+    },
+    // 信息提示框
+    showAlertText (message) {
+      Dialog({message});
     }
   },
+  computed: {
+    // 验证电话号码是否合法
+    rightPhone () {
+      return /^1[3456789]\d{9}$/.test(this.phone);
+    }
+  }
 }
 </script>
 
@@ -146,6 +271,11 @@ export default {
   color: #cccccc;
   font-size: 14px;
   background-color: transparent;
+  outline: 0;
+}
+
+.get-verification.on {
+  color: black;
 }
 
 .login-hint {
@@ -170,6 +300,7 @@ export default {
   text-align: center;
   font-size: 16px;
   line-height: 42px;
+  outline: 0;
 }
 
 .about {
@@ -239,5 +370,4 @@ export default {
   font-size: 20px;
   color: #999;
 }
-
 </style>
