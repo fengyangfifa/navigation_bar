@@ -40,7 +40,7 @@
             </section>
             <section class="login-message">
               <input type="text" placeholder="验证码" maxlength="11" v-model="captcha">
-              <img src="http://localhost:4000/captcha" alt="captcha" class="get-verification" ref="captcha">
+              <img src="http://localhost:4000/captcha" alt="captcha" class="get-verification" ref="captcha" @click="getCaptcha">
             </section>
           </div>
           <button class="login-submit">登录</button>
@@ -166,7 +166,9 @@ export default {
         // 登录成功
         const user = result.data;
         // 做持久化处理
-        
+        localStorage.setItem('userInfo', JSON.stringify(user));
+        // 将个人信息存储到vuex中
+        this.$store.dispatch('recordUser', user);
         // 跳转到个人中心
         this.$router.push('/profile');
       } else {

@@ -17,3 +17,8 @@ export function reqSmsLogin (phone, code) {
 export function reqPwdLogin (name, pwd, captcha) {
   return ajax(`${BASE_URL}/login_pwd`, {name, pwd, captcha}, 'POST');
 }
+
+// 用户登出
+export function reqLogout () {
+  return ajax(`${BASE_URL}/logout`);
+}

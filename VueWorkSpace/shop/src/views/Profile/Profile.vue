@@ -9,12 +9,12 @@
           <i class="iconfont icon-person"></i>
         </div>
         <div class="user-info">
-          <p class="user-info-top">登录/注册</p>
+          <p class="user-info-top">{{nameShow}}</p>
           <p>
             <span class="user-icon">
               <i class="iconfont icon-shouji icon-mobile"></i>
             </span>
-            <span class="icon-mobile-number">暂无绑定手机号</span>
+            <span class="icon-mobile-number">{{userInfo.phone ? userInfo.phone : '暂无绑定手机号'}}</span>
           </p>
         </div>
         <span class="arrow">
@@ -69,11 +69,22 @@
         <span class="my-order-icon"><i class="iconfont icon-jiantou1"></i></span>
       </div>
     </div>
+    <!-- 退出按钮 -->
+    <van-button type="danger" size="large" class="logout-button" @click="logout">退出登录</van-button>
+    <!-- 上传图片 -->
+    <van-uploader :after-read="afterRead" />
   </div>
 </template>
 
 <script>
 import HeaderTop from 'common/HeaderTop/HeaderTop'
+
+import Vue from 'vue'
+import { Button, Dialog, Toast, Uploader } from 'vant'
+import { mapState } from 'vuex'
+
+Vue.use(Button);
+Vue.use(Uploader);
 
 export default {
   name: 'Profile',
@@ -86,8 +97,39 @@ export default {
     }
   },
   methods: {
+    // 页面跳转
     goTo () {
-      this.$router.push('/login');
+      if (this.userInfo._id) {
+
+      } else {
+        // 跳转至登录页
+        this.$router.push('/login');
+      }
+    },
+    // 退出登录
+    logout () {
+      Dialog.confirm({
+        title: '提示',
+        message: '确认退出吗?'
+      }).then(() => {
+        this.$store.dispatch('logout');
+      }).catch(() => {
+        Toast('取消登出');
+      });
+    },
+    // 上传文件
+    afterRead (file) {
+      console.log(file);
+    }
+  },
+  computed: {
+    ...mapState(['userInfo']),
+    // 姓名显示,计算属性
+    nameShow () {
+      if (this.userInfo._id) {
+        return this.userInfo.name ? this.userInfo.name : '未设置';
+      }
+      return '登录/注册';
     }
   },
 }
@@ -304,5 +346,10 @@ export default {
   font-size: 30px;
   margin-left: -10px;
   color: #02a774;
+}
+
+.logout-button {
+  margin-top: 10px;
+  border-radius: 4px;
 }
 </style>
