@@ -22,3 +22,8 @@ export function reqPwdLogin (name, pwd, captcha) {
 export function reqLogout () {
   return ajax(`${BASE_URL}/logout`);
 }
+
+// 获取食物列表
+export function reqFoodCategorys () {
+  return ajax(`${BASE_URL}/index_category`);
+}

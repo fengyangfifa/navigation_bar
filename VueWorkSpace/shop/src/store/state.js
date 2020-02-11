@@ -2,5 +2,7 @@
 
 export default {
   // 用户信息
-  userInfo: {}
+  userInfo: {},
+  // 食品分类数组
+  categorys: []
 }

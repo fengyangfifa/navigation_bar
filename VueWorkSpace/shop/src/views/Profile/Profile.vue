@@ -70,9 +70,8 @@
       </div>
     </div>
     <!-- 退出按钮 -->
-    <van-button type="danger" size="large" class="logout-button" @click="logout">退出登录</van-button>
-    <!-- 上传图片 -->
-    <van-uploader :after-read="afterRead" />
+    <van-button type="danger" size="large" class="logout-button"
+     @click="logout" v-if="userInfo._id">退出登录</van-button>
   </div>
 </template>
 
@@ -80,11 +79,10 @@
 import HeaderTop from 'common/HeaderTop/HeaderTop'
 
 import Vue from 'vue'
-import { Button, Dialog, Toast, Uploader } from 'vant'
+import { Button, Dialog, Toast } from 'vant'
 import { mapState } from 'vuex'
 
 Vue.use(Button);
-Vue.use(Uploader);
 
 export default {
   name: 'Profile',
@@ -117,10 +115,6 @@ export default {
         Toast('取消登出');
       });
     },
-    // 上传文件
-    afterRead (file) {
-      console.log(file);
-    }
   },
   computed: {
     ...mapState(['userInfo']),
@@ -186,6 +180,7 @@ export default {
 .user-info-top {
   font-size: 18px;
   padding-bottom: 2px;
+  font-weight: 700;
 }
 
 .user-icon {

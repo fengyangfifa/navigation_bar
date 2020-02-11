@@ -3,7 +3,7 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-    <nav-bar></nav-bar>
+    <nav-bar v-if="$route.meta.showFooter"></nav-bar>
   </div>
 </template>
 

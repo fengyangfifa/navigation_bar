@@ -2,7 +2,8 @@
 
 import {
   RECEIVE_USER_INFO,
-  LOGOUT
+  LOGOUT,
+  RECEIVE_CATEGORYS
 } from './mutations-type'
 
 export default {
@@ -14,5 +15,10 @@ export default {
   // 清除userInfo
   [LOGOUT] (state) {
     state.userInfo = {};
+  },
+
+  // 修改食品分类
+  [RECEIVE_CATEGORYS] (state, {categorys}) {
+    state.categorys = categorys;
   }
 }

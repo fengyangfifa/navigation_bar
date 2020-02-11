@@ -2,11 +2,13 @@
 
 import {
   RECEIVE_USER_INFO,
-  LOGOUT
+  LOGOUT,
+  RECEIVE_CATEGORYS
 } from './mutations-type'
 
 import {
-  reqLogout
+  reqLogout,
+  reqFoodCategorys
 } from '../api'
 
 import { Toast } from 'vant'
@@ -27,6 +29,15 @@ export default {
       // 当发生退出失败时，执行回调函数
       // callback && callback();
       Toast('登出失败');
+    }
+  },
+
+  // 异步获取食品列表
+  async getCategorys ({commit}, ) {
+    const result = await reqFoodCategorys();
+    if (result.code === 0) {
+      const categorys = result.data;
+      commit(RECEIVE_CATEGORYS, {categorys});
     }
   }
 }
