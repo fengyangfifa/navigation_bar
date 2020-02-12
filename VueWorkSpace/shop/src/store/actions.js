@@ -3,12 +3,17 @@
 import {
   RECEIVE_USER_INFO,
   LOGOUT,
-  RECEIVE_CATEGORYS
+  RECEIVE_CATEGORYS,
+  RECEIVE_SHOPS,
+  RECEIVE_ADDRESS,
 } from './mutations-type'
 
 import {
   reqLogout,
-  reqFoodCategorys
+  reqFoodCategorys,
+  reqShops,
+  reqAddress,
+  reqUserInfo
 } from '../api'
 
 import { Toast } from 'vant'
@@ -38,6 +43,38 @@ export default {
     if (result.code === 0) {
       const categorys = result.data;
       commit(RECEIVE_CATEGORYS, {categorys});
+    }
+  },
+
+  // 获取商家列表
+  async getShops ({commit, state}) {
+    const {latitude, longitude} = state;
+    const result = await reqShops(latitude, longitude);
+    if (result.code === 0) {
+      const shops = result.data;
+      commit(RECEIVE_SHOPS, {shops});
+    } else {
+      Toast('获取商家列表失败');
+    }
+  },
+
+  // 获取地址信息
+  async getAddress ({commit, state}) {
+    const {latitude, longitude} = state;
+    const geohash = latitude + ',' + longitude;
+    const result = await reqAddress(geohash);
+    if (result.code === 0) {
+      const address = result.data;
+      commit(RECEIVE_ADDRESS, {address});
+    }
+  },
+
+  // 获取用户信息
+  async getUserInfo ({commit}) {
+    const result = await reqUserInfo();
+    if (result.code === 0) {
+      const userInfo = result.data;
+      commit({RECEIVE_USER_INFO}, {userInfo});
     }
   }
 }

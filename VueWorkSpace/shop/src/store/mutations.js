@@ -3,7 +3,9 @@
 import {
   RECEIVE_USER_INFO,
   LOGOUT,
-  RECEIVE_CATEGORYS
+  RECEIVE_CATEGORYS,
+  RECEIVE_SHOPS,
+  RECEIVE_ADDRESS,
 } from './mutations-type'
 
 export default {
@@ -20,5 +22,15 @@ export default {
   // 修改食品分类
   [RECEIVE_CATEGORYS] (state, {categorys}) {
     state.categorys = categorys;
+  },
+
+  // 修改商家数组
+  [RECEIVE_SHOPS] (state, {shops}) {
+    state.shops = shops;
+  },
+
+  // 修改地址信息
+  [RECEIVE_ADDRESS] (state, {address}) {
+    state.address = address;
   }
 }

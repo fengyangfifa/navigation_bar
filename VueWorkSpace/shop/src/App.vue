@@ -14,7 +14,13 @@ export default {
   name: 'App',
   components: {
     NavBar
-  }
+  },
+  mounted() {
+    // 获取地址信息
+    this.$store.dispatch('getAddress');
+    // 获取用户信息
+    this.$store.dispatch('getUserInfo');
+  },
 }
 </script>
 

@@ -27,3 +27,18 @@ export function reqLogout () {
 export function reqFoodCategorys () {
   return ajax(`${BASE_URL}/index_category`);
 }
+
+// 商家列表
+export function reqShops (latitude, longitude) {
+  return ajax(`${BASE_URL}/shops`, {latitude, longitude});
+}
+
+// 根据经纬度获取位置详情
+export function reqAddress (geohash) {
+  return ajax(`${BASE_URL}/position/${geohash}`);
+}
+
+// 根据会话获取用户信息
+export function reqUserInfo() {
+  return ajax(`${BASE_URL}/userinfo`);
+}

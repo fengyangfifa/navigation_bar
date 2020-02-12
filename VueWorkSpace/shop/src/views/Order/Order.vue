@@ -2,7 +2,7 @@
   <div class="order">
     <header-top :title="title"></header-top>
     <div class="not-login" v-if="!userInfo._id">
-      <img src="~assets/img/person.png" alt="">
+      <img src="~assets/img/Order/person.png" alt="">
       <p>登录后查看外卖订单</p>
       <button @click="goTo">立即登录</button>
     </div>
