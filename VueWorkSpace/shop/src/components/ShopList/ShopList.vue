@@ -6,7 +6,7 @@
     </div>
     <div class="shop-container">
       <ul class="shop-list" v-if="shops.length">
-        <li class="shop-li" v-for="(shop, index) in shops" :key="index">
+        <li class="shop-li" v-for="(shop, index) in shops" :key="index" @click="goTo">
           <a href="javascript:;">
             <div class="shop-left">
               <img src="https://fuss10.elemecdn.com/e/7e/02b72b5e63c127d5bfae57b8e4ab1jpeg.jpeg" alt="" class="shop-img">
@@ -65,6 +65,11 @@ export default {
   },
   components: {
     Star
+  },
+  methods: {
+    goTo () {
+      this.$router.push('/shop');
+    }
   },
 }
 </script>

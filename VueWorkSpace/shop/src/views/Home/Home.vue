@@ -1,14 +1,14 @@
 <template>
   <div class="home">
     <!-- 顶部样式 -->
-    <header-top :title="address.name">
-      <router-link to="/search" class="header-search" slot="left">
+    <header-top :title="address.name" @click.native="showPopup">
+      <a href="javascript:;" @click.stop="goTo('/search')" class="header-search" slot="left">
         <i class="iconfont icon-sousuo"></i>
-      </router-link>
-      <router-link :to="userInfo._id ? '/profile':'/login'" class="header-login" slot="right">
+      </a>
+      <a href="javascript:;" @click.stop="goTo(userInfo._id ? '/profile':'/login')" class="header-login" slot="right">
         <span v-if="!userInfo._id">登录|注册</span>
         <span v-else><i class="iconfont icon-person"></i></span>
-      </router-link>
+      </a>
     </header-top>
     <div class="wrapper">
       <!-- 轮播区域 -->
@@ -32,17 +32,26 @@
         <shop-list :shops="shops"></shop-list>
       </div>
     </div>
+    <!-- 弹出窗、省市区选择 -->
+    <van-popup v-model="show" position="bottom" :style="{ height: '40%' }">
+      <van-area :area-list="areaList" @confirm="confirm" @cancel="cancel" />
+    </van-popup>
   </div>
 </template>
 
 <script>
 import HeaderTop from 'common/HeaderTop/HeaderTop'
 import ShopList from 'components/ShopList/ShopList'
+import areaList from 'assets/js/area.js'
 
+import Vue from 'vue'
 import Swiper from 'swiper'
-import 'swiper/css/swiper.min.css'
 import BScroll from 'better-scroll'
 import { mapState } from 'vuex'
+import { Popup, Area } from 'vant'
+
+Vue.use(Popup);
+Vue.use(Area);
 
 export default {
   name: 'Home',
@@ -53,6 +62,26 @@ export default {
   data() {
     return {
       baseImageUrl: 'https://fuss10.elemecdn.com',
+      show: false,
+      areaList
+    }
+  },
+  methods: {
+    showPopup () {
+      this.show = true;
+    },
+
+    cancel () {
+      this.show = false;
+    },
+
+    confirm (columnArry) {
+      console.log(columnArry);
+      this.show = false;
+    },
+
+    goTo (path) {
+      this.$router.replace(path);
     }
   },
   mounted() {
@@ -93,7 +122,9 @@ export default {
     },
     shops: function (value) {
       this.$nextTick(() => {
-        new BScroll('.wrapper');
+        new BScroll('.wrapper', {
+          click: true
+        });
       });
     }
   },

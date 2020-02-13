@@ -9,6 +9,8 @@ import store from './store'
 // import 'vant/lib/index.css'
 
 // Vue.use(Vant);
+// 导入swiper的css样式
+import 'swiper/css/swiper.min.css'
 
 Vue.config.productionTip = false
 

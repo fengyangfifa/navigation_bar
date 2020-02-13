@@ -7,6 +7,7 @@ const Search = () => import('views/Search/Search');
 const Order = () => import('views/Order/Order');
 const Profile = () => import('views/Profile/Profile');
 const Login = () => import('views/Login/Login');
+const Shop = () => import('views/Shop/Shop');
 
 // 声明使用插件
 Vue.use(VueRouter);
@@ -61,6 +62,10 @@ const router = new VueRouter({
       meta: { 
         showFooter: false
       }
+    },
+    {
+      path:'/shop',
+      component: Shop
     }
   ]
 });
