@@ -2,11 +2,11 @@
   <div>
     <div class="shop-header">
       <div class="shop-nav">
-        <a href="javascript:;" class="back">
+        <a href="javascript:;" class="back" @click="$router.back()">
           <i class="iconfont icon-arrow_left"></i>
         </a>
       </div>
-      <div class="shop-content">
+      <div class="shop-content" @click="showOverlayOne = true">
         <img src="https://fuss10.elemecdn.com/8/40/02872ce8aefe75c16d3190e75ad61jpeg.jpeg" alt="">
         <div class="header-content">
           <h2 class="content-title">
@@ -24,16 +24,110 @@
           </div>
         </div>
       </div>
-      <div class="shop-header-discounts">
-        <div class="discounts-left">
+      <div class="shop-header-discounts" @click="showOverlayTwo = true">
+        <div class="discounts-left activity-green">
           <div class="content-tag">
             <span class="mini-tag">首单</span>
           </div>
           <span>新用户下单立减17元(不与其它活动同享)</span>
         </div>
         <div class="discounts-right">8个优惠</div>
-      </div>
-      <div class=""></div>
+      </div>  
+      <van-overlay class="overlay" :show="showOverlayOne" duration=0.5>
+        <div class="brief-modal-content">
+          <h2 class="content-title">
+            <span class="content-tag">
+              <span class="mini-tag">品牌</span>
+            </span>
+            <span class="content-name">嘉禾一品（温都水城）</span>
+          </h2>
+          <ul class="brief-modal-msg">
+            <li>
+              <h3>4.2</h3>
+              <p>评分</p>
+            </li>
+            <li>
+              <h3>90单</h3>
+              <p>月售</p>
+            </li>
+            <li>
+              <h3>硅谷专送</h3>
+              <p>约28分钟</p>
+            </li>
+            <li>
+              <h3>4元</h3>
+              <p>配送费用</p>
+            </li>
+            <li>
+              <h3>1000m</h3>
+              <p>距离</p>
+            </li>
+          </ul>
+          <h3 class="brief-modal-title">
+            <span>公告</span>
+          </h3>
+          <div class="brief-modal-notice">是以粥为特色的中式营养快餐，自2004年10月18日创立“嘉和一品”品牌至今，不断优化管理，积极创新，立足于“贴近百姓生活，服务千家万户”</div>
+          <div class="mask-footer" @click="showOverlayOne = false">
+            <span class="iconfont icon-close"></span>
+          </div>
+        </div>
+      </van-overlay>
+      <van-popup v-model="showOverlayTwo" closeable :close-on-click-overlay="false"
+       position="bottom" :style="{ height: '37%' }">
+       <div class="activity-sheet-content">
+         <h2 class="activity-sheet-title">优惠活动</h2>
+         <ul class="list">
+           <li class="activity-green">
+             <span class="content-tag">
+               <span class="mini-tag">首单</span>
+             </span>
+             <span class="activity-content">新用户下单立减17元(不与其它活动同享)</span>
+           </li>
+           <li class="activity-red">
+             <span class="content-tag">
+               <span class="mini-tag">满减</span>
+             </span>
+             <span class="activity-content">满35减19，满65减35</span>
+           </li>
+           <li class="activity-orange">
+             <span class="content-tag">
+               <span class="mini-tag">特价</span>
+             </span>
+             <span class="activity-content">【立减19.5元】欢乐小食餐</span>
+           </li>
+           <li class="activity-orange">
+             <span class="content-tag">
+               <span class="mini-tag">特价</span>
+             </span>
+             <span class="activity-content">【立减29元】火烤菠萝皇堡双人餐</span>
+           </li>
+           <li class="activity-orange">
+             <span class="content-tag">
+               <span class="mini-tag">特价</span>
+             </span>
+             <span class="activity-content">【立减16.5元】火烤菠萝皇堡单人餐</span>
+           </li>
+           <li class="activity-orange">
+             <span class="content-tag">
+               <span class="mini-tag">特价</span>
+             </span>
+             <span class="activity-content">【立减15】经典安格斯单人餐</span>
+           </li>
+           <li class="activity-orange">
+             <span class="content-tag">
+               <span class="mini-tag">特价</span>
+             </span>
+             <span class="activity-content">【立减11.95】皇堡双人餐</span>
+           </li>
+           <li class="activity-orange">
+             <span class="content-tag">
+               <span class="mini-tag">特价</span>
+             </span>
+             <span class="activity-content">【立减19.8】半价单人餐</span>
+           </li>
+         </ul>
+       </div>
+      </van-popup>
     </div>
     <div class="tab">
       <div class="tab-item">
@@ -46,12 +140,32 @@
         <a href="javascript:;">商家</a>
       </div>
     </div>
+    <shop-foods></shop-foods>
   </div>
 </template>
 
 <script>
+import ShopFoods from 'views/Shop/ShopFoods/ShopFoods'
+
+import Vue from 'vue'
+import { Overlay, Popup, Tag } from 'vant'
+
+Vue.use(Overlay);
+Vue.use(Popup);
+Vue.use(Tag);
+
 export default {
-  name: 'Shop'
+  name: 'Shop',
+  data() {
+    return {
+      // 是否显示遮罩层
+      showOverlayOne: false,
+      showOverlayTwo: false,
+    }
+  },
+  components: {
+    ShopFoods
+  }
 }
 </script>
 
@@ -196,7 +310,6 @@ export default {
 .discounts-left .content-tag {
   height: 13px;
   width: 24px;
-  background-color: #70bc46;
   text-align: center;
   margin-right: 5px;
   border-radius: 2px;
@@ -262,4 +375,130 @@ export default {
   transform: translateX(-50%);
 }
 
+.overlay {
+  line-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brief-modal-content {
+  width: 340px;
+  height: 235px;
+  position: relative;
+  background-color: #ffffff;
+  padding: 25px 20px;
+  border-radius: 5px;
+}
+
+.brief-modal-msg {
+  margin: 20px -10px 0;
+}
+
+.brief-modal-msg li {
+  float: left;
+  width: 20%;
+  text-align: center;
+}
+
+.brief-modal-msg li h3 {
+  color: #333333;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.brief-modal-msg li p {
+  font-size: 12px;
+  color: #999;
+}
+
+.brief-modal-msg::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.brief-modal-title {
+  margin: 15px auto;
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+}
+
+.brief-modal-notice {
+  font-size: 13px;
+  line-height: 1.54;
+  color: #333333;
+  overflow-y: auto;
+}
+
+.mask-footer {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+
+.mask-footer span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+}
+
+.activity-sheet-content {
+  padding: 20px 30px;
+  color: #333333;
+}
+
+.activity-sheet-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.activity-sheet-content .list {
+  height: 160px;
+  overflow-y: auto;
+}
+
+.activity-sheet-content li {
+  margin-bottom: 12px;
+}
+
+.activity-sheet-content .content-tag {
+  width: 36px;
+  height: 18px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left;
+  margin-right: 10px;
+}
+
+.activity-sheet-content .mini-tag {
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.activity-sheet-content .activity-content {
+  font-size: 13px;
+}
+
+ .activity-green .content-tag {
+  background-color: #70bc46;
+}
+
+.activity-red .content-tag {
+  background-color: #f07373;
+}
+
+.activity-orange .content-tag {
+  background-color: #f1884f;
+}
 </style>

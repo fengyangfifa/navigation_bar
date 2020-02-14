@@ -71,6 +71,7 @@ export default {
       this.$router.push('/shop');
     }
   },
+  //div[@class="pager_container"]/a[@class="page_no" and not(contains(@class,'pager_next_disabled')) and contains(.,'下一页')]
 }
 </script>
 
