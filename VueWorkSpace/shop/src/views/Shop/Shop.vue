@@ -72,7 +72,7 @@
           </div>
         </div>
       </van-overlay>
-      <van-popup v-model="showOverlayTwo" closeable :close-on-click-overlay="false"
+      <van-popup v-model="showOverlayTwo" :close-on-popstate="true" closeable :close-on-click-overlay="false"
        position="bottom" :style="{ height: '37%' }">
        <div class="activity-sheet-content">
          <h2 class="activity-sheet-title">优惠活动</h2>
@@ -140,12 +140,14 @@
         <a href="javascript:;">商家</a>
       </div>
     </div>
-    <shop-foods></shop-foods>
+    <!-- <shop-foods></shop-foods> -->
+    <shop-ratings></shop-ratings>
   </div>
 </template>
 
 <script>
 import ShopFoods from 'views/Shop/ShopFoods/ShopFoods'
+import ShopRatings from 'views/Shop/ShopRatings/ShopRatings'
 
 import Vue from 'vue'
 import { Overlay, Popup, Tag } from 'vant'
@@ -164,8 +166,19 @@ export default {
     }
   },
   components: {
-    ShopFoods
-  }
+    ShopFoods,
+    ShopRatings
+  },
+  activated() {
+    // 进入页面时将弹窗关闭
+    this.showOverlayTwo = false;
+    this.showOverlayOne = false;
+  },
+  deactivated() {
+    // 离开页面时将弹窗关闭
+    this.showOverlayTwo = false;
+    this.showOverlayOne = false;
+  },
 }
 </script>
 
