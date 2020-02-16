@@ -1,37 +1,40 @@
 <template>
   <div>
-    <div class="shop-header">
-      <div class="shop-nav">
+    <div class="shop-header" v-if="info">
+      <div class="shop-nav" :style="{backgroundImage: `url(${info.bgImg})`}">
         <a href="javascript:;" class="back" @click="$router.back()">
           <i class="iconfont icon-arrow_left"></i>
         </a>
       </div>
       <div class="shop-content" @click="showOverlayOne = true">
-        <img src="https://fuss10.elemecdn.com/8/40/02872ce8aefe75c16d3190e75ad61jpeg.jpeg" alt="">
+        <img :src="info.avatar" alt="">
         <div class="header-content">
           <h2 class="content-title">
             <span class="content-tag">
               <span class="mini-tag">品牌</span>
             </span>
-            <span class="content-name">嘉禾一品（温都水城）</span>
+            <span class="content-name">{{info.name}}</span>
             <span class="content-icon"></span>
           </h2>
           <div class="shop-message">
-            <span class="shop-message-detail">4.2</span>
-            <span class="shop-message-detail">月售90单</span>
-            <span class="shop-message-detail">硅谷专送<span> 约28分钟</span></span>
-            <span class="shop-message-detail">距离1000m</span>
+            <span class="shop-message-detail">{{info.score}}</span>
+            <span class="shop-message-detail">月售{{info.sellCount}}单</span>
+            <span class="shop-message-detail">
+              {{info.description}}
+              <span> 约{{info.deliveryTime}}分钟</span>
+            </span>
+            <span class="shop-message-detail">距离{{info.distance}}</span>
           </div>
         </div>
       </div>
-      <div class="shop-header-discounts" @click="showOverlayTwo = true">
-        <div class="discounts-left activity-green">
+      <div class="shop-header-discounts" v-if="info.supports" @click="showOverlayTwo = true">
+        <div class="discounts-left" :class="supportClasses[info.supports[0].type]">
           <div class="content-tag">
-            <span class="mini-tag">首单</span>
+            <span class="mini-tag">{{info.supports[0].name}}</span>
           </div>
-          <span>新用户下单立减17元(不与其它活动同享)</span>
+          <span>{{info.supports[0].content}}</span>
         </div>
-        <div class="discounts-right">8个优惠</div>
+        <div class="discounts-right">{{info.supports.length}}个优惠</div>
       </div>  
       <van-overlay class="overlay" :show="showOverlayOne" duration=0.5>
         <div class="brief-modal-content">
@@ -39,34 +42,34 @@
             <span class="content-tag">
               <span class="mini-tag">品牌</span>
             </span>
-            <span class="content-name">嘉禾一品（温都水城）</span>
+            <span class="content-name">{{info.name}}</span>
           </h2>
           <ul class="brief-modal-msg">
             <li>
-              <h3>4.2</h3>
+              <h3>{{info.score}}</h3>
               <p>评分</p>
             </li>
             <li>
-              <h3>90单</h3>
+              <h3>{{info.sellCount}}单</h3>
               <p>月售</p>
             </li>
             <li>
-              <h3>硅谷专送</h3>
-              <p>约28分钟</p>
+              <h3>{{info.description}}</h3>
+              <p>约{{info.deliveryTime}}分钟</p>
             </li>
             <li>
-              <h3>4元</h3>
+              <h3>{{info.deliveryPrice}}元</h3>
               <p>配送费用</p>
             </li>
             <li>
-              <h3>1000m</h3>
+              <h3>{{info.distance}}</h3>
               <p>距离</p>
             </li>
           </ul>
           <h3 class="brief-modal-title">
             <span>公告</span>
           </h3>
-          <div class="brief-modal-notice">是以粥为特色的中式营养快餐，自2004年10月18日创立“嘉和一品”品牌至今，不断优化管理，积极创新，立足于“贴近百姓生活，服务千家万户”</div>
+          <div class="brief-modal-notice">{{info.bulletin}}</div>
           <div class="mask-footer" @click="showOverlayOne = false">
             <span class="iconfont icon-close"></span>
           </div>
@@ -77,53 +80,11 @@
        <div class="activity-sheet-content">
          <h2 class="activity-sheet-title">优惠活动</h2>
          <ul class="list">
-           <li class="activity-green">
+           <li :class="supportClasses[item.type]" v-for="(item, index) in info.supports" :key="index">
              <span class="content-tag">
-               <span class="mini-tag">首单</span>
+               <span class="mini-tag">{{item.name}}</span>
              </span>
-             <span class="activity-content">新用户下单立减17元(不与其它活动同享)</span>
-           </li>
-           <li class="activity-red">
-             <span class="content-tag">
-               <span class="mini-tag">满减</span>
-             </span>
-             <span class="activity-content">满35减19，满65减35</span>
-           </li>
-           <li class="activity-orange">
-             <span class="content-tag">
-               <span class="mini-tag">特价</span>
-             </span>
-             <span class="activity-content">【立减19.5元】欢乐小食餐</span>
-           </li>
-           <li class="activity-orange">
-             <span class="content-tag">
-               <span class="mini-tag">特价</span>
-             </span>
-             <span class="activity-content">【立减29元】火烤菠萝皇堡双人餐</span>
-           </li>
-           <li class="activity-orange">
-             <span class="content-tag">
-               <span class="mini-tag">特价</span>
-             </span>
-             <span class="activity-content">【立减16.5元】火烤菠萝皇堡单人餐</span>
-           </li>
-           <li class="activity-orange">
-             <span class="content-tag">
-               <span class="mini-tag">特价</span>
-             </span>
-             <span class="activity-content">【立减15】经典安格斯单人餐</span>
-           </li>
-           <li class="activity-orange">
-             <span class="content-tag">
-               <span class="mini-tag">特价</span>
-             </span>
-             <span class="activity-content">【立减11.95】皇堡双人餐</span>
-           </li>
-           <li class="activity-orange">
-             <span class="content-tag">
-               <span class="mini-tag">特价</span>
-             </span>
-             <span class="activity-content">【立减19.8】半价单人餐</span>
+             <span class="activity-content">{{item.content}}</span>
            </li>
          </ul>
        </div>
@@ -131,24 +92,27 @@
     </div>
     <div class="tab">
       <div class="tab-item">
-        <a href="javascript:;" class="on">点餐</a>
+        <router-link to="/shop/foods" replace>点餐</router-link>
       </div>
       <div class="tab-item">
-        <a href="javascript:;">评价</a>
+        <router-link to="/shop/ratings" replace>评价</router-link>
       </div>
       <div class="tab-item">
-        <a href="javascript:;">商家</a>
+        <router-link to="/shop/info" replace>商家</router-link>
       </div>
     </div>
-    <!-- <shop-foods></shop-foods> -->
-    <shop-ratings></shop-ratings>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script>
 import ShopFoods from 'views/Shop/ShopFoods/ShopFoods'
 import ShopRatings from 'views/Shop/ShopRatings/ShopRatings'
+import ShopInfo from 'views/Shop/ShopInfo/ShopInfo'
 
+import {mapState} from 'vuex'
 import Vue from 'vue'
 import { Overlay, Popup, Tag } from 'vant'
 
@@ -163,9 +127,19 @@ export default {
       // 是否显示遮罩层
       showOverlayOne: false,
       showOverlayTwo: false,
+      // css类名
+      supportClasses: ['activity-green', 'activity-red', 'activity-orange']
     }
   },
+  mounted() {
+    // 获取商家信息
+    this.$store.dispatch('getShopInfo');
+  },
+  computed: {
+    ...mapState(['info'])
+  },
   components: {
+    ShopInfo,
     ShopFoods,
     ShopRatings
   },
@@ -190,7 +164,6 @@ export default {
 .shop-nav {
   width: 100%;
   height: 50px;
-  background-image: url(https://fuss10.elemecdn.com/f/5c/ead54394c3de198d3e6d3e9111bbfpng.png);
   background-size: cover;
   background-repeat: no-repeat;
   padding: 5px 10px;
@@ -373,11 +346,11 @@ export default {
   position: relative;
 }
 
-.tab .tab-item a.on{
+.tab .tab-item a.router-link-active{
   color: #02a774;
 }
 
-.tab .tab-item a.on::after {
+.tab .tab-item a.router-link-active::after {
   content: '';
   width: 35px;
   height: 2px;
@@ -491,6 +464,7 @@ export default {
   align-items: center;
   float: left;
   margin-right: 10px;
+  border-radius: 2px;
 }
 
 .activity-sheet-content .mini-tag {

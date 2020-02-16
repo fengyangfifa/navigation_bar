@@ -6,6 +6,9 @@ import {
   RECEIVE_CATEGORYS,
   RECEIVE_SHOPS,
   RECEIVE_ADDRESS,
+  RECEIVE_INFO,
+  RECEIVE_RATINGS,
+  RECEIVE_FOODS
 } from './mutations-type'
 
 export default {
@@ -32,5 +35,20 @@ export default {
   // 修改地址信息
   [RECEIVE_ADDRESS] (state, {address}) {
     state.address = address;
+  },
+
+  // 修改商家信息
+  [RECEIVE_INFO] (state, {info}) {
+    state.info = info;
+  },
+
+  // 修改商品列表
+  [RECEIVE_FOODS] (state, {foods}) {
+    state.foods = foods;
+  },
+
+  // 修改商家评价
+  [RECEIVE_RATINGS] (state, {ratings}) {
+    state.ratings = ratings;
   }
 }

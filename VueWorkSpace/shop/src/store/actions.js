@@ -6,6 +6,9 @@ import {
   RECEIVE_CATEGORYS,
   RECEIVE_SHOPS,
   RECEIVE_ADDRESS,
+  RECEIVE_INFO,
+  RECEIVE_RATINGS,
+  RECEIVE_FOODS
 } from './mutations-type'
 
 import {
@@ -13,7 +16,10 @@ import {
   reqFoodCategorys,
   reqShops,
   reqAddress,
-  reqUserInfo
+  reqUserInfo,
+  reqShopInfo,
+  reqShopFoods,
+  reqShopRatings
 } from '../api'
 
 import { Toast } from 'vant'
@@ -75,6 +81,35 @@ export default {
     if (result.code === 0) {
       const userInfo = result.data;
       commit({RECEIVE_USER_INFO}, {userInfo});
+    }
+  },
+
+  // 异步获取商家信息
+  async getShopInfo ({commit}) {
+    const result = await reqShopInfo();
+    if (result.code === 0) {
+      const info = result.data;
+      commit(RECEIVE_INFO, {info});
+    }
+  },
+
+  // 获取商家评价
+  async getShopRatings ({commit}, callback) {
+    const result = await reqShopRatings();
+    if (result.code === 0) {
+      const ratings = await result.data;
+      commit(RECEIVE_RATINGS, {ratings});
+      callback && callback();
+    }
+  },
+
+  // 获取商家商品列表
+  async getShopFoods ({commit}, callback) {
+    const result = await reqShopFoods();
+    if (result.code === 0) {
+      const foods = result.data;
+      commit(RECEIVE_FOODS, {foods});
+      callback && callback();
     }
   }
 }

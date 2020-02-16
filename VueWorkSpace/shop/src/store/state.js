@@ -12,5 +12,11 @@ export default {
   // 商家数组
   shops: [],
   // 地址信息
-  address: {}
+  address: {},
+  // 商家信息
+  info: {},
+  // 商品列表
+  foods: [],
+  // 商家评论列表
+  ratings: []
 }

@@ -8,6 +8,9 @@ const Order = () => import('views/Order/Order');
 const Profile = () => import('views/Profile/Profile');
 const Login = () => import('views/Login/Login');
 const Shop = () => import('views/Shop/Shop');
+const ShopFoods = () => import('views/Shop/ShopFoods/ShopFoods');
+const ShopInfo = () => import('views/Shop/ShopInfo/ShopInfo');
+const ShopRatings = () => import('views/Shop/ShopRatings/ShopRatings');
 
 // 声明使用插件
 Vue.use(VueRouter);
@@ -65,7 +68,25 @@ const router = new VueRouter({
     },
     {
       path:'/shop',
-      component: Shop
+      component: Shop,
+      children: [,
+        {
+          path: '',
+          redirect: 'foods'
+        },
+        {
+          path: 'info',
+          component: ShopInfo
+        },
+        {
+          path: 'foods',
+          component: ShopFoods 
+        },
+        {
+          path: 'ratings',
+          component: ShopRatings
+        }
+      ]
     }
   ]
 });

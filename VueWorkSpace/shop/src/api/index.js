@@ -39,6 +39,21 @@ export function reqAddress (geohash) {
 }
 
 // 根据会话获取用户信息
-export function reqUserInfo() {
+export function reqUserInfo () {
   return ajax(`${BASE_URL}/userinfo`);
+}
+
+// 获取商家信息
+export function reqShopInfo () {
+  return ajax('/info');
+}
+
+// 获取商家评价
+export function reqShopRatings() {
+  return ajax('/ratings');
+}
+
+// 获取商家商品
+export function reqShopFoods() {
+  return ajax('/foods');
 }
