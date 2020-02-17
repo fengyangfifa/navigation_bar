@@ -11,8 +11,7 @@
           <div class="delivery-money">配送费￥{{info.deliveryPrice}}</div>
         </div>
       </div>
-      <div class="split">
-      </div>
+      <div class="split"></div>
       <div class="section">
         <h3 class="section-title">活动与服务</h3>
         <div class="activity-sheet-content">
@@ -26,20 +25,18 @@
           </ul>
        </div>
       </div>
-      <div class="split">
-      </div>
+      <div class="split"></div>
       <div class="section">
         <h3 class="section-title">商家实景</h3>
         <div class="pic-wrapper">
-          <ul class="pic-list">
+          <ul class="pic-list" ref="picsUl">
             <li class="pic-item" v-for="(item, index) in info.pics" :key="index">
               <img :src="item" alt="">
             </li>
           </ul>
         </div>
       </div>
-      <div class="split">
-      </div>
+      <div class="split"></div>
       <div class="section">
         <h3 class="section-title">商家信息</h3>
         <ul class="detail">
@@ -80,11 +77,43 @@ export default {
   computed: {
     ...mapState(['info'])
   },
+  watch: {
+    // 当数据更新时，创建BScroll实例
+    // 这个主要是因为在本页面刷新时，数据获取和渲染需要时间
+    // 故采用监视实现
+    info () {
+      this.$nextTick(() => {
+        this._initScroll();
+      });
+    }
+    // info: {
+    //   deep: true,
+    //   handler () {
+    //     this._initScroll();
+    //   }
+    // }
+  },
   mounted() {
-    new BScroll('.shop-info');
-    new BScroll('.pic-wrapper', {
-      scrollX: true
-    });
+    if (!this.info.pics) {
+      return undefined;
+    }
+    // 初始化滑动，如果有this.pics，直接实例化
+    this._initScroll();
+  },
+  methods: {
+    _initScroll () {
+      new BScroll('.shop-info');
+      // 动态计算ul的宽度
+      const picsUl = this.$refs.picsUl;
+      const liWidth = 120;
+      const space = 6;
+      const count = this.info.pics.length;
+      picsUl.style.width = (liWidth + space) * count - space + 'px';
+      new BScroll('.pic-wrapper', {
+        // 水平滑动，内部子元素的宽度需要自己计算
+        scrollX: true
+      });
+    }
   },
 }
 </script>
@@ -200,7 +229,6 @@ export default {
 
 .pic-wrapper .pic-list {
   font-size: 0;
-  width: 624px;
 }
 
 .pic-wrapper .pic-item {

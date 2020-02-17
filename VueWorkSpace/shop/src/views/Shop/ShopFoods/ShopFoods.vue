@@ -2,625 +2,34 @@
   <div class="foods">
     <div class="menu-wrapper">
       <ul>
-        <li class="menu-item">
+        <li class="menu-item" :class="{on: currentIndex === index}" v-for="(item, index) in foods" 
+        :key="index" @click="clickMenuItem(index)">
           <span class="text">
-            <img src="https://fuss10.elemecdn.com/b/91/8cf4f67e0e8223931cd595dc932fepng.png" alt="">
-            优惠
+            <img :src="item.icon" alt="" v-if="item.icon">
+            {{item.name}}
           </span>
-        </li>
-        <li class="menu-item">
-          <span class="text">
-            <img src="https://fuss10.elemecdn.com/0/6a/05b267f338acfeb8bd682d16e836dpng.png" alt="">
-            折扣
-          </span>
-        </li>
-        <li class="menu-item">
-          <span class="text">香浓甜粥</span>
-        </li>
-        <li class="menu-item">
-          <span class="text">营养咸粥</span>
-        </li>
-        <li class="menu-item">
-          <span class="text">爽口凉菜</span>
-        </li>
-        <li class="menu-item">
-          <span class="text">香浓甜粥</span>
-        </li>
-        <li class="menu-item">
-          <span class="text">精选套餐</span>
-        </li>
-        <li class="menu-item">
-          <span class="text">果拼果汁</span>
-        </li>
-        <li class="menu-item">
-          <span class="text">小吃主食</span>
-        </li>
-        <li class="menu-item">
-          <span class="text">特色粥品</span>
         </li>
       </ul>
     </div>
     <div class="foods-wrapper">
-      <ul>
-        <li class="food-list-hook">
+      <ul ref="foodsUl">
+        <li class="food-list-hook" v-for="(food, index) in foods" :key="index">
           <h1 class="title">优惠</h1>
           <ul>
-            <li class="food-item">
+            <li class="food-item" v-for="(item, index) in food.foods" :key="index">
               <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
+                <img :src="item.icon" alt="">
               </div>
               <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
+                <h2 class="name">{{item.name}}</h2>
+                <p class="desc">{{item.description}}</p>
                 <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
+                  <span class="count">月售 {{item.sellCount}} 份</span>
+                  <span>好评率 {{item.rating}}%</span>
                 </div>
                 <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/d/22/260bd78ee6ac6051136c5447fe307jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">红豆薏米美肤粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 86 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥12</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/9/b5/469d8854f9a3a03797933fd01398bjpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">八宝酱菜</h2>
-                <div class="extra">
-                  <span class="count">月售 84 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥4</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/c/6b/29e3d29b0db63d36f7c500bca31d8jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">扁豆焖面</h2>
-                <div class="extra">
-                  <span class="count">月售 188 份</span>
-                  <span>好评率 96%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥4</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/f/28/a51e7b18751bcdf871648a23fd3b4jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">葱花饼</h2>
-                <p class="desc">葱花饼葱花饼葱花饼葱花饼</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li class="food-list-hook">
-          <h1 class="title">折扣</h1>
-          <ul>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li class="food-list-hook">
-          <h1 class="title">香浓甜粥</h1>
-          <ul>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">红枣山药粥</h2>
-                <p class="desc">红枣山药糙米粥,素材包,爽口莴笋丝,四川泡菜或八宝酱菜,配菜可备注</p>
-                <div class="extra">
-                  <span class="count">月售 17 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥29</span>
-                  <span class="old">￥36</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li class="food-list-hook">
-          <h1 class="title">营养咸粥</h1>
-          <ul>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li class="food-list-hook">
-          <h1 class="title">爽口凉菜</h1>
-          <ul>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li class="food-list-hook">
-          <h1 class="title">精选套餐</h1>
-          <ul>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li class="food-list-hook">
-          <h1 class="title">果拼果汁</h1>
-          <ul>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li class="food-list-hook">
-          <h1 class="title">小吃主食</h1>
-          <ul>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/d/22/260bd78ee6ac6051136c5447fe307jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">红豆薏米美肤粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 86 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥12</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/9/b5/469d8854f9a3a03797933fd01398bjpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">八宝酱菜</h2>
-                <div class="extra">
-                  <span class="count">月售 84 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥4</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/c/6b/29e3d29b0db63d36f7c500bca31d8jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">扁豆焖面</h2>
-                <div class="extra">
-                  <span class="count">月售 188 份</span>
-                  <span>好评率 96%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥4</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/f/28/a51e7b18751bcdf871648a23fd3b4jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">葱花饼</h2>
-                <p class="desc">葱花饼葱花饼葱花饼葱花饼</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li class="food-list-hook">
-          <h1 class="title">特色粥品</h1>
-          <ul>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/d/22/260bd78ee6ac6051136c5447fe307jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">红豆薏米美肤粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 86 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥12</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/9/b5/469d8854f9a3a03797933fd01398bjpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">八宝酱菜</h2>
-                <div class="extra">
-                  <span class="count">月售 84 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥4</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/c/6b/29e3d29b0db63d36f7c500bca31d8jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">扁豆焖面</h2>
-                <div class="extra">
-                  <span class="count">月售 188 份</span>
-                  <span>好评率 96%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥4</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/f/28/a51e7b18751bcdf871648a23fd3b4jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">葱花饼</h2>
-                <p class="desc">葱花饼葱花饼葱花饼葱花饼</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
-                </div>
-              </div>
-            </li>
-            <li class="food-item">
-              <div class="icon">
-                <img src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114" alt="">
-              </div>
-              <div class="content">
-                <h2 class="name">南瓜粥</h2>
-                <p class="desc">甜粥</p>
-                <div class="extra">
-                  <span class="count">月售 91 份</span>
-                  <span>好评率 100%</span>
-                </div>
-                <div class="price">
-                  <span class="now">￥9</span>
+                  <span class="now">￥{{item.price}}</span>
+                  <span class="old" v-if="item.oldPrice">￥{{item.oldPrice}}</span>
                 </div>
               </div>
             </li>
@@ -650,17 +59,87 @@
 
 <script>
 import BScroll from 'better-scroll'
+import {mapState} from 'vuex'
 
 export default {
   name: 'ShopFoods',
   data() {
     return {
-      
+      // 右侧滑块的Y轴坐标(滑动过程中动态变化)
+      scrollY: 0,
+
+      // 所有右侧分类li的top组成的数组(列表显示时初始化值,不会变化)
+      tops: []
+    }
+  },
+  computed: {
+    ...mapState(['foods']),
+
+    // 计算当前右侧列表处于的左侧列表分类
+    currentIndex () {
+      // 该计算属性根据 scrollY 和 tops 计算
+      const {scrollY, tops} = this;
+      const index = tops.findIndex((top, index) => {
+        return scrollY >= top && scrollY < tops[index + 1];
+      });
+      return index;
+    }
+  },
+  methods: {
+    // 点击左侧商品分类,滑动右侧列表
+    clickMenuItem (index) {
+      // 使右侧列表滑动到对应的位置
+      const scrollY = -this.tops[index];
+      // 先通过修改scrollY，改变左侧样式
+      this.scrollY = -scrollY;
+      // 滑动右侧列表
+      this.foodScroll.scrollTo(0, scrollY, 1000);
+    },
+
+    // 初始化滚动
+    _initScroll () {
+      const menuScroll = new BScroll('.menu-wrapper', {
+        click: true
+      });
+      this.foodScroll = new BScroll('.foods-wrapper', {
+        click: true,
+        probeType: 2
+      });
+
+      // 右侧scroll绑定滑动监听
+      this.foodScroll.on('scroll', ({x, y}) => {
+        this.scrollY = Math.abs(y);
+      });
+
+      // 右侧scroll绑定滑动结束监听
+      this.foodScroll.on('scrollEnd', ({x, y}) => {
+        this.scrollY = Math.abs(y);
+      });
+    },
+
+    // 初始化tops
+    _initTops () {
+      const tops = [];
+      let top = 0;
+      tops.push(top);
+      const lis = this.$refs.foodsUl.getElementsByClassName('food-list-hook');
+      // lis是一个伪数组
+      [].slice.call(lis).forEach(li => {
+        // li.clientHeight li元素渲染后自身的高度
+        top += li.clientHeight;
+        tops.push(top);
+      });
+      this.tops = tops;
     }
   },
   mounted() {
-    new BScroll('.menu-wrapper');
-    new BScroll('.foods-wrapper');
+    // 请求商家商品数据
+    this.$store.dispatch('getShopFoods', () => {
+      this.$nextTick(() => {
+        this._initScroll();
+        this._initTops();
+      });
+    });
   },
 }
 </script>

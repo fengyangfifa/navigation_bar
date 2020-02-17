@@ -16,6 +16,9 @@ import 'swiper/css/swiper.min.css'
 // 加载mockServer模块
 import './mock/mockServer'
 
+// 加载自定义过滤器
+import './filters'
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -3,347 +3,65 @@
     <div class="ratings-content">
       <div class="overview">
         <div class="overview-left">
-          <h1 class="score">4.2</h1>
+          <h1 class="score">{{info.score}}</h1>
           <div class="title">综合评分</div>
           <div class="rank">高于周边商家 99%</div>
         </div>
         <div class="overview-right">
           <div class="score-wrapper">
-            <star :size="36" :score="4.1"></star>
+            <star :size="36" :score="info.serviceScore"></star>
             <span class="title">服务态度</span>
-            <span class="score">4.1</span>
+            <span class="score">{{info.serviceScore}}</span>
           </div>
           <div class="score-wrapper">
-            <star :size="36" :score="4.1"></star>
+            <star :size="36" :score="info.foodScore"></star>
             <span class="title">商品评分</span>
-            <span class="score">4.3</span>
+            <span class="score">{{info.foodScore}}</span>
           </div>
           <div class="delivery-wrapper">
             <span class="title">送达时间</span>
-            <span class="delivery">28 分钟</span>
+            <span class="delivery">{{info.deliveryTime}} 分钟</span>
           </div>
         </div>
       </div>
       <div class="split"></div>
       <div class="ratingselect">
         <div class="rating-type">
-          <span class="block active">全部<span class="count">24</span></span>
-          <span class="block">满意<span class="count">18</span></span>
-          <span class="block">不满意<span class="count">6</span></span>
+          <span class="block" :class="{active: selectType === 2}" @click="setSelectType(2)">全部
+            <span class="count">{{ratings.length}}</span>
+          </span>
+          <span class="block" :class="{active: selectType === 0}" @click="setSelectType(0)">满意
+            <span class="count">{{positiveSize}}</span>
+          </span>
+          <span class="block"  :class="{active: selectType === 1}" @click="setSelectType(1)">不满意
+            <span class="count">{{ratings.length - positiveSize}}</span>
+          </span>
         </div>
-        <div class="switch on">
+        <div class="switch" :class="{on: onlyShowText}" @click="changeOnlyShowText">
           <span class="iconfont icon-check_circle"></span>
           <span class="text">只看有内容的评价</span>
         </div>
       </div>
       <div class="rating-wrapper">
         <ul>
-          <li class="rating-item">
+          <li class="rating-item" v-for="(item, index) in filterRatings" :key="index">
             <div class="avatar">
-              <img src="http://static.galileo.xiaojukeji.com/static/tms/default_header.png" alt="">
+              <img :src="item.avatar" alt="">
             </div>
             <div class="content">
-              <h1 class="name">3******c</h1>
+              <h1 class="name">{{item.username}}</h1>
               <div class="star-wrapper">
-                <star :score="5" :size="24"></star>
-                <span class="delivery">30</span>
+                <star :score="item.score" :size="24"></star>
+                <span class="delivery">{{item.deliveryTime}}</span>
               </div>
-              <p class="text">不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.</p>
+              <p class="text">{{item.text}}</p>
               <div class="recommend">
-                <span class="iconfont icon-thumb_down"></span>
-                <span class="item">南瓜粥</span>
-                <span class="item">皮蛋瘦肉粥</span>
-                <span class="item">扁豆焖面</span>
-                <span class="item">娃娃菜炖豆腐</span>
-                <span class="item">牛肉馅饼</span>
+                <span class="iconfont" :class="item.rateType === 0 ? 'icon-thumb_up': 'icon-thumb_down'"></span>
+                <span class="item" v-for="(recommend, index) in item.recommend" :key="index">
+                  {{recommend}}
+                </span>
               </div>
-              <div class="time">2016-07-23 21:52:44</div>
-            </div>
-          </li>
-          <li class="rating-item">
-            <div class="avatar">
-              <img src="http://static.galileo.xiaojukeji.com/static/tms/default_header.png" alt="">
-            </div>
-            <div class="content">
-              <h1 class="name">3******c</h1>
-              <div class="star-wrapper">
-                <star :score="5" :size="24"></star>
-                <span class="delivery">30</span>
-              </div>
-              <p class="text">不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.</p>
-              <div class="recommend">
-                <span class="iconfont icon-thumb_up"></span>
-                <span class="item">南瓜粥</span>
-                <span class="item">皮蛋瘦肉粥</span>
-                <span class="item">扁豆焖面</span>
-                <span class="item">娃娃菜炖豆腐</span>
-                <span class="item">牛肉馅饼</span>
-              </div>
-              <div class="time">2016-07-23 21:52:44</div>
-            </div>
-          </li>
-          <li class="rating-item">
-            <div class="avatar">
-              <img src="http://static.galileo.xiaojukeji.com/static/tms/default_header.png" alt="">
-            </div>
-            <div class="content">
-              <h1 class="name">3******c</h1>
-              <div class="star-wrapper">
-                <star :score="5" :size="24"></star>
-                <span class="delivery">30</span>
-              </div>
-              <p class="text">不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.</p>
-              <div class="recommend">
-                <span class="iconfont icon-thumb_up"></span>
-                <span class="item">南瓜粥</span>
-                <span class="item">皮蛋瘦肉粥</span>
-                <span class="item">扁豆焖面</span>
-                <span class="item">娃娃菜炖豆腐</span>
-                <span class="item">牛肉馅饼</span>
-              </div>
-              <div class="time">2016-07-23 21:52:44</div>
-            </div>
-          </li>
-          <li class="rating-item">
-            <div class="avatar">
-              <img src="http://static.galileo.xiaojukeji.com/static/tms/default_header.png" alt="">
-            </div>
-            <div class="content">
-              <h1 class="name">3******c</h1>
-              <div class="star-wrapper">
-                <star :score="5" :size="24"></star>
-                <span class="delivery">30</span>
-              </div>
-              <p class="text">不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.</p>
-              <div class="recommend">
-                <span class="iconfont icon-thumb_up"></span>
-                <span class="item">南瓜粥</span>
-                <span class="item">皮蛋瘦肉粥</span>
-                <span class="item">扁豆焖面</span>
-                <span class="item">娃娃菜炖豆腐</span>
-                <span class="item">牛肉馅饼</span>
-              </div>
-              <div class="time">2016-07-23 21:52:44</div>
-            </div>
-          </li>
-          <li class="rating-item">
-            <div class="avatar">
-              <img src="http://static.galileo.xiaojukeji.com/static/tms/default_header.png" alt="">
-            </div>
-            <div class="content">
-              <h1 class="name">3******c</h1>
-              <div class="star-wrapper">
-                <star :score="5" :size="24"></star>
-                <span class="delivery">30</span>
-              </div>
-              <p class="text">不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.</p>
-              <div class="recommend">
-                <span class="iconfont icon-thumb_up"></span>
-                <span class="item">南瓜粥</span>
-                <span class="item">皮蛋瘦肉粥</span>
-                <span class="item">扁豆焖面</span>
-                <span class="item">娃娃菜炖豆腐</span>
-                <span class="item">牛肉馅饼</span>
-              </div>
-              <div class="time">2016-07-23 21:52:44</div>
-            </div>
-          </li>
-          <li class="rating-item">
-            <div class="avatar">
-              <img src="http://static.galileo.xiaojukeji.com/static/tms/default_header.png" alt="">
-            </div>
-            <div class="content">
-              <h1 class="name">3******c</h1>
-              <div class="star-wrapper">
-                <star :score="5" :size="24"></star>
-                <span class="delivery">30</span>
-              </div>
-              <p class="text">不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.</p>
-              <div class="recommend">
-                <span class="iconfont icon-thumb_up"></span>
-                <span class="item">南瓜粥</span>
-                <span class="item">皮蛋瘦肉粥</span>
-                <span class="item">扁豆焖面</span>
-                <span class="item">娃娃菜炖豆腐</span>
-                <span class="item">牛肉馅饼</span>
-              </div>
-              <div class="time">2016-07-23 21:52:44</div>
-            </div>
-          </li>
-          <li class="rating-item">
-            <div class="avatar">
-              <img src="http://static.galileo.xiaojukeji.com/static/tms/default_header.png" alt="">
-            </div>
-            <div class="content">
-              <h1 class="name">3******c</h1>
-              <div class="star-wrapper">
-                <star :score="5" :size="24"></star>
-                <span class="delivery">30</span>
-              </div>
-              <p class="text">不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.</p>
-              <div class="recommend">
-                <span class="iconfont icon-thumb_up"></span>
-                <span class="item">南瓜粥</span>
-                <span class="item">皮蛋瘦肉粥</span>
-                <span class="item">扁豆焖面</span>
-                <span class="item">娃娃菜炖豆腐</span>
-                <span class="item">牛肉馅饼</span>
-              </div>
-              <div class="time">2016-07-23 21:52:44</div>
-            </div>
-          </li>
-          <li class="rating-item">
-            <div class="avatar">
-              <img src="http://static.galileo.xiaojukeji.com/static/tms/default_header.png" alt="">
-            </div>
-            <div class="content">
-              <h1 class="name">3******c</h1>
-              <div class="star-wrapper">
-                <star :score="5" :size="24"></star>
-                <span class="delivery">30</span>
-              </div>
-              <p class="text">不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.</p>
-              <div class="recommend">
-                <span class="iconfont icon-thumb_up"></span>
-                <span class="item">南瓜粥</span>
-                <span class="item">皮蛋瘦肉粥</span>
-                <span class="item">扁豆焖面</span>
-                <span class="item">娃娃菜炖豆腐</span>
-                <span class="item">牛肉馅饼</span>
-              </div>
-              <div class="time">2016-07-23 21:52:44</div>
-            </div>
-          </li>
-          <li class="rating-item">
-            <div class="avatar">
-              <img src="http://static.galileo.xiaojukeji.com/static/tms/default_header.png" alt="">
-            </div>
-            <div class="content">
-              <h1 class="name">3******c</h1>
-              <div class="star-wrapper">
-                <star :score="5" :size="24"></star>
-                <span class="delivery">30</span>
-              </div>
-              <p class="text">不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.</p>
-              <div class="recommend">
-                <span class="iconfont icon-thumb_up"></span>
-                <span class="item">南瓜粥</span>
-                <span class="item">皮蛋瘦肉粥</span>
-                <span class="item">扁豆焖面</span>
-                <span class="item">娃娃菜炖豆腐</span>
-                <span class="item">牛肉馅饼</span>
-              </div>
-              <div class="time">2016-07-23 21:52:44</div>
-            </div>
-          </li>
-          <li class="rating-item">
-            <div class="avatar">
-              <img src="http://static.galileo.xiaojukeji.com/static/tms/default_header.png" alt="">
-            </div>
-            <div class="content">
-              <h1 class="name">3******c</h1>
-              <div class="star-wrapper">
-                <star :score="5" :size="24"></star>
-                <span class="delivery">30</span>
-              </div>
-              <p class="text">不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.</p>
-              <div class="recommend">
-                <span class="iconfont icon-thumb_up"></span>
-                <span class="item">南瓜粥</span>
-                <span class="item">皮蛋瘦肉粥</span>
-                <span class="item">扁豆焖面</span>
-                <span class="item">娃娃菜炖豆腐</span>
-                <span class="item">牛肉馅饼</span>
-              </div>
-              <div class="time">2016-07-23 21:52:44</div>
-            </div>
-          </li>
-          <li class="rating-item">
-            <div class="avatar">
-              <img src="http://static.galileo.xiaojukeji.com/static/tms/default_header.png" alt="">
-            </div>
-            <div class="content">
-              <h1 class="name">3******c</h1>
-              <div class="star-wrapper">
-                <star :score="5" :size="24"></star>
-                <span class="delivery">30</span>
-              </div>
-              <p class="text">不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.</p>
-              <div class="recommend">
-                <span class="iconfont icon-thumb_up"></span>
-                <span class="item">南瓜粥</span>
-                <span class="item">皮蛋瘦肉粥</span>
-                <span class="item">扁豆焖面</span>
-                <span class="item">娃娃菜炖豆腐</span>
-                <span class="item">牛肉馅饼</span>
-              </div>
-              <div class="time">2016-07-23 21:52:44</div>
-            </div>
-          </li>
-          <li class="rating-item">
-            <div class="avatar">
-              <img src="http://static.galileo.xiaojukeji.com/static/tms/default_header.png" alt="">
-            </div>
-            <div class="content">
-              <h1 class="name">3******c</h1>
-              <div class="star-wrapper">
-                <star :score="5" :size="24"></star>
-                <span class="delivery">30</span>
-              </div>
-              <p class="text">不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.</p>
-              <div class="recommend">
-                <span class="iconfont icon-thumb_up"></span>
-                <span class="item">南瓜粥</span>
-                <span class="item">皮蛋瘦肉粥</span>
-                <span class="item">扁豆焖面</span>
-                <span class="item">娃娃菜炖豆腐</span>
-                <span class="item">牛肉馅饼</span>
-              </div>
-              <div class="time">2016-07-23 21:52:44</div>
-            </div>
-          </li>
-          <li class="rating-item">
-            <div class="avatar">
-              <img src="http://static.galileo.xiaojukeji.com/static/tms/default_header.png" alt="">
-            </div>
-            <div class="content">
-              <h1 class="name">3******c</h1>
-              <div class="star-wrapper">
-                <star :score="5" :size="24"></star>
-                <span class="delivery">30</span>
-              </div>
-              <p class="text">不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.</p>
-              <div class="recommend">
-                <span class="iconfont icon-thumb_up"></span>
-                <span class="item">南瓜粥</span>
-                <span class="item">皮蛋瘦肉粥</span>
-                <span class="item">扁豆焖面</span>
-                <span class="item">娃娃菜炖豆腐</span>
-                <span class="item">牛肉馅饼</span>
-              </div>
-              <div class="time">2016-07-23 21:52:44</div>
-            </div>
-          </li>
-          <li class="rating-item">
-            <div class="avatar">
-              <img src="http://static.galileo.xiaojukeji.com/static/tms/default_header.png" alt="">
-            </div>
-            <div class="content">
-              <h1 class="name">3******c</h1>
-              <div class="star-wrapper">
-                <star :score="5" :size="24"></star>
-                <span class="delivery">30</span>
-              </div>
-              <p class="text">不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.</p>
-              <div class="recommend">
-                <span class="iconfont icon-thumb_up"></span>
-                <span class="item">南瓜粥</span>
-                <span class="item">皮蛋瘦肉粥</span>
-                <span class="item">扁豆焖面</span>
-                <span class="item">娃娃菜炖豆腐</span>
-                <span class="item">牛肉馅饼</span>
-              </div>
-              <div class="time">2016-07-23 21:52:44</div>
+              <div class="time">{{item.rateTime | date-format}}</div>
             </div>
           </li>
         </ul>
@@ -355,16 +73,62 @@
 <script>
 import Star from 'components/Star/Star'
 
+import {mapState, mapGetters} from 'vuex'
 import BScroll from 'better-scroll'
 
 export default {
   name: 'ShopRatings',
+  data() {
+    return {
+      // 是否只显示有文本的评价
+      onlyShowText: true,
+      // 选择评价的类型：0-满意，1-不满意，2-全部
+      selectType: 2
+    }
+  },
   components: {
     Star
   },
+  computed: {
+    ...mapState(['ratings', 'info']),
+
+    // 过滤评论数组，产生符合条件的新数组
+    filterRatings () {
+      const {ratings, selectType, onlyShowText} = this;
+      return ratings.filter(rating => {
+        const {rateType, text} = rating;
+        return (selectType === 2 || selectType === rateType) && (!onlyShowText || text.length);
+      });
+    },
+
+    // 评论数组中满意的评价数量
+    positiveSize () {
+      return this.ratings.reduce((preTotal, rating) => {
+        return preTotal + (rating.rateType ? 0 : 1);
+      }, 0);
+    }
+  },
   mounted () {
-    new BScroll('.ratings');
-  }
+    // 发送获取评论的请求
+    this.$store.dispatch('getShopRatings', () => {
+      this.$nextTick(() => {
+        new BScroll('.ratings', {
+          click: true
+        });
+      });
+    });
+  },
+  methods: {
+    // 修改selectType
+    setSelectType (selectType) {
+      this.selectType = selectType;
+    },
+
+    // 修改onlyShowText
+    changeOnlyShowText () {
+      this.onlyShowText = !this.onlyShowText;
+    }
+  },
 }
 </script>
 
