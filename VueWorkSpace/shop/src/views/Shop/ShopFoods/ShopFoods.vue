@@ -16,7 +16,7 @@
         <li class="food-list-hook" v-for="(food, index) in foods" :key="index">
           <h1 class="title">优惠</h1>
           <ul>
-            <li class="food-item" v-for="(item, index) in food.foods" :key="index">
+            <li class="food-item" v-for="(item, index) in food.foods" :key="index" @click="showBigFood(item)">
               <div class="icon">
                 <img :src="item.icon" alt="">
               </div>
@@ -32,34 +32,25 @@
                   <span class="old" v-if="item.oldPrice">￥{{item.oldPrice}}</span>
                 </div>
               </div>
+              <cart-control></cart-control>
             </li>
           </ul>
         </li>
       </ul>
     </div>
-    <div class="shopcart">
-      <div class="content">
-        <div class="content-left">
-          <div class="logo-wrapper">
-            <div class="logo">
-              <i class="iconfont icon-shopping_cart"></i>
-            </div>
-            <div class="num">1</div>
-          </div>
-          <div class="price">￥0</div>
-          <div class="desc">另需配送费￥4 元</div>
-        </div>
-        <div class="content-right">
-          <div class="pay not-enough"> ￥20元起送 </div>
-        </div>
-      </div>
-    </div>
+    <shop-cart></shop-cart>
+    <big-picture-display :food="food" ref="foodDisplay"></big-picture-display>    
   </div>
 </template>
 
 <script>
 import BScroll from 'better-scroll'
 import {mapState} from 'vuex'
+import { Popup } from 'vant'
+
+import BigPictureDisplay from 'components/BigPictureDisplay/BigPictureDisplay'
+import ShopCart from 'components/ShopCart/ShopCart'
+import CartControl from 'components/CartControl/CartControl'
 
 export default {
   name: 'ShopFoods',
@@ -69,8 +60,15 @@ export default {
       scrollY: 0,
 
       // 所有右侧分类li的top组成的数组(列表显示时初始化值,不会变化)
-      tops: []
+      tops: [],
+      // 显示大图的food
+      food: null
     }
+  },
+  components: {
+    ShopCart,
+    BigPictureDisplay,
+    CartControl
   },
   computed: {
     ...mapState(['foods']),
@@ -130,6 +128,12 @@ export default {
         tops.push(top);
       });
       this.tops = tops;
+    },
+
+    // 显示food大图
+    showBigFood (food) {
+      this.food = food;
+      this.$refs.foodDisplay.changeShowFood();
     }
   },
   mounted() {
@@ -232,7 +236,10 @@ export default {
   width: 259px;
   /* height: 97px; */
   padding-bottom: 18px;
-  margin: 18px;
+  margin: 18px 18px 0 18px;
+  /* width: 100%;
+  height: 100%;
+  padding: 18px; */
   position: relative;
 }
 
@@ -310,114 +317,4 @@ export default {
   color: #93999f;
 }
 
-.foods .shopcart {
-  height: 45px;
-  width: 100%;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-}
-
-.shopcart .content {
-  width: 100%;
-  height: 100%;
-}
-
-.shopcart .content-left {
-  height: 100%;
-  width: 270px;
-  background-color: #141d27;
-  float: left;
-}
-
-.content-left .logo-wrapper {
-  display: inline-block;
-  position: relative;
-  height: 56px;
-  width: 56px;
-  background-color: #141d27;
-  margin: 0 12px;
-  padding: 6px;
-  top: -11px;
-  border-radius: 50%;
-}
-
-.logo-wrapper .logo {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: #2b343c;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.logo-wrapper .logo.highlight {
-  background-color: #02a774;
-  color: #ffffff;
-}
-
-.logo-wrapper .logo.highlight i {
-  color: #ffffff;
-}
-
-.logo-wrapper .logo i {
-  line-height: 44px;
-  font-size: 24px;
-  color: #80858a;
-}
-
-.logo-wrapper .num {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 24px;
-  height: 16px;
-  line-height: 16px;
-  text-align: center;
-  border-radius: 16px;
-  font-size: 9px;
-  font-weight: 700;
-  color: #ffffff;
-  background-color: #f01414;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
-}
-
-.content-left .price {
-  display: inline-block;
-  vertical-align: top;
-  margin-top: 5px;
-  line-height: 24px;
-  padding-right: 12px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.content-left .desc {
-  display: inline-block;
-  vertical-align: bottom;
-  margin-bottom: 13px;
-  font-size: 10px;
-  margin-left: -45px;
-}
-
-.content-right {
-  width: 105px;
-  height: 100%;
-  float: left;
-}
-
-.content-right .pay {
-  background-color: #2b333b;
-  line-height: 45px;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.content-right .pay.enough {
-  background-color: #00b43c;
-}
 </style>

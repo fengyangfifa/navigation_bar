@@ -18,5 +18,7 @@ export default {
   // 商品列表
   foods: [],
   // 商家评论列表
-  ratings: []
+  ratings: [],
+  // 购物车列表
+  cartFoods: []
 }

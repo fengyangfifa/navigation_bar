@@ -199,7 +199,7 @@ export default {
       background: #f3f5f7
     .food-item
       display: flex
-      margin: 18px
+      margin: 18px 18px 0 18px
       padding-bottom: 18px
       bottom-border-1px(rgba(7, 17, 27, 0.1))
       &:last-child
