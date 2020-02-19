@@ -8,7 +8,10 @@ import {
   RECEIVE_ADDRESS,
   RECEIVE_INFO,
   RECEIVE_RATINGS,
-  RECEIVE_FOODS
+  RECEIVE_FOODS,
+  INCREMENT_FOOD_COUNT,
+  DECREMENT_FOOD_COUNT,
+  EMPTY_CART
 } from './mutations-type'
 
 import {
@@ -111,5 +114,19 @@ export default {
       commit(RECEIVE_FOODS, {foods});
       callback && callback();
     }
+  },
+
+  // 更新购物车列表
+  updateFoodCount({commit}, {food, status}) {
+    if (status) {
+      commit(INCREMENT_FOOD_COUNT, {food});
+    } else {
+      commit(DECREMENT_FOOD_COUNT, {food});
+    }
+  },
+
+  // 清空购物车
+  clearCart ({commit}) {
+    commit(EMPTY_CART);
   }
 }

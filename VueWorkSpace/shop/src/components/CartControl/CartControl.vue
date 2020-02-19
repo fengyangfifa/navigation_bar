@@ -2,10 +2,11 @@
   <div class="cartcontrol-wrapper">
     <div class="cartcontrol">
       <transition name="move">
-        <div class="iconfont icon-remove_circle_outline" v-show="food.count"></div>
+        <!-- @click.stop阻止事件冒泡 -->
+        <div class="iconfont icon-remove_circle_outline" v-if="food.count" @click.stop="updateFoodCount(false)"></div>
       </transition>
-      <div class="cart-count">{{food.count}}</div>
-      <div class="iconfont icon-add_circle"></div>
+      <div class="cart-count" v-if="food.count">{{food.count}}</div>
+      <div class="iconfont icon-add_circle" @click.stop="updateFoodCount(true)"></div>
     </div>
   </div>
 </template>
@@ -19,6 +20,13 @@ export default {
       default () {
         return {}
       }
+    }
+  },
+  methods: {
+    // 修改购物车中的food数量或者添加到购物车中
+    updateFoodCount (status) {
+      const {food} = this;
+      this.$store.dispatch('updateFoodCount', {food, status});
     }
   }
 }
@@ -55,7 +63,7 @@ export default {
 }
 
 .move-enter, .move-leave-to {
-  opacity: 0;
+  opacity: 1;
   transform: translateX(15px) rotate(180deg);
 }
 </style>

@@ -120,8 +120,13 @@ export default {
 
 <style scoped>
 .shop-info {
-  width: 100%;
-  height: 471px;
+  /* width: 100%;
+  height: 471px; */
+  position: absolute;
+  top: 194px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   margin-top: 2px;
   background-color: #ffffff;
   overflow: hidden;

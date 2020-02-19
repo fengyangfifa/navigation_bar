@@ -14,7 +14,7 @@
     <div class="foods-wrapper">
       <ul ref="foodsUl">
         <li class="food-list-hook" v-for="(food, index) in foods" :key="index">
-          <h1 class="title">优惠</h1>
+          <h1 class="title">{{food.name}}</h1>
           <ul>
             <li class="food-item" v-for="(item, index) in food.foods" :key="index" @click="showBigFood(item)">
               <div class="icon">
@@ -32,7 +32,7 @@
                   <span class="old" v-if="item.oldPrice">￥{{item.oldPrice}}</span>
                 </div>
               </div>
-              <cart-control></cart-control>
+              <cart-control :food="item"></cart-control>
             </li>
           </ul>
         </li>
@@ -155,8 +155,13 @@ export default {
 }
 
 .foods {
-  width: 100%;
-  height: 471px;
+  /* width: 100%;
+  height: 471px; */
+  position: absolute;
+  top: 194px;
+  left: 0;
+  right: 0;
+  bottom: 45px;
   background-color: #ffffff;
   margin-top: 2px;
 }
@@ -165,7 +170,8 @@ export default {
   width: 80px;
   background-color: #f3f5f7;
   float: left;
-  height: 426px;
+  /* height: 426px; */
+  height: 100%;
   overflow: hidden;
 }
 
@@ -210,7 +216,8 @@ export default {
 }
 
 .foods-wrapper {
-  height: 426px;
+  /* height: 426px; */
+  height: 100%;
   width: 295px;
   background-color: #ffffff;
   float: left;

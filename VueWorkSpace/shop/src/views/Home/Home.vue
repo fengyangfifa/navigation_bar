@@ -195,8 +195,14 @@ export default {
 }
 
 .wrapper {
-  width: 375px;
-  height: 573px;
+  /* width: 100%;
+  height: 573px; */
+  /* height: 85.9070%; */
+  position: absolute;
+  top: 45px;
+  left: 0;
+  right: 0;
+  bottom: 49px;
   overflow: hidden;
 }
 

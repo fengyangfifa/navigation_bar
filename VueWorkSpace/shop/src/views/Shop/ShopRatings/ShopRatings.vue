@@ -139,10 +139,15 @@ export default {
 }
 
 .ratings {
-  width: 100%;
+  /* width: 100%; */
   overflow: hidden;
   margin-top: 2px;
-  height: 471px;
+  /* height: 471px; */
+  position: absolute;
+  top: 194px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #ffffff;
 }
 

@@ -18,6 +18,7 @@
           <span class="now">￥{{food.price}}</span>
           <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
         </div>
+        <cart-control :food="food"></cart-control>
       </div>
     </div>
     <div class="overlay" @click="changeShowFood"></div>
@@ -25,6 +26,8 @@
 </template>
 
 <script>
+import CartControl from 'components/CartControl/CartControl'
+
 export default {
   name: 'BigPictureDisplay',
   props: {
@@ -40,6 +43,9 @@ export default {
       // 显示大图
       showFood: false
     }
+  },
+  components: {
+    CartControl
   },
   methods: {
     changeShowFood () {

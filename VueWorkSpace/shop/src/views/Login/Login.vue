@@ -202,8 +202,13 @@ export default {
 }
 
 .login-container {
-  width: 375px;
-  height: 667px;
+  /* width: 375px;
+  height: 667px; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #ffffff;
 }
 

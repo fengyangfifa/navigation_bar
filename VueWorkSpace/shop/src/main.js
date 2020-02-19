@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App'
+import FastClick from 'fastclick'
 
 import router from './router'
 import store from './store'
@@ -18,6 +19,12 @@ import './mock/mockServer'
 
 // 加载自定义过滤器
 import './filters'
+
+// 和postcss-px2rem配套使用
+import 'lib-flexible'
+
+// 解决移动端300s的延迟
+FastClick.attach(document.body);
 
 Vue.config.productionTip = false
 

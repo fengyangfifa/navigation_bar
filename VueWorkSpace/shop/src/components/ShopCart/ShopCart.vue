@@ -1,45 +1,49 @@
 <template>
   <div class="shopcart">
-    <div class="content" @click="changeShow">
-      <div class="content-left">
+    <div class="content">
+      <div class="content-left" @click="changeShow">
         <div class="logo-wrapper">
-          <div class="logo">
+          <div class="logo" :class="{highlight: totalCount}">
             <i class="iconfont icon-shopping_cart"></i>
           </div>
-          <div class="num">1</div>
+          <div class="num" v-if="totalCount">{{totalCount}}</div>
         </div>
-        <div class="price">￥0</div>
-        <div class="desc">另需配送费￥4 元</div>
+        <div class="price">￥{{totalPrice}}</div>
+        <div class="desc">另需配送费￥{{info.deliveryPrice}} 元</div>
       </div>
       <div class="content-right">
-        <div class="pay not-enough"> ￥20元起送 </div>
+        <div class="pay" :class="payClass">{{payText}}</div>
       </div>
     </div>
     <transition name="move">
-      <div class="shopcart-list" v-show="show">
+      <div class="shopcart-list" v-show="listShop">
         <div class="list-header">
           <span class="title">购物车</span>
-          <span class="empty">清空</span>
+          <span class="empty" @click="emptyCart">清空</span>
         </div>
         <div class="list-content">
           <ul>
-            <li class="food">
-              <span class="name">八宝酱菜</span>
+            <li class="food" v-for="(item, index) in cartFoods" :key="index">
+              <span class="name">{{item.name}}</span>
               <div class="price">
-                <span>￥4</span>
+                <span>{{item.price}}</span>
               </div>
-              <cart-control></cart-control>
+              <cart-control :food="item"></cart-control>
             </li>
           </ul>
         </div>
       </div>
     </transition>
-    <div class="list-overlay" @click="changeShow" v-show="show"></div>
+    <div class="list-overlay" @click="changeShow" v-show="listShop"></div>
   </div>
 </template>
 
 <script>
 import CartControl from 'components/CartControl/CartControl'
+
+import {mapState, mapGetters} from 'vuex'
+import BScroll from 'better-scroll'
+import { Dialog } from 'vant'
 
 export default {
   name: 'ShopCart',
@@ -51,9 +55,61 @@ export default {
   components: {
     CartControl
   },
+  computed: {
+    ...mapState(['cartFoods', 'info']),
+    ...mapGetters(['totalCount', 'totalPrice']),
+    // 支付金额的样式
+    payClass () {
+      const {totalPrice} = this;
+      const {minPrice} = this.info;
+      return totalPrice >= minPrice ? 'enough' : 'not-enough';
+    },
+    // 支付金额text
+    payText () {
+      const {totalPrice} = this;
+      const {minPrice} = this.info;
+      if (totalPrice > 0) {
+        return totalPrice >= minPrice ? '去结算' : `还差￥${minPrice - totalPrice}元起送`;
+      } else {
+        return `￥${minPrice}元起送`;
+      }
+    },
+    // 是否显示购物清单
+    listShop () {
+      if (this.totalCount === 0) {
+        this.show = false;
+        return false;
+      }
+      if (this.show) {
+        // 如果显示购物列表，则创建BScroll实例
+        this.$nextTick(() => {
+          // 实现单例模式，避免创建多个BScroll实例，但是可能插件修复了这个bug
+          if (!this.scroll) {
+            this.scroll = new BScroll('.list-content', {
+              click: true
+            });
+          } else {
+            // 让滚动条刷新一下：重新计算内容的高度，看是否需要生成滚动条
+            this.scroll.refresh();
+          }
+        });
+      }
+      return this.show;
+    }
+  },
   methods: {
     changeShow () {
       this.show = !this.show;
+    },
+    // 清空购物车
+    emptyCart () {
+      Dialog.confirm({
+        title: '提示',
+        message: '确定清空购物车吗?'
+      }).then(() => {
+        this.$store.dispatch('clearCart');
+      }).catch(() => {
+      });
     }
   },
 }
@@ -158,10 +214,10 @@ export default {
   width: 105px;
   height: 100%;
   float: left;
+  background-color: #2b333b;
 }
 
 .content-right .pay {
-  background-color: #2b333b;
   line-height: 45px;
   text-align: center;
   font-size: 12px;
