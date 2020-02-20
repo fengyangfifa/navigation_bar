@@ -47,21 +47,25 @@ export default {
   },
 
   // 异步获取食品列表
-  async getCategorys ({commit}, ) {
+  async getCategorys ({commit}, callback) {
     const result = await reqFoodCategorys();
     if (result.code === 0) {
       const categorys = result.data;
       commit(RECEIVE_CATEGORYS, {categorys});
+      callback && callback();
     }
   },
 
   // 获取商家列表
-  async getShops ({commit, state}) {
+  async getShops ({commit, state}, callback) {
     const {latitude, longitude} = state;
     const result = await reqShops(latitude, longitude);
     if (result.code === 0) {
-      const shops = result.data;
+      let shops = result.data;
+      shops = shops.slice(0, Math.ceil(Math.random()*10));
+      console.log(shops.length);
       commit(RECEIVE_SHOPS, {shops});
+      callback && callback();
     } else {
       Toast('获取商家列表失败');
     }

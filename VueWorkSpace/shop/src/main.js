@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import App from './App'
-import FastClick from 'fastclick'
 
 import router from './router'
 import store from './store'
@@ -24,7 +23,17 @@ import './filters'
 import 'lib-flexible'
 
 // 解决移动端300s的延迟
+import FastClick from 'fastclick'
+
 FastClick.attach(document.body);
+
+// 图片懒加载
+import loading from 'assets/img/loading.gif'
+import { Lazyload } from 'vant'
+
+Vue.use(Lazyload, {
+  loading
+});
 
 Vue.config.productionTip = false
 

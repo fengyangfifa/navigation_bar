@@ -2,7 +2,7 @@
   <div class="back-overlay" v-if="showFood">
     <div class="food">
       <div class="img-header">
-        <img :src="food.image" alt="">
+        <img v-lazy="food.image" alt="">
         <p class="desc">{{food.info}}</p>
         <div class="back" @click="changeShowFood">
           <i class="iconfont icon-arrow_left"></i>

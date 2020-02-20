@@ -18,7 +18,7 @@
           <ul>
             <li class="food-item" v-for="(item, index) in food.foods" :key="index" @click="showBigFood(item)">
               <div class="icon">
-                <img :src="item.icon" alt="">
+                <img v-lazy="item.icon" alt="">
               </div>
               <div class="content">
                 <h2 class="name">{{item.name}}</h2>

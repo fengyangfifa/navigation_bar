@@ -11,8 +11,11 @@
       </a>
     </header-top>
     <div class="wrapper">
-      <!-- 轮播区域 -->
+      <!-- <van-pull-refresh v-model="refreshing" @refresh="onRefresh"> -->
+      <!-- <van-list v-model="loading" :offset="300" :finished="finished" finished-text="没有更多了" @load="onLoad">
+        <van-cell v-for="item in list" :key="item" :title="item" /> -->
       <div class="content">
+        <!-- 轮播区域 -->
         <div class="swiper-container" v-if="categorys.length">
           <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="(tempArry, index) in categorysArr" :key="index">
@@ -31,6 +34,8 @@
         <!-- 附近商家 -->
         <shop-list :shops="shops"></shop-list>
       </div>
+      <!-- </van-list> -->
+      <!-- </van-pull-refresh> -->
     </div>
     <!-- 弹出窗、省市区选择 -->
     <van-popup v-model="show" position="bottom" :style="{ height: '40%' }">
@@ -48,10 +53,13 @@ import Vue from 'vue'
 import Swiper from 'swiper'
 import BScroll from 'better-scroll'
 import { mapState } from 'vuex'
-import { Popup, Area } from 'vant'
+import { Popup, Area, PullRefresh, Toast, List, Cell } from 'vant'
 
 Vue.use(Popup);
 Vue.use(Area);
+Vue.use(PullRefresh);
+Vue.use(List);
+Vue.use(Cell);
 
 export default {
   name: 'Home',
@@ -63,7 +71,12 @@ export default {
     return {
       baseImageUrl: 'https://fuss10.elemecdn.com',
       show: false,
-      areaList
+      areaList,
+      loading: false,
+      finished: false,
+      refreshing: false,
+      count: 0,
+      list: []
     }
   },
   methods: {
@@ -76,12 +89,47 @@ export default {
     },
 
     confirm (columnArry) {
-      console.log(columnArry);
       this.show = false;
     },
 
     goTo (path) {
       this.$router.replace(path);
+    },
+
+    onRefresh () {
+      this.$store.dispatch('getShops', () => {
+        Toast('刷新成功');
+        this.refreshing = false;
+      });
+    },
+
+    onLoad () {
+      console.log('onload');
+      // setTimeout(() => {
+      //   if (this.count === 3) {
+      //     this.finished = true;
+      //     this.loading = false;
+      //   } else {
+      //     let newshops = this.$store.state.shops.slice(0, Math.ceil(Math.random()*10));
+      //     this.$store.state.shops.push(...newshops);
+      //     this.count++;
+      //     this.loading = false;
+      //     console.log('get new shop', newshops.length);
+      //   }
+      // }, 1000);
+      setTimeout(() => {
+        for (let i = 0; i < 10; i++) {
+          this.list.push(this.list.length + 1);
+        }
+
+        // 加载状态结束
+        this.loading = false;
+
+        // 数据全部加载完成
+        if (this.list.length >= 40) {
+          this.finished = true;
+        }
+      }, 1000);
     }
   },
   mounted() {
