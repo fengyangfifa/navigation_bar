@@ -62,8 +62,6 @@ export default {
     const result = await reqShops(latitude, longitude);
     if (result.code === 0) {
       let shops = result.data;
-      shops = shops.slice(0, Math.ceil(Math.random()*10));
-      console.log(shops.length);
       commit(RECEIVE_SHOPS, {shops});
       callback && callback();
     } else {

@@ -103,12 +103,13 @@ export default {
   methods: {
     _initScroll () {
       new BScroll('.shop-info');
-      // 动态计算ul的宽度
-      const picsUl = this.$refs.picsUl;
-      const liWidth = 120;
-      const space = 6;
-      const count = this.info.pics.length;
-      picsUl.style.width = (liWidth + space) * count - space + 'px';
+      // 动态计算ul的宽度，然后设置内联样式，但是此种方法不能适配多个屏幕
+      // 可以采用fit-content方式
+      // const picsUl = this.$refs.picsUl;
+      // const liWidth = 120;
+      // const space = 6;
+      // const count = this.info.pics.length;
+      // picsUl.style.width = (liWidth + space) * count - space + 'px';
       new BScroll('.pic-wrapper', {
         // 水平滑动，内部子元素的宽度需要自己计算
         scrollX: true
@@ -234,6 +235,7 @@ export default {
 
 .pic-wrapper .pic-list {
   font-size: 0;
+  width: fit-content;
 }
 
 .pic-wrapper .pic-item {

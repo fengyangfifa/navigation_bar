@@ -1,6 +1,7 @@
 module.exports = {
   configureWebpack: {
     resolve: {
+      // 目录别名
       alias: {
         'api': '@/api',
         'assets': '@/assets',
@@ -12,6 +13,7 @@ module.exports = {
     }
   },
   devServer: {
+    // 转发、代理
     proxy: {
       '/api': {
         target: 'http://localhost:4000',
@@ -24,6 +26,7 @@ module.exports = {
     }
   },
   css: {
+    // 适配 px转换为rem
     loaderOptions: {
       css: {},
       postcss: {
