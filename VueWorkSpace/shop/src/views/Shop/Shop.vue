@@ -113,12 +113,6 @@ import ShopRatings from 'views/Shop/ShopRatings/ShopRatings'
 import ShopInfo from 'views/Shop/ShopInfo/ShopInfo'
 
 import {mapState} from 'vuex'
-import Vue from 'vue'
-import { Overlay, Popup, Tag } from 'vant'
-
-Vue.use(Overlay);
-Vue.use(Popup);
-Vue.use(Tag);
 
 export default {
   name: 'Shop',
