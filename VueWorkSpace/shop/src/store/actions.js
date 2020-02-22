@@ -34,7 +34,7 @@ export default {
   },
 
   // 用户退出、清除用户信息
-  async logout ({commit, state}) {
+  async logout ({commit}) {
     const result = await reqLogout();
     if (result.code === 0) {
       commit(LOGOUT);

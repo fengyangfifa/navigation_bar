@@ -78,11 +78,8 @@
 <script>
 import HeaderTop from 'common/HeaderTop/HeaderTop'
 
-import Vue from 'vue'
-import { Button, Dialog, Toast } from 'vant'
+import { Dialog, Toast } from 'vant'
 import { mapState } from 'vuex'
-
-Vue.use(Button);
 
 export default {
   name: 'Profile',
@@ -98,7 +95,7 @@ export default {
     // 页面跳转
     goTo () {
       if (this.userInfo._id) {
-
+        // 因为没有写个人页面，暂时没有跳转
       } else {
         // 跳转至登录页
         this.$router.push('/login');

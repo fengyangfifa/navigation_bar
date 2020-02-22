@@ -9,6 +9,7 @@
         </div>
       </div>
       <div class="login-content">
+        <!-- 阻止原生提交函数 -->
         <form @submit.prevent="login">
           <div :class="{'on': loginWay}">
             <section class="login-message">
@@ -56,6 +57,7 @@
 
 <script>
 import { reqSendCode, reqSmsLogin, reqPwdLogin } from 'api'
+
 import { Dialog } from 'vant'
 
 export default {
@@ -170,7 +172,7 @@ export default {
         // 将个人信息存储到vuex中
         this.$store.dispatch('recordUser', user);
         // 跳转到个人中心
-        this.$router.push('/profile');
+        this.$router.replace('/profile');
       } else {
         // 登录失败
         const msg = result.msg;

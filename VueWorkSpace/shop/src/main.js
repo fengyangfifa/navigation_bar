@@ -35,6 +35,14 @@ Vue.use(Lazyload, {
   loading
 });
 
+// 'vant-ui'
+import { Button, Popup, Area, Icon } from 'vant'
+
+Vue.use(Icon);
+Vue.use(Popup);
+Vue.use(Area);
+Vue.use(Button);
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -50,11 +50,7 @@ import Vue from 'vue'
 import Swiper from 'swiper'
 import { mapState } from 'vuex'
 import BScroll from 'better-scroll'
-import { Popup, Area, Toast  } from 'vant'
-
-Vue.use(Popup);
-Vue.use(Area);
-Vue.use(Toast);
+import { Toast  } from 'vant'
 
 export default {
   name: 'Home',

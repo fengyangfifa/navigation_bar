@@ -11,6 +11,9 @@
 <script>
 import HeaderTop from 'common/HeaderTop/HeaderTop'
 
+import { Toast } from 'vant'
+
+
 export default {
   name: 'Search',
   components: {
@@ -23,7 +26,7 @@ export default {
   },
   methods: {
     search () {
-      console.log('提交');
+      Toast('无数据');
     }
   },
 }

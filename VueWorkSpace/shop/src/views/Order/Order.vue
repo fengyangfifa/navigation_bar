@@ -67,11 +67,7 @@
 <script>
 import HeaderTop from 'common/HeaderTop/HeaderTop'
 
-import { Icon } from 'vant'
-import Vue from 'vue'
 import { mapState } from 'vuex'
-
-Vue.use(Icon);
 
 export default {
   name: 'Order',
