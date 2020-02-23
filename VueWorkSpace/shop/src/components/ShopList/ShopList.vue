@@ -150,7 +150,6 @@ export default {
   content: '\54C1\724C';
   display: inline-block;
   font-size: 11px;
-  line-height: 11px;
   color: #333;
   background-color: #ffd930;
   padding: 2px 2px;

@@ -108,10 +108,6 @@
 </template>
 
 <script>
-import ShopFoods from 'views/Shop/ShopFoods/ShopFoods'
-import ShopRatings from 'views/Shop/ShopRatings/ShopRatings'
-import ShopInfo from 'views/Shop/ShopInfo/ShopInfo'
-
 import {mapState} from 'vuex'
 
 export default {
@@ -121,7 +117,7 @@ export default {
       // 是否显示遮罩层
       showOverlayOne: false,
       showOverlayTwo: false,
-      // css类名
+      // css样式类名
       supportClasses: ['activity-green', 'activity-red', 'activity-orange']
     }
   },
@@ -131,11 +127,6 @@ export default {
   },
   computed: {
     ...mapState(['info'])
-  },
-  components: {
-    ShopInfo,
-    ShopFoods,
-    ShopRatings
   },
   activated() {
     // 进入页面时将弹窗关闭

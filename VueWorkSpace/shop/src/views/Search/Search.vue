@@ -5,6 +5,9 @@
       <input type="text" placeholder="请输入商家名称" class="search_input">
       <input type="submit" class="search_submit">
     </form>
+    <div>
+      <img src="~/assets/img/top.png" alt="">
+    </div>
   </div>
 </template>
 
@@ -12,7 +15,6 @@
 import HeaderTop from 'common/HeaderTop/HeaderTop'
 
 import { Toast } from 'vant'
-
 
 export default {
   name: 'Search',

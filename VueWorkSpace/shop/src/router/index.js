@@ -14,6 +14,7 @@ const ShopRatings = () => import('views/Shop/ShopRatings/ShopRatings');
 
 // 声明使用插件
 Vue.use(VueRouter);
+
 // 重写 push 和 replace 方法，双击路由组件时捕捉异常但是不抛出
 const originalPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(location) {

@@ -83,7 +83,7 @@ export default {
       if (this.show) {
         // 如果显示购物列表，则创建BScroll实例
         this.$nextTick(() => {
-          // 实现单例模式，避免创建多个BScroll实例，但是可能插件修复了这个bug
+          // 实现单例模式，避免创建多个BScroll实例
           if (!this.scroll) {
             this.scroll = new BScroll('.list-content', {
               click: true

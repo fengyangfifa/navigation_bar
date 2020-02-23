@@ -46,7 +46,6 @@
 <script>
 import BScroll from 'better-scroll'
 import {mapState} from 'vuex'
-import { Popup } from 'vant'
 
 import BigPictureDisplay from 'components/BigPictureDisplay/BigPictureDisplay'
 import ShopCart from 'components/ShopCart/ShopCart'
@@ -58,7 +57,6 @@ export default {
     return {
       // 右侧滑块的Y轴坐标(滑动过程中动态变化)
       scrollY: 0,
-
       // 所有右侧分类li的top组成的数组(列表显示时初始化值,不会变化)
       tops: [],
       // 显示大图的food
@@ -101,6 +99,7 @@ export default {
       });
       this.foodScroll = new BScroll('.foods-wrapper', {
         click: true,
+        // 监听滚动事件的灵敏度
         probeType: 2
       });
 
