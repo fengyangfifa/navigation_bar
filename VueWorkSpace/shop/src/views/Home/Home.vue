@@ -46,7 +46,6 @@ import HeaderTop from 'common/HeaderTop/HeaderTop'
 import ShopList from 'components/ShopList/ShopList'
 import areaList from 'assets/js/area.js'
 
-import Vue from 'vue'
 import Swiper from 'swiper'
 import { mapState } from 'vuex'
 import BScroll from 'better-scroll'

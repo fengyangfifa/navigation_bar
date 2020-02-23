@@ -1,5 +1,14 @@
 module.exports = {
   configureWebpack: {
+    // 打包性能处理
+    performance: {
+      hints: 'warning',
+      maxEntrypointSize: 50000000,
+      maxAssetSize: 30000000,
+      assetFilter: function (assetFilename) {
+        return assetFilename.endsWith('.js');
+      }
+    },
     resolve: {
       // 目录别名
       alias: {
