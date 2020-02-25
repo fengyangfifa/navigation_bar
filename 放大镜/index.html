@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>放大镜</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0
+		}
+
+		#demo {
+			display: block;
+			width: 400px;
+			height: 400px;
+			position: relative;
+		}
+
+		#small-box {
+			position: relative;
+			z-index: 1;
+		}
+
+		#float-box {
+			display: none;
+			width: 200px;
+			height: 200px;
+			position: absolute;
+			background: #ffffcc;
+			filter: alpha(opacity=50);
+			opacity: 0.5;
+		}
+
+		#big-box {
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 420px;
+			width: 400px;
+			height: 400px;
+			overflow: hidden;
+			z-index: 10;
+		}
+
+		#big-box img {
+			position: absolute;
+			z-index: 5;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="demo">
+		<div id="small-box">
+			<div id="float-box"></div>
+			<img src="https://gd1.alicdn.com/imgextra/i2/3876145546/O1CN01emgCCh1qq77zl4HE5_!!3876145546.jpg_400x400.jpg" />
+		</div>
+		<div id="big-box">
+			<img src="https://gd1.alicdn.com/imgextra/i2/3876145546/O1CN01emgCCh1qq77zl4HE5_!!3876145546.jpg" />
+		</div>
+	</div>
+	<script src="./index.js"></script>
+</body>
+</html>
