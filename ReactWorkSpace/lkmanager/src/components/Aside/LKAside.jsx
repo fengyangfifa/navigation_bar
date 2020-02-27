@@ -1,7 +1,7 @@
 import React from 'react'
 import avatar from './../../common/uploads/avatar.png'
 
-function LKAside() {
+function LKAside () {
   return (
     <div className="aside">
       <div className="profile">
@@ -13,13 +13,13 @@ function LKAside() {
       <div className="navs">
         <ul className="list-unstyled">
           <li>
-            <a href="./index.html" className="active">
+            <a href="/" className="active">
               <i className="fa fa-area-chart"></i>
               数据分析
                   </a>
           </li>
           <li>
-            <a href="./user_list.html">
+            <a href="/user">
               <i className="fa fa-users"></i>
               用户中心
                   </a>
@@ -32,22 +32,22 @@ function LKAside() {
             </a>
             <ul className="list-unstyled">
               <li>
-                <a href="./course_add.html">
+                <a href="/courseadd">
                   课程添加
                           </a>
               </li>
               <li>
-                <a href="./course_list.html">
+                <a href="/courselist">
                   课程列表
                           </a>
               </li>
               <li>
-                <a href="./course_category.html">
+                <a href="/coursecategory">
                   课程分类
                           </a>
               </li>
               <li>
-                <a href="./course_topic.html">
+                <a href="/coursetopic">
                   课程专题
                           </a>
               </li>
@@ -60,9 +60,9 @@ function LKAside() {
                   </a>
           </li>
           <li>
-            <a href="sowing_list.html">
+            <a href="/rotation">
               <i className="fa fa-calculator"></i>
-              LK建模中心
+              轮播图中心
                   </a>
           </li>
           <li>

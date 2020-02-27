@@ -41,11 +41,11 @@
 		</ul>
 	</div>
 	<script>
-		const scrollDiv = document.getElementById('uls');
+		const scrollUl = document.getElementById('uls');
 		function move(index, time) {
       // 执行滑动
 			let position = -index * 240;
-			scrollDiv.style = `transform: translate3d(${position}px, 0, 0); transition: all ${time}ms;`
+			scrollUl.style = `transform: translate3d(${position}px, 0, 0); transition: all ${time}ms;`
 		}
 		let index = 0;
 		function start() {

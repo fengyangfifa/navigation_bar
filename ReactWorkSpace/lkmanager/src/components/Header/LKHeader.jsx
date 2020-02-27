@@ -1,6 +1,6 @@
 import React from 'react'
 
-function LKHeader() {
+function LKHeader () {
   return (
     <div className="header">
       <nav className="navbar navbar-custom">
@@ -11,7 +11,7 @@ function LKHeader() {
           <li><a href="javascript:;"><i className="fa fa-cloud-upload"></i>教育云中心</a></li>
           <li><a href="javascript:;"><i className="fa fa-yelp"></i>分销中心</a></li>
           <li><a href="javascript:;"><i className="fa fa-xing"></i>CRM对接中心</a></li>
-          <li><a href="javascript:;"><i className="fa fa-user"></i>个人中心</a></li>
+          <li><a href="/mine"><i className="fa fa-user"></i>个人中心</a></li>
           <li><a href="javascript:;"><i className="fa fa-bell"></i><span className="badge">20</span></a></li>
           <li><a href="javascript:;"><i className="fa fa-sign-out"></i>退出</a></li>
         </ul>
