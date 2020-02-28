@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-function CourseTopic() {
-  return (
-    <div>
-      专题
-    </div>
-  );
+class CourseTopic extends Component {
+  render() {
+    return (
+      <div>
+        专题
+      </div>
+    );    
+  }
 }
 
 export default CourseTopic;
