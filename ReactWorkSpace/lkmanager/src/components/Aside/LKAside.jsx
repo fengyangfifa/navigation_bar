@@ -61,7 +61,7 @@ class LKAside extends Component {
                     </a>
             </li>
             <li>
-              <a href="/rotation">
+              <a href="/sowinglist">
                 <i className="fa fa-calculator"></i>
                 轮播图中心
                     </a>

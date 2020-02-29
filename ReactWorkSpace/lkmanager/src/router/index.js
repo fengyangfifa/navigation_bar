@@ -1,7 +1,8 @@
 import Home from '../pages/Home/Home'
 import User from '../pages/User/User'
 import Mine from '../pages/Mine/Mine'
-import Rotation from '../pages/Rotation/Rotation'
+import SowingList from '../pages/Rotation/SowingList'
+import SowingAdd from '../pages/Rotation/SowingAdd'
 import CourseAdd from '../pages/Course/CourseAdd'
 import CourseList from '../pages/Course/CourseList'
 import CourseCategory from '../pages/Course/CourseCategory'
@@ -22,8 +23,12 @@ let routes = [
     component: Mine,
   },
   {
-    path: '/rotation',
-    component: Rotation,
+    path: '/sowinglist',
+    component: SowingList,
+  },
+  {
+    path: '/sowingadd',
+    component: SowingAdd,
   },
   {
     path: '/courseadd',
