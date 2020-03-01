@@ -3,6 +3,7 @@ import User from '../pages/User/User'
 import Mine from '../pages/Mine/Mine'
 import SowingList from '../pages/Rotation/SowingList'
 import SowingAdd from '../pages/Rotation/SowingAdd'
+import SowingEdit from '../pages/Rotation/SowingEdit'
 import CourseAdd from '../pages/Course/CourseAdd'
 import CourseList from '../pages/Course/CourseList'
 import CourseCategory from '../pages/Course/CourseCategory'
@@ -29,6 +30,10 @@ let routes = [
   {
     path: '/sowingadd',
     component: SowingAdd,
+  },
+  {
+    path: '/sowingedit',
+    component: SowingEdit,
   },
   {
     path: '/courseadd',

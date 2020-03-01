@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import avatar from './../../common/uploads/avatar.png'
 
 class LKAside extends Component {
@@ -14,16 +15,16 @@ class LKAside extends Component {
         <div className="navs">
           <ul className="list-unstyled">
             <li>
-              <a href="/" className="active">
+              <Link to="/" className="active">
                 <i className="fa fa-area-chart"></i>
                 数据分析
-                    </a>
+              </Link>
             </li>
             <li>
-              <a href="/user">
+              <Link to="/user">
                 <i className="fa fa-users"></i>
                 用户中心
-                    </a>
+              </Link>
             </li>
             <li>
               <a href="javascript:;">
@@ -33,24 +34,24 @@ class LKAside extends Component {
               </a>
               <ul className="list-unstyled">
                 <li>
-                  <a href="/courseadd">
+                  <Link to="/course/add">
                     课程添加
-                            </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/courselist">
+                  <Link to="/course/list">
                     课程列表
-                            </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/coursecategory">
+                  <Link to="/course/category">
                     课程分类
-                            </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/coursetopic">
+                  <Link to="/course/topic">
                     课程专题
-                            </a>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -61,10 +62,10 @@ class LKAside extends Component {
                     </a>
             </li>
             <li>
-              <a href="/sowinglist">
+              <Link to="/sowing/list">
                 <i className="fa fa-calculator"></i>
                 轮播图中心
-                    </a>
+              </Link>
             </li>
             <li>
               <a href="javascript:;">
