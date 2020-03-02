@@ -1,5 +1,5 @@
 import * as constants from './actionTypes'
-import {getHomeData, getSowingData} from '../api/index'
+import {getHomeData, getSowingData, getUserData} from '../api/index'
 
 // 获取首页数据
 export const getHomeDataAction = () => {
@@ -32,6 +32,19 @@ export const getSowingDataAction = () => {
       }
     }).catch(() => {
       alert('轮播图请求数据失败');
+    });
+  }
+}
+
+// 用户登录
+export const getUserDataAction = (data, callback) => {
+  return (dispatch) => {
+    // 发起网络请求
+    getUserData(data).then((res) => {
+      console.log(res);
+      callback && callback();
+    }).catch((error) => {
+      // alert('登录失败');
     });
   }
 }

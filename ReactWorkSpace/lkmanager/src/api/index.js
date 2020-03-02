@@ -13,3 +13,5 @@ export const addSowingData = (data)=> ajax(BASE_URL + '/sowing/api/add', data, '
 export const removeSowingData = (id)=>ajax(BASE_URL + '/sowing/api/remove/' + id);
 // 5. 修改轮播图数据
 export const editSowingData = (data)=> ajax(BASE_URL + '/sowing/api/edit', data, 'POST');
+// 6. 用户登录请求
+export const getUserData = (data) => ajax(BASE_URL + '/user/api/login', data, 'POST');

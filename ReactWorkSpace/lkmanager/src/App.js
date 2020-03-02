@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
-import {Provider} from 'react-redux'
-import store from './store'
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 
 import LayOut from './components/LayOut/index'
 import Login from './pages/User/Login'
@@ -16,6 +14,9 @@ import CourseRouter from './pages/Course/router'
 
 class App extends Component {
   render() {
+    // 取出本地的用户信息
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
+
     // 主面板
     let LayOutRouter = (
       <LayOut>
@@ -31,14 +32,20 @@ class App extends Component {
       </LayOut>
     );
     return (
-      <Provider store={store}>
-        <Router>
-          <Switch>
-            <Route path="/login" component={Login}></Route>
-            <Route path="/" render={props => LayOutRouter}></Route>
-          </Switch>
-        </Router>
-      </Provider>      
+      <Router>
+        <Switch>
+          <Route 
+            exact 
+            path="/"
+            render={
+              userData ? (props) => LayOutRouter : 
+              () => <Redirect to="/login" push></Redirect>
+            }
+          ></Route>
+          <Route path="/login" component={Login}></Route>
+          <Route path="/" render={props => LayOutRouter}></Route>
+        </Switch>
+      </Router>
     );    
   }
 }
