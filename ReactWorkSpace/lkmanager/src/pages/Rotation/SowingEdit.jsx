@@ -191,7 +191,7 @@ class SowingEdit extends Component {
     // 提交修改申请
     editSowingData(formData).then((res) => {
       if (res.status_code === 200) {
-        this.props.history.push('/sowinglist');
+        this.props.history.push('/sowing/list');
       }
     }).catch(() => {
       alert('修改数据失败!');

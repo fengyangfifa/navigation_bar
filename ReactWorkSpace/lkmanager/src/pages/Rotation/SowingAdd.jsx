@@ -89,7 +89,7 @@ class SowingAdd extends Component {
       if (res.status_code === 200) {
         // goBack不会重新请求数据
         // this.props.history.goBack();
-        this.props.history.push('/sowinglist');
+        this.props.history.push('/sowing/list');
       } else {
         alert('上传数据失败！');
       }

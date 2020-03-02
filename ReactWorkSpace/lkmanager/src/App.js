@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
 
 import LayOut from './components/LayOut/index'
 import Login from './pages/User/Login'
+import ErrorPage from './pages/ErrorPage/index'
 
 import Home from './pages/Home/Home'
 import User from './pages/User/User'
@@ -24,6 +25,8 @@ class App extends Component {
           <Route path="/mine" component={Mine}></Route>
           <Route path="/sowing" component={SowingRouter}></Route>
           <Route path="/course" component={CourseRouter}></Route>
+          {/* 没有匹配到路径就进入ErrorPage页面 */}
+          <Route component={ErrorPage}></Route>
         </Switch>
       </LayOut>
     );
