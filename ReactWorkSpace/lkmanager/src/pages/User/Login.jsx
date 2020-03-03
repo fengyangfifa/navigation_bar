@@ -100,8 +100,10 @@ class Login extends Component {
     params.append('user_name', user_name);
     params.append('user_pwd', md5_user_pwd);
 
-    this.props.reqLogin(params, () => {
-      alert('laile');
+    this.props.reqLogin(params, (userData) => {
+      if (userData.token !== '') {
+        this.props.history.push('/');
+      }
     });
   }
 }
@@ -113,5 +115,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(action);
     }
   }
-}
+};
+
 export default connect(null, mapDispatchToProps)(Login);

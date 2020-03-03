@@ -41,10 +41,19 @@ export const getUserDataAction = (data, callback) => {
   return (dispatch) => {
     // 发起网络请求
     getUserData(data).then((res) => {
-      console.log(res);
-      callback && callback();
+      if (res.status_code === 200) {
+        const userData = res.result;
+        dispatch({
+          type: constants.INIT_USER_DATA,
+          userData
+        });
+        // 登录成功的回调
+        callback && callback(userData);
+      } else {
+        alert(res.result);
+      }
     }).catch((error) => {
-      // alert('登录失败');
+      alert(error);
     });
   }
 }

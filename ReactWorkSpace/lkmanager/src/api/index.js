@@ -15,3 +15,5 @@ export const removeSowingData = (id)=>ajax(BASE_URL + '/sowing/api/remove/' + id
 export const editSowingData = (data)=> ajax(BASE_URL + '/sowing/api/edit', data, 'POST');
 // 6. 用户登录请求
 export const getUserData = (data) => ajax(BASE_URL + '/user/api/login', data, 'POST');
+// 修改用户数据
+export const editUserData = (data) => ajax(BASE_URL + 'user/api/edit', data, 'POST');

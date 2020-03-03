@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
+
+import * as constants from '../src/store/actionTypes'
 
 import LayOut from './components/LayOut/index'
 import Login from './pages/User/Login'
@@ -13,10 +16,10 @@ import SowingRouter from './pages/Rotation/router'
 import CourseRouter from './pages/Course/router'
 
 class App extends Component {
-  render() {
-    // 取出本地的用户信息
-    const userData = JSON.parse(sessionStorage.getItem('userData'));
-
+  UNSAFE_componentWillMount () {
+    this.props.reqLocalData();
+  }
+  render() {    
     // 主面板
     let LayOutRouter = (
       <LayOut>
@@ -38,7 +41,7 @@ class App extends Component {
             exact 
             path="/"
             render={
-              userData ? (props) => LayOutRouter : 
+              this.props.userData ? (props) => LayOutRouter : 
               () => <Redirect to="/login" push></Redirect>
             }
           ></Route>
@@ -46,8 +49,27 @@ class App extends Component {
           <Route path="/" render={props => LayOutRouter}></Route>
         </Switch>
       </Router>
-    );    
+    );
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // 获取本地存储的userData，在页面刷新时
+    reqLocalData () {
+      const userData = JSON.parse(sessionStorage.getItem('userData'));
+      dispatch({
+        type: constants.INIT_USER_DATA,
+        userData
+      });
+    }
+  }
+};
+
+const mapStateToProps = (state)=>{
+  return {
+    userData: state.userData
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

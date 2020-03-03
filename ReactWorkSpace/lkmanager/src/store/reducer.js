@@ -19,6 +19,8 @@ export default (state = defaultState, action) => {
     return newState;
   } else if (action.type === constants.INIT_USER_DATA) {
     const newState = JSON.parse(JSON.stringify(state));
+    // 将用户数据存入本地
+    sessionStorage.setItem('userData', JSON.stringify(action.userData));
     newState.userData = action.userData;
     return newState;
   }
