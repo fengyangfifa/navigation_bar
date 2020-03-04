@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import icon from '../../common/images/default.png'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+
 import LKTool from '../../components/LKTool/LKTool'
 import {editUserData} from '../../api/index'
 import * as constants from '../../store/actionTypes'
@@ -140,7 +142,7 @@ class Mine extends Component{
               <div class="form-group">
                 <div class="col-md-8">
                   <button onClick={() => this._onSubmit()} class="btn btn-danger pull-right">保 存</button>
-                  <a href="reset_pwd.html" class="btn btn-link btn-success pull-right">修改密码？</a>
+                  <Link to="/mine/reset" class="btn btn-link btn-success pull-right">修改密码？</Link>
                 </div>
               </div>
             </div>
@@ -202,17 +204,12 @@ class Mine extends Component{
         this.props.refreshLocalUserData(res.result);
         this.props.history.push('/');
       }
-    }).catch(() => {
+    }).catch((error) => {
+      console.log(error);
       alert('保存用户信息失败!');
     });
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {
-//     userData: state.userData
-//   }
-// };
 
 const mapDispatchToProps = (dispatch) => {
   return {

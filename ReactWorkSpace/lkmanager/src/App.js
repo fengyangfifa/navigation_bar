@@ -5,15 +5,15 @@ import {connect} from 'react-redux'
 import * as constants from '../src/store/actionTypes'
 
 import LayOut from './components/LayOut/index'
-import Login from './pages/User/Login'
+import Login from './pages/Mine/Login'
 import ErrorPage from './pages/ErrorPage/index'
 
 import Home from './pages/Home/Home'
 import User from './pages/User/User'
-import Mine from './pages/Mine/Mine'
 
 import SowingRouter from './pages/Rotation/router'
 import CourseRouter from './pages/Course/router'
+import MineRouter from './pages/Mine/router'
 
 class App extends Component {
   UNSAFE_componentWillMount () {
@@ -26,7 +26,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <Route path="/user" component={User}></Route>
-          <Route path="/mine" component={Mine}></Route>
+          <Route path="/mine" component={MineRouter}></Route>
           <Route path="/sowing" component={SowingRouter}></Route>
           <Route path="/course" component={CourseRouter}></Route>
           {/* 没有匹配到路径就进入ErrorPage页面 */}
