@@ -1,5 +1,5 @@
 import * as constants from './actionTypes'
-import {getHomeData, getSowingData, getUserData} from '../api/index'
+import {getHomeData, getSowingData, getUserData, getStudentData} from '../api/index'
 
 // 获取首页数据
 export const getHomeDataAction = () => {
@@ -54,6 +54,24 @@ export const getUserDataAction = (data, callback) => {
       }
     }).catch((error) => {
       alert(error);
+    });
+  }
+}
+
+
+// 获取学生数据
+export const getStudentDataAction = (params) => {
+  return (dispatch) => {
+    getStudentData(params).then((res) => {
+      if (res.status_code === 200) {
+        const studentData = res.result;
+        dispatch({
+          type: constants.INIT_STUDENT_DATA,
+          studentData
+        });
+      }
+    }).catch(() => {
+      alert('学生数据请求失败!');
     });
   }
 }

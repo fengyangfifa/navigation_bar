@@ -4,7 +4,8 @@ import * as constants from './actionTypes'
 const defaultState = {
   homeData: {},
   sowingData: [],
-  userData: {}
+  userData: {},
+  studentData: []
 };
 
 export default (state = defaultState, action) => {
@@ -22,6 +23,10 @@ export default (state = defaultState, action) => {
     // 将用户数据存入本地
     sessionStorage.setItem('userData', JSON.stringify(action.userData));
     newState.userData = action.userData;
+    return newState;
+  } else if (action.type === constants.INIT_STUDENT_DATA) {
+    const newState = JSON.parse(JSON.stringify(state));
+    newState.studentData = action.studentData;
     return newState;
   }
   return state;

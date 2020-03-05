@@ -19,3 +19,8 @@ export const getUserData = (data) => ajax(BASE_URL + '/user/api/login', data, 'P
 export const editUserData = (data) => ajax(BASE_URL + '/user/api/edit', data, 'POST');
 // 8.修改用户密码
 export const editPwdData = (data) => ajax(BASE_URL + '/user/api/reset', data, 'POST');
+// 10.请求学生总数
+export const getStudentCountData = () => ajax(BASE_URL + '/stu/api/count');
+// 11.请求学生数据
+export const getStudentData = (data) => ajax(BASE_URL + '/stu/api/list', data);
+

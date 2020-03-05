@@ -1,7 +1,31 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+
+import LKPagination from '../../components/LKTool/LKPagination'
+import {getStudentCountData} from '../../api/index'
+import {getStudentDataAction} from '../../store/actionCreators'
 
 class User extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      pageNum: 1,
+      total: 0,
+      pageSize: 10,
+      flagCount: 0
+    }
+  }
+  UNSAFE_componentWillMount () {
+    getStudentCountData().then((res) => {
+      this.setState({
+        total: res.result
+      });
+    }).catch(() => {
+      alert('获取用户数据失败!');
+    });
+  }
   render() {
+    const {flagCount} = this.state;
     return (
       <div className="container-fluid">
         <div className="body">
@@ -50,230 +74,77 @@ class User extends Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>yjh@itlike.com</td>
-                  <td>旋之华</td>
-                  <td>28</td>
-                  <td>男</td>
-                  <td>上海市</td>
-                  <td>18917286702</td>
-                  <td>1999</td>
-                  <td>2019/05/01 10:12:32</td>
-                  <td>2020/05/10 12:16:19</td>
-                  <td>
-                    <a href="user_center.html" className="btn btn-info btn-xs">查看</a>
-                    <a href="javascript:;" className="btn btn-warning btn-xs">锁定</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>yjh@itlike.com</td>
-                  <td>旋之华</td>
-                  <td>28</td>
-                  <td>男</td>
-                  <td>上海市</td>
-                  <td>18917286702</td>
-                  <td>1999</td>
-                  <td>2019/05/01 10:12:32</td>
-                  <td>2020/05/10 12:16:19</td>
-                  <td>
-                    <a href="user_center.html" className="btn btn-info btn-xs">查看</a>
-                    <a href="javascript:;" className="btn btn-warning btn-xs">锁定</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>yjh@itlike.com</td>
-                  <td>旋之华</td>
-                  <td>28</td>
-                  <td>男</td>
-                  <td>上海市</td>
-                  <td>18917286702</td>
-                  <td>1999</td>
-                  <td>2019/05/01 10:12:32</td>
-                  <td>2020/05/10 12:16:19</td>
-                  <td>
-                    <a href="user_center.html" className="btn btn-info btn-xs">查看</a>
-                    <a href="javascript:;" className="btn btn-warning btn-xs">锁定</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>yjh@itlike.com</td>
-                  <td>旋之华</td>
-                  <td>28</td>
-                  <td>男</td>
-                  <td>上海市</td>
-                  <td>18917286702</td>
-                  <td>1999</td>
-                  <td>2019/05/01 10:12:32</td>
-                  <td>2020/05/10 12:16:19</td>
-                  <td>
-                    <a href="user_center.html" className="btn btn-info btn-xs">查看</a>
-                    <a href="javascript:;" className="btn btn-warning btn-xs">锁定</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>yjh@itlike.com</td>
-                  <td>旋之华</td>
-                  <td>28</td>
-                  <td>男</td>
-                  <td>上海市</td>
-                  <td>18917286702</td>
-                  <td>1999</td>
-                  <td>2019/05/01 10:12:32</td>
-                  <td>2020/05/10 12:16:19</td>
-                  <td>
-                    <a href="user_center.html" className="btn btn-info btn-xs">查看</a>
-                    <a href="javascript:;" className="btn btn-warning btn-xs">锁定</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>yjh@itlike.com</td>
-                  <td>旋之华</td>
-                  <td>28</td>
-                  <td>男</td>
-                  <td>上海市</td>
-                  <td>18917286702</td>
-                  <td>1999</td>
-                  <td>2019/05/01 10:12:32</td>
-                  <td>2020/05/10 12:16:19</td>
-                  <td>
-                    <a href="user_center.html" className="btn btn-info btn-xs">查看</a>
-                    <a href="javascript:;" className="btn btn-warning btn-xs">锁定</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>yjh@itlike.com</td>
-                  <td>旋之华</td>
-                  <td>28</td>
-                  <td>男</td>
-                  <td>上海市</td>
-                  <td>18917286702</td>
-                  <td>1999</td>
-                  <td>2019/05/01 10:12:32</td>
-                  <td>2020/05/10 12:16:19</td>
-                  <td>
-                    <a href="user_center.html" className="btn btn-info btn-xs">查看</a>
-                    <a href="javascript:;" className="btn btn-warning btn-xs">锁定</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>yjh@itlike.com</td>
-                  <td>旋之华</td>
-                  <td>28</td>
-                  <td>男</td>
-                  <td>上海市</td>
-                  <td>18917286702</td>
-                  <td>1999</td>
-                  <td>2019/05/01 10:12:32</td>
-                  <td>2020/05/10 12:16:19</td>
-                  <td>
-                    <a href="user_center.html" className="btn btn-info btn-xs">查看</a>
-                    <a href="javascript:;" className="btn btn-warning btn-xs">锁定</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>yjh@itlike.com</td>
-                  <td>旋之华</td>
-                  <td>28</td>
-                  <td>男</td>
-                  <td>上海市</td>
-                  <td>18917286702</td>
-                  <td>1999</td>
-                  <td>2019/05/01 10:12:32</td>
-                  <td>2020/05/10 12:16:19</td>
-                  <td>
-                    <a href="user_center.html" className="btn btn-info btn-xs">查看</a>
-                    <a href="javascript:;" className="btn btn-warning btn-xs">锁定</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>yjh@itlike.com</td>
-                  <td>旋之华</td>
-                  <td>28</td>
-                  <td>男</td>
-                  <td>上海市</td>
-                  <td>18917286702</td>
-                  <td>1999</td>
-                  <td>2019/05/01 10:12:32</td>
-                  <td>2020/05/10 12:16:19</td>
-                  <td>
-                    <a href="user_center.html" className="btn btn-info btn-xs">查看</a>
-                    <a href="javascript:;" className="btn btn-warning btn-xs">锁定</a>
-                    </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>yjh@itlike.com</td>
-                  <td>旋之华</td>
-                  <td>28</td>
-                  <td>男</td>
-                  <td>上海市</td>
-                  <td>18917286702</td>
-                  <td>1999</td>
-                  <td>2019/05/01 10:12:32</td>
-                  <td>2020/05/10 12:16:19</td>
-                  <td>
-                    <a href="user_center.html" className="btn btn-info btn-xs">查看</a>
-                    <a href="javascript:;" className="btn btn-warning btn-xs">锁定</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>yjh@itlike.com</td>
-                  <td>旋之华</td>
-                  <td>28</td>
-                  <td>男</td>
-                  <td>上海市</td>
-                  <td>18917286702</td>
-                  <td>1999</td>
-                  <td>2019/05/01 10:12:32</td>
-                  <td>2020/05/10 12:16:19</td>
-                  <td>
-                    <a href="user_center.html" className="btn btn-info btn-xs">查看</a>
-                    <a href="javascript:;" className="btn btn-warning btn-xs">锁定</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>yjh@itlike.com</td>
-                  <td>旋之华</td>
-                  <td>28</td>
-                  <td>男</td>
-                  <td>上海市</td>
-                  <td>18917286702</td>
-                  <td>1999</td>
-                  <td>2019/05/01 10:12:32</td>
-                  <td>2020/05/10 12:16:19</td>
-                  <td>
-                    <a href="user_center.html" className="btn btn-info btn-xs">查看</a>
-                    <a href="javascript:;" className="btn btn-warning btn-xs">锁定</a>
-                  </td>
-                </tr>
+                {
+                  this.props.studentData.map((student, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{'LK' + (flagCount + index + 1)}</td>
+                        <td>{student.reg_account}</td>
+                        <td>{student.user_name}</td>
+                        <td>{student.user_age}</td>
+                        <td>{student.user_sex}</td>
+                        <td>{student.area}</td>
+                        <td>{student.phone}</td>
+                        <td>{student.points}</td>
+                        <td>{student.reg_time}</td>
+                        <td>{student.last_login_time}</td>
+                        <td>
+                          <a href="user_center.html" className="btn btn-info btn-xs">查看</a>
+                          <a href="javascript:;" className="btn btn-warning btn-xs">锁定</a>
+                        </td>
+                      </tr>
+                    );
+                  })
+                }
               </tbody>
             </table>
           </div>
-          <ul className="pagination pull-right">
-            <li><a href="#">上一页</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">下一页</a></li>
-          </ul>
+          <LKPagination 
+            current={this.state.pageNum} 
+            total={this.state.total}
+            pageSize={this.state.pageSize}
+            onChange={(pageNum) => this._onPageNumChange(pageNum)}
+          ></LKPagination>
         </div>
       </div>
     );  
   }
+  componentDidMount () {
+    const {pageNum, pageSize} = this.state;
+    // 请求初始数据
+    this.props.reqStudentList({
+      page: pageNum,
+      pageSize
+    });
+  }
+
+  // 请求对应页的数据
+  _onPageNumChange (pageNum) {
+    this.setState({
+      pageNum,
+      flagCount: (pageNum - 1) * this.state.pageSize
+    }, () => {
+      this.props.reqStudentList({
+        page: pageNum,
+        pageSize: this.state.pageSize
+      });
+    });
+  }
 }
 
-export default User;
+const mapStateToProps = (state) => {
+  return {
+    studentData: state.studentData
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    reqStudentList (params) {
+      const action = getStudentDataAction(params);
+      dispatch(action);
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(User);

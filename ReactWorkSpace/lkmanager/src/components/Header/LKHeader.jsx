@@ -14,11 +14,22 @@ class LKHeader extends Component {
             <li><a href="javascript:;"><i className="fa fa-xing"></i>CRM对接中心</a></li>
             <li><a href="/mine"><i className="fa fa-user"></i>个人中心</a></li>
             <li><a href="javascript:;"><i className="fa fa-bell"></i><span className="badge">20</span></a></li>
-            <li><a href="javascript:;"><i className="fa fa-sign-out"></i>退出</a></li>
+            <li>
+              <a href="javascript:;" onClick={() => this._logout()}>
+                <i className="fa fa-sign-out"></i>退出
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
     );
+  }
+  // 退出登录
+  _logout () {
+    // 清楚本地数据
+    sessionStorage.removeItem('userData');
+    // 跳转至首页
+    window.location.href = '/';
   }
 }
 

@@ -93,7 +93,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     reqSowingData () {
       const action = getSowingDataAction();
-      dispatch(action);  
+      dispatch(action);
     }
   }
 }

@@ -1,33 +1,48 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+
 import avatar from './../../common/uploads/avatar.png'
 
+const IMG_PRE = 'http://localhost:1688/uploads/';
+
 class LKAside extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      selected_flag: 'one'
+    }
+  }
   render() {
+    const {userData} = this.props;
+    const {selected_flag} = this.state;
     return (
       <div className="aside">
         <div className="profile">
           <div className="avatar img-circle">
-            <img src={avatar} />
+            <img src={userData ? IMG_PRE + userData.icon_url : avatar} />
           </div>
-          <h4>旋之华</h4>
+          <h4>{userData ? userData.real_name : ''}</h4>
         </div>
         <div className="navs">
           <ul className="list-unstyled">
             <li>
-              <Link to="/" className="active">
+              <Link 
+                to="/" 
+                className={selected_flag === 'one' ? 'active' : ''} 
+                onClick={() => this._dealWidthClick('one')}>
                 <i className="fa fa-area-chart"></i>
                 数据分析
               </Link>
             </li>
             <li>
-              <Link to="/user">
+              <Link to="/user" className={selected_flag === 'two' ? 'active' : ''} onClick={() => this._dealWidthClick('two')}>
                 <i className="fa fa-users"></i>
                 用户中心
               </Link>
             </li>
             <li>
-              <a href="javascript:;">
+              <a href="javascript:;" className={selected_flag === 'three' ? 'active' : ''} onClick={() => this._dealWidthClick('three')}>
                 <i className="fa fa-object-group"></i>
                 课程管理
                         <i className="arrow fa fa-angle-right"></i>
@@ -56,19 +71,19 @@ class LKAside extends Component {
               </ul>
             </li>
             <li>
-              <a href="docent_list.html">
+              <Link to="/" className={selected_flag === 'four' ? 'active' : ''} onClick={() => this._dealWidthClick('four')}>
                 <i className="fa fa-bars"></i>
                 运营中心
-                    </a>
+                    </Link>
             </li>
             <li>
-              <Link to="/sowing/list">
+              <Link to="/sowing/list" className={selected_flag === 'five' ? 'active' : ''} onClick={() => this._dealWidthClick('five')}>
                 <i className="fa fa-calculator"></i>
                 轮播图中心
               </Link>
             </li>
             <li>
-              <a href="javascript:;">
+              <a href="javascript:;" className={selected_flag === 'six' ? 'active' : ''} onClick={() => this._dealWidthClick('six')}>
                 <i className="fa fa-cog"></i>
                 设置中心
                         <i className="arrow fa fa-angle-right"></i>
@@ -87,6 +102,18 @@ class LKAside extends Component {
       </div>
     );    
   }
+  _dealWidthClick (flag) {
+    this.setState({
+      selected_flag: flag
+    });
+  }
 }
 
-export default LKAside;
+const mapStateToProps = (state) => {
+  return {
+    userData: state.userData
+  }
+};
+
+
+export default connect(mapStateToProps, null)(LKAside);

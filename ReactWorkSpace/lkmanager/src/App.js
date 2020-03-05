@@ -58,6 +58,7 @@ const mapDispatchToProps = (dispatch) => {
     // 获取本地存储的userData，在页面刷新时
     reqLocalData () {
       const userData = JSON.parse(sessionStorage.getItem('userData'));
+      console.log(userData);
       dispatch({
         type: constants.INIT_USER_DATA,
         userData
