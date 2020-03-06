@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+
 import {getHomeDataAction} from '../../store/actionCreators'
+import LKEchartsOne from '../../components/LKTool/LKEchartsOne'
+import LKEchartsTwo from '../../components/LKTool/LKEchartsTwo'
 
 class Home extends Component {
   render () {
@@ -57,10 +60,10 @@ class Home extends Component {
             </div>
             <div className="lk-chart">
               <div className="chart">
-                <div id="main1" style={{height:400}}></div>
+                <LKEchartsOne></LKEchartsOne>
               </div>
               <div className="chart">
-                <div id="main2" style={{height:400}}></div>
+                <LKEchartsTwo></LKEchartsTwo>
               </div>
             </div>
           </div>
