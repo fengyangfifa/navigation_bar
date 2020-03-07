@@ -1,57 +1,50 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
+
+import course from '../../common/images/course.jpg'
 
 class CourseAddTwo extends Component {
   render() {
     return (
-      <div class="body course-add">
-        <ol class="breadcrumb">
+      <div className="body course-add">
+        <ol className="breadcrumb">
           <li><a href="javascript:;">课程管理</a></li>
-          <li class="active">课程添加</li>
+          <li className="active">课程添加</li>
         </ol>
-        <div class="steps">
-          <div class="brief">
-            <div class="thumb">
-              <img src="./uploads/course.jpg" alt="" />
-            </div>
-            <dl class="info">
-              <dt>从零玩转H5+C3</dt>
-              <dd>讲师：叶建华老师</dd>
-              <dd>课时：168</dd>
-            </dl>
-          </div>
-          <ul class="forwards list-unstyled">
+        <div className="steps">
+          <ul className="forwards list-unstyled">
             <li>
-              <a href="course_add_one.html" class="done">
-                <b class="fa fa-check"></b>
+              <Link to="/course/add_one">
+                <b>1</b>
                 基本信息
-                      </a>
+              </Link>
             </li>
             <li>
-              <a href="./course_add_two.html" class="active">
+              <Link to="/course/add_two" className="active">
                 <b>2</b>
                 课程图片
-                      </a>
+              </Link>
             </li>
             <li>
-              <a href="course_add_three.html">
+              <Link to="/course/add_three">
                 <b>3</b>
                 课时管理
-                      </a>
+              </Link>
             </li>
           </ul>
-          <div class="content">
-            <div class="title">
+          <div className="content">
+            <div className="title">
               <h5>课程封面</h5>
             </div>
-            <div class="picture col-md-offset-2">
-              <div class="preview">
-                <img src="./uploads/course.jpg" alt="" />
+            <div className="picture col-md-offset-2">
+              <div className="preview">
+                <img src={course} alt="" />
               </div>
-              <p class="tips">
+              <p className="tips">
                 可上传jpg, gif, png格式文件, 图片建议尺寸大于400x225，文件大小不能超过2M。
                       </p>
-              <div class="col-md-2">
-                <a href="course_add_three.html" class="btn btn-danger btn-sm">下一步</a>
+              <div className="col-md-2">
+                <Link to="/course/add_three" className="btn btn-danger btn-sm">下一步</Link>
               </div>
             </div>
           </div>

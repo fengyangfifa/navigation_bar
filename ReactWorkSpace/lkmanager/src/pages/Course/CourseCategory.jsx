@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 
 class CourseCategory extends Component {
   render() {
@@ -6,11 +7,11 @@ class CourseCategory extends Component {
       <div className="container-fluid">
         <div className="body course-category">
           <ol className="breadcrumb">
-            <li><a href="javascript:;">课程管理</a></li>
+            <li><Link to="/course">课程管理</Link></li>
             <li className="active">课程分类</li>
           </ol>
           <div className="page-title">
-            <a href="./course_category_add.html" className="btn btn-danger btn-sm pull-right">添加分类</a>
+            <Link to="/course/category_add" className="btn btn-danger btn-sm pull-right">添加分类</Link>
           </div>
           <div className="panel panel-default">
             <table className="table table-bordered">
@@ -30,7 +31,7 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a href="./course_category_add.html" className="btn btn-info btn-xs">编辑</a>
+                    <Link to="/course/category_add" className="btn btn-info btn-xs">编辑</Link>
                   </td>
                 </tr>
                 <tr>
@@ -39,7 +40,7 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a href="./course_category_add.html" className="btn btn-info btn-xs">编辑</a>
+                    <Link to="/course/category_add" className="btn btn-info btn-xs">编辑</Link>
                   </td>
                 </tr>
                 <tr>
@@ -48,7 +49,7 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a href="./course_category_add.html" className="btn btn-info btn-xs">编辑</a>
+                    <Link to="/course/category_add" className="btn btn-info btn-xs">编辑</Link>
                   </td>
                 </tr>
                 <tr>
@@ -57,7 +58,7 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a href="./course_category_add.html" className="btn btn-info btn-xs">编辑</a>
+                    <Link to="/course/category_add" className="btn btn-info btn-xs">编辑</Link>
                   </td>
                 </tr>
                 <tr className="active">
@@ -66,7 +67,7 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a href="./course_category_add.html" className="btn btn-info btn-xs">编辑</a>
+                    <Link to="/course/category_add" className="btn btn-info btn-xs">编辑</Link>
                   </td>
                 </tr>
                 <tr>
@@ -75,7 +76,7 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a href="./course_category_add.html" className="btn btn-info btn-xs">编辑</a>
+                    <Link to="/course/category_add" className="btn btn-info btn-xs">编辑</Link>
                   </td>
                 </tr>
                 <tr>
@@ -84,7 +85,7 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a href="./course_category_add.html" className="btn btn-info btn-xs">编辑</a>
+                    <Link to="/course/category_add" className="btn btn-info btn-xs">编辑</Link>
                   </td>
                 </tr>
                 <tr className="active">
@@ -93,7 +94,7 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a href="./course_category_add.html" className="btn btn-info btn-xs">编辑</a>
+                    <Link to="/course/category_add" className="btn btn-info btn-xs">编辑</Link>
                   </td>
                 </tr>
                 <tr>
@@ -102,7 +103,7 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a href="./course_category_add.html" className="btn btn-info btn-xs">编辑</a>
+                    <Link to="/course/category_add" className="btn btn-info btn-xs">编辑</Link>
                   </td>
                 </tr>
                 <tr>
@@ -111,7 +112,7 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a href="./course_category_add.html" className="btn btn-info btn-xs">编辑</a>
+                    <Link to="/course/category_add" className="btn btn-info btn-xs">编辑</Link>
                   </td>
                 </tr>
                 <tr>
@@ -120,7 +121,7 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a href="./course_category_add.html" className="btn btn-info btn-xs">编辑</a>
+                    <Link to="/course/category_add" className="btn btn-info btn-xs">编辑</Link>
                   </td>
                 </tr>
                 <tr className="active">
@@ -129,7 +130,7 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a href="./course_category_add.html" className="btn btn-info btn-xs">编辑</a>
+                    <Link to="/course/category_add" className="btn btn-info btn-xs">编辑</Link>
                   </td>
                 </tr>
                 <tr>
@@ -138,7 +139,7 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a href="./course_category_add.html" className="btn btn-info btn-xs">编辑</a>
+                    <Link to="/course/category_add" className="btn btn-info btn-xs">编辑</Link>
                   </td>
                 </tr>
                 <tr>
@@ -147,7 +148,7 @@ class CourseCategory extends Component {
                   <td>是</td>
                   <td>10</td>
                   <td>
-                    <a href="./course_category_add.html" className="btn btn-info btn-xs">编辑</a>
+                    <Link to="/course/category_add" className="btn btn-info btn-xs">编辑</Link>
                   </td>
                 </tr>
               </tbody>

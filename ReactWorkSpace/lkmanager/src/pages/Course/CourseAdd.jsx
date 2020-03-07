@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 
 class CourseAdd extends Component {
   render() {
@@ -22,7 +23,7 @@ class CourseAdd extends Component {
                 </div>
               </div>
               <div className="col-md-11">
-                <a href="course_add_one.html" className="btn btn-danger btn-sm pull-right">创建课程</a>
+                <Link to="/course/add_one" className="btn btn-danger btn-sm pull-right">创建课程</Link>
               </div>
             </form>
           </div>

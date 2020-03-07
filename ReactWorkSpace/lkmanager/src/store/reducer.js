@@ -5,7 +5,8 @@ const defaultState = {
   homeData: {},
   sowingData: [],
   userData: {},
-  studentData: []
+  studentData: [],
+  categoryData: []
 };
 
 export default (state = defaultState, action) => {
@@ -27,6 +28,10 @@ export default (state = defaultState, action) => {
   } else if (action.type === constants.INIT_STUDENT_DATA) {
     const newState = JSON.parse(JSON.stringify(state));
     newState.studentData = action.studentData;
+    return newState;
+  } else if (action.type === constants.INIT_CATEGORY_DATA) {
+    const newState = JSON.parse(JSON.stringify(state));
+    newState.categoryData = action.categoryData;
     return newState;
   }
   return state;
