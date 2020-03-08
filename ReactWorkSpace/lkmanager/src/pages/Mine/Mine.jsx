@@ -4,8 +4,9 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
 import LKTool from '../../components/LKTool/LKTool'
-import {editUserData} from '../../api/index'
-import * as constants from '../../store/actionTypes'
+import {editUserDataAction} from '../../store/actionCreators'
+// import {editUserData} from '../../api/index'
+// import * as constants from '../../store/actionTypes'
 
 // 实例化
 const _tool = new LKTool();
@@ -32,25 +33,25 @@ class Mine extends Component{
   render() {
     const {real_name, user_name, icon_url, sex, phone, e_mail, join_time, intro_self} = this.state;
     return (
-      <div class="container-fluid">
-        <div class="body teacher-profile">
-          <div class="settings">
-            <div class="form-horizontal">
-              <div class="form-group">
-                <label for="" class="col-md-3 control-label">姓名</label>
-                <div class="col-md-5">
+      <div className="container-fluid">
+        <div className="body teacher-profile">
+          <div className="settings">
+            <div className="form-horizontal">
+              <div className="form-group">
+                <label for="" className="col-md-3 control-label">姓名</label>
+                <div className="col-md-5">
                 <input 
                   name="real_name"
                   type="text" 
-                  class="form-control input-sm"
+                  className="form-control input-sm"
                   value={real_name} 
                   onChange={(e) => this._onInputChange(e)}
                 />
                 </div>
               </div>
-              <div class="form-group">
-                <label for="" class="col-md-3 control-label">头像</label>
-                <div class="col-md-2 preview">
+              <div className="form-group">
+                <label for="" className="col-md-3 control-label">头像</label>
+                <div className="col-md-2 preview">
                   <img src={icon_url.includes('undefined') ? icon: icon_url } style={{border: '1px solid #e0e0e0'}} />
                   <input 
                     name="icon_url"
@@ -59,15 +60,15 @@ class Mine extends Component{
                     className="form-control input-sm"
                     onChange={(e) => this._onInputChange(e, 'file')}
                   />
-                  <div class="cover">
-                    <i class="fa fa-upload"></i>
+                  <div className="cover">
+                    <i className="fa fa-upload"></i>
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="" class="col-md-3 control-label">性别</label>
-                <div class="col-md-3">
-                  <label class="radio-inline">
+              <div className="form-group">
+                <label for="" className="col-md-3 control-label">性别</label>
+                <div className="col-md-3">
+                  <label className="radio-inline">
                     <input 
                       name="sex"
                       type="radio" 
@@ -75,7 +76,7 @@ class Mine extends Component{
                       onChange={(e) => this._onInputChange(e, '男')} 
                     /> 男
                   </label>
-                  <label class="radio-inline">
+                  <label className="radio-inline">
                     <input 
                       name="sex"
                       type="radio"
@@ -85,64 +86,64 @@ class Mine extends Component{
                   </label>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="" class="col-md-3 control-label">用户名</label>
-                <div class="col-md-5">
-                  <input name="user_name" type="text" class="form-control input-sm" disabled value={user_name}/>
+              <div className="form-group">
+                <label for="" className="col-md-3 control-label">用户名</label>
+                <div className="col-md-5">
+                  <input name="user_name" type="text" className="form-control input-sm" disabled value={user_name}/>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="" class="col-md-3 control-label">手机号码</label>
-                <div class="col-md-5">
+              <div className="form-group">
+                <label for="" className="col-md-3 control-label">手机号码</label>
+                <div className="col-md-5">
                   <input 
                     name="phone"
                     type="text" 
-                    class="form-control input-sm" 
+                    className="form-control input-sm" 
                     value={phone} 
                     onChange={(e) => this._onInputChange(e)}
                   />    
                 </div>
               </div>
-              <div class="form-group">
-                <label for="" class="col-md-3 control-label">Email</label>
-                <div class="col-md-5">
+              <div className="form-group">
+                <label for="" className="col-md-3 control-label">Email</label>
+                <div className="col-md-5">
                 <input 
                   name="e_mail"
                   type="text" 
-                  class="form-control input-sm" 
+                  className="form-control input-sm" 
                   value={e_mail} 
                   onChange={(e) => this._onInputChange(e)}
                 />    
                 </div>
               </div>
-              <div class="form-group">
-                <label for="" class="col-md-3 control-label">加入日期</label>
-                <div class="col-md-5">
+              <div className="form-group">
+                <label for="" className="col-md-3 control-label">加入日期</label>
+                <div className="col-md-5">
                 <input
                   name="join_time"
                   type="date" 
-                  class="form-control input-sm" 
+                  className="form-control input-sm" 
                   value={join_time} 
                   onChange={(e) => this._onInputChange(e)}
                 />    
                 </div>
               </div>
-              <div class="form-group">
-                <label for="" class="col-md-3 control-label">自我介绍</label>
-                <div class="col-md-5 ckeditor">
+              <div className="form-group">
+                <label for="" className="col-md-3 control-label">自我介绍</label>
+                <div className="col-md-5 ckeditor">
                   <textarea 
                     name="intro_self" 
                     rows="15" 
-                    class="form-control input-sm"
+                    className="form-control input-sm"
                     value={intro_self}
                     onChange={(e) => this._onInputChange(e)}
                   ></textarea>
                 </div>
               </div>
-              <div class="form-group">
-                <div class="col-md-8">
-                  <button onClick={() => this._onSubmit()} class="btn btn-danger pull-right">保 存</button>
-                  <Link to="/mine/reset" class="btn btn-link btn-success pull-right">修改密码？</Link>
+              <div className="form-group">
+                <div className="col-md-8">
+                  <button onClick={() => this._onSubmit()} className="btn btn-danger pull-right">保 存</button>
+                  <Link to="/mine/reset" className="btn btn-link btn-success pull-right">修改密码？</Link>
                 </div>
               </div>
             </div>
@@ -197,28 +198,43 @@ class Mine extends Component{
     // 如果图片被修改则上传修改后的图片对象、否则上传原来的图片名，表示未被修改
     formData.append('icon_url', this.refs.icon_url.files[0] || icon_url);
 
-    // 发送请求
-    editUserData(formData).then((res) => {
-      if (res.status_code === 200) {
-        // 保存数据到本地
-        this.props.refreshLocalUserData(res.result);
-        this.props.history.push('/');
-      }
-    }).catch((error) => {
-      console.log(error);
-      alert('保存用户信息失败!');
+    // 发送请求,方法一
+    this.props.editUserData(formData, () => {
+      this.props.history.push('/');
     });
+
+    // 发送请求,方法二
+    // editUserData(formData).then((res) => {
+    //   if (res.status_code === 200) {
+    //     // 保存数据到本地
+    //     this.props.refreshLocalUserData(res.result);
+    //     this.props.history.push('/');
+    //   }
+    // }).catch((error) => {
+    //   console.log(error);
+    //   alert('保存用户信息失败!');
+    // });
   }
 }
 
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     refreshLocalUserData (userData) {
+//       dispatch({
+//         type: constants.INIT_USER_DATA,
+//         userData
+//       });
+//     }
+//   }
+// };
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    refreshLocalUserData (userData) {
-      dispatch({
-        type: constants.INIT_USER_DATA,
-        userData
-      });
+    editUserData (params, callback) {
+      const action = editUserDataAction(params, callback);
+      dispatch(action);
     }
   }
 };
+
 export default connect(null, mapDispatchToProps)(Mine);

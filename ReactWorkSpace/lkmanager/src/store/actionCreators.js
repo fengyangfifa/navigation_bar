@@ -1,5 +1,11 @@
 import * as constants from './actionTypes'
-import {getHomeData, getSowingData, getUserData, getStudentData} from '../api/index'
+import {
+  getHomeData, 
+  getSowingData, 
+  getUserData, 
+  getStudentData,
+  editUserData
+} from '../api/index'
 
 // 获取首页数据
 export const getHomeDataAction = () => {
@@ -73,5 +79,23 @@ export const getStudentDataAction = (params) => {
     }).catch(() => {
       alert('学生数据请求失败!');
     });
+  }
+}
+
+// 修改用户数据
+export const editUserDataAction = (params, callback) => {
+  return (dispatch) => {
+    editUserData(params).then((res) => {
+      if (res.status_code === 200) {
+        const userData = res.result;
+        dispatch({
+          type: constants.INIT_USER_DATA,
+          userData
+        });
+        callback && callback();
+      }
+    }).catch(() => {
+      alert('修改用户数据失败!');
+    })
   }
 }
