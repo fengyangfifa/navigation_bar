@@ -34,6 +34,7 @@ MVVM.prototype = {
 				enumerable: true,
 				// 当通过vm.xxx读取属性值时调用，从vm._data中读取对应的属性数据返回 代理读操作
 				get: function proxyGetter() {
+					console.log('proxyGetter');
 					return me._data[key];
 				},
 				// 当通过vm.xxx=yyy修改属性值时调用，把vm._data中读取对应的属性数据修改 代理写操作

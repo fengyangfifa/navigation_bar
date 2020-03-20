@@ -28,6 +28,7 @@ Observer.prototype = {
 			configurable: false, // 不能再define
 			get: function () {
 				if (Dep.target) {
+					// 建立dep和watcher之间的关系
 					dep.depend();
 				}
 				return val;

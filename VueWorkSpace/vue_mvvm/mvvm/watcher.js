@@ -10,6 +10,7 @@ function Watcher(vm, expOrFn, cb) {
 		this.getter = this.parseGetter(expOrFn.trim());
 	}
 
+	// 初始化时，就是通过此函数建立关系，同时获取表达式对应的值
 	this.value = this.get();
 }
 
@@ -45,7 +46,9 @@ Watcher.prototype = {
 
 		// 判断dep和watcher的关系是否已经建立
 		if (!this.depIds.hasOwnProperty(dep.id)) {
+			// 将dep添加到watcher中
 			dep.addSub(this);
+			// 将watcher添加到dep中
 			this.depIds[dep.id] = dep;
 		}
 	},

@@ -21,15 +21,27 @@
 <body>
   <div id="test">
     <input type="text" v-model="msg">
+    <p v-text="msg"></p>
     <p>{{msg}}</p>
+    <p>{{info.name}}</p>
+    <button v-on:click="update">修改</button>
   </div>
   <script>
-    new MVVM({
+    const vm = new MVVM({
       el: "#test",
       data: {
         msg: 'fengyang',
+        info: {
+          name: 'fifa'
+        }
       },
+      methods: {
+        update () {
+          this.info.name = 'fy';
+        }
+      }
     });
+    console.log(vm.msg);
   </script>
 </body>
 
