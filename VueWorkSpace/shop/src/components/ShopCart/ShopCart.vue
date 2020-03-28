@@ -218,6 +218,7 @@ export default {
 }
 
 .content-right .pay {
+  height: 100%;
   line-height: 45px;
   text-align: center;
   font-size: 12px;

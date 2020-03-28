@@ -51,6 +51,8 @@ import { mapState } from 'vuex'
 import BScroll from 'better-scroll'
 import { Toast  } from 'vant'
 
+Toast.allowMultiple();
+
 export default {
   name: 'Home',
   components: {
@@ -98,10 +100,11 @@ export default {
     // 下拉刷新函数
     onRefresh () {
       this.$store.dispatch('getShops', () => {
+        this.toast.clear();
         Toast('刷新成功');
+        // 告诉bs实例，完成下拉下载
+        this.listscroll.finishPullDown();
       });
-      // 告诉bs实例，完成下拉下载
-      this.listscroll.finishPullDown();
     },
 
     // 上拉加载更多的函数
@@ -176,7 +179,8 @@ export default {
 
           // 监听下拉刷新事件
           this.listscroll.on('pullingDown', () => {
-            Toast.loading({
+            this.toast = Toast.loading({
+              duration: 0, // 持续展示 toast
               forbidClick: true,
               loadingType: 'spinner',
               onOpened: this.onRefresh
@@ -192,6 +196,14 @@ export default {
 </script>
 
 <style scoped>
+.home {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
 .header {
   position: relative;
   z-index: 1000;
