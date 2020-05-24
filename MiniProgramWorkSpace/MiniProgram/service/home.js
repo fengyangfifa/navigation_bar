@@ -7,3 +7,13 @@ export function getMultiData() {
     url: baseUrl + '/home/multidata'
   });
 }
+
+export function getGoodsData(type, page) {
+  return request({
+    url: baseUrl + '/home/data',
+    data: {
+      type,
+      page
+    }
+  });
+}
