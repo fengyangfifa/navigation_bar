@@ -71,9 +71,9 @@ Page({
     });
   },
   handleImageLoad() {
-    wx.createSelectorQuery().select('#tab-control').boundingClientRect(rect => {
-      this.data.tabScrollTop = rect.top;
-    }).exec();
+    // wx.createSelectorQuery().select('#tab-control').boundingClientRect(rect => {
+    //   this.data.tabScrollTop = rect.top;
+    // }).exec();
   },
 
   /**
@@ -136,15 +136,16 @@ Page({
     if (flag1 !== this.data.showBackTop) {
       this.setData({
         showBackTop: flag1
-      });  
+      });
     }
 
     // 控制tab-control吸顶
-    const flag2 = scrollTop >= this.data.tabScrollTop;
-    if (flag2 !== this.data.isTabFixed) {
-      this.setData({
-        isTabFixed: flag2
-      });
-    }
+    // const flag2 = scrollTop >= this.data.tabScrollTop;
+    // console.log(flag2);    
+    // if (flag2 !== this.data.isTabFixed) {
+    //   this.setData({
+    //     isTabFixed: flag2
+    //   });
+    // }
   }
 })

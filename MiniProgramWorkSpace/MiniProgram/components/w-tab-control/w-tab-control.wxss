@@ -4,6 +4,9 @@
   margin-bottom: 16rpx;
   background-color: #fff;
   padding-bottom: 10rpx;
+  position: sticky;
+  top: 0; 
+  z-index: 1;
 }
 
 .tab-item {

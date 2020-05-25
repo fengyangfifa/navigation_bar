@@ -9,8 +9,9 @@
 <w-popular />
 
 <!-- tab-control -->
-<w-tab-control titles="{{titles}}" id="tab-control" bind:tabclick="handleTabClick" class="{{isTabFixed ? 'fixed': ''}}" />
-<w-tab-control titles="{{titles}}" bind:tabclick="handleTabClick" wx:if="{{isTabFixed}}" />
+<!-- <w-tab-control titles="{{titles}}" id="tab-control" bind:tabclick="handleTabClick" class="{{isTabFixed ? 'fixed': ''}}" /> -->
+<!-- <w-tab-control titles="{{titles}}" bind:tabclick="handleTabClick" wx:if="{{isTabFixed}}" /> -->
+<w-tab-control titles="{{titles}}" bind:tabclick="handleTabClick" />
 
 <!-- 展示商品数据 -->
 <w-goods goods="{{goods[currentType].list}}" />
