@@ -1,8 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import PriceList from './components/PriceList';
+import React from 'react'
+import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import PriceList from './components/PriceList'
+import ViewTab from './components/ViewTab'
+import { LIST_VIEW, CHART_VIEW } from './utility'
+import MonthPicker from './components/MonthPicker'
+
 
 const items = [
   {
@@ -35,10 +38,18 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <PriceList 
+        {/* <PriceList 
           items={items}
           onModifyItem={(item) => {alert(item.title)}}
           onDeleteItem={(item) => {alert(item.title)}}
+        /> */}
+        {/* <ViewTab 
+          activeTab={LIST_VIEW}
+          onTabChange={(view) => {console.log(view);}}
+        /> */}
+        <MonthPicker 
+          year={2018}
+          month={5}
         />
       </div>
     );

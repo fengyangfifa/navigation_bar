@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import Ionicon from 'react-ionicons'
 import PropTypes from 'prop-types'
 
@@ -13,7 +13,8 @@ const PriceList = ({items, onModifyItem, onDeleteItem}) => {
             key={item.id}
           >
             <span className="col-1 badge badge-primary">
-              <Ionicon className="rounded-circle"
+              <Ionicon
+                className="rounded-circle"
                 fontSize="30px"
                 style={{backgroundColor: '#007bff', padding: '5px'}}
                 color={'#fff'}
@@ -29,7 +30,8 @@ const PriceList = ({items, onModifyItem, onDeleteItem}) => {
             <a className="col-1"
               onClick={() => {onModifyItem(item)}}
             >
-              <Ionicon className="rounded-circle"
+              <Ionicon 
+                className="rounded-circle"
                 fontSize="30px"
                 style={{backgroundColor: '#28a745', padding: '5px'}}
                 color={'#fff'}
@@ -39,7 +41,8 @@ const PriceList = ({items, onModifyItem, onDeleteItem}) => {
             <a className="col-1"
               onClick={() => {onDeleteItem(item)}}
             >
-              <Ionicon className="rounded-circle"
+              <Ionicon 
+                className="rounded-circle"
                 fontSize="30px"
                 style={{backgroundColor: '#dc3545', padding: '5px'}}
                 color={'#fff'}
@@ -58,9 +61,9 @@ PriceList.propTypes = {
   items: PropTypes.array.isRequired,
   onModifyItem: PropTypes.func.isRequired,
   onDeleteItem: PropTypes.func.isRequired
-}
+};
 // 添加默认值
 PriceList.defaultProps = {
   onModifyItem: () => {}
-}
+};
 export default PriceList;
