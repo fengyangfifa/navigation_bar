@@ -14,7 +14,7 @@ const ViewTab = ({activeTab, onTabChange}) => (
       <a 
         className={generateLinkClass(activeTab, LIST_VIEW)} 
         href="#"
-        onClick={(event) => {event.preventDefault(); onTabChange(LIST_VIEW);}}
+        onClick={(event) => {onTabChange(LIST_VIEW);}}
       >
         <Ionicon 
           className="rounded-circle mr-2"
