@@ -109,7 +109,7 @@
     },
     {
       "title": "新的吃",
-      "price": 20000,
+      "price": 2000,
       "date": "2018-11-15",
       "monthCategory": "2018-11",
       "id": "_qmatbbw11",
@@ -249,6 +249,30 @@
         "iconName": "logo-yen",
         "id": "12",
         "type": "income"
+      }
+    },
+    {
+      "title": "水电维修工",
+      "price": 200,
+      "date": "2020-07-09",
+      "monthCategory": "2020-7",
+      "timestamp": 1594252800000,
+      "id": "_6koothmy9",
+      "cid": "1"
+    },
+    {
+      "title": "飞机",
+      "price": 201,
+      "date": "2018-11-09",
+      "monthCategory": "2018-11",
+      "timestamp": 1541721600000,
+      "id": "_fynt22lpi",
+      "cid": "1",
+      "category": {
+        "name": "旅行",
+        "iconName": "ios-plane",
+        "id": "1",
+        "type": "outcome"
       }
     }
   ]

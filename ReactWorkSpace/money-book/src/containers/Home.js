@@ -3,7 +3,6 @@ import Ionicon from 'react-ionicons'
 import { withRouter } from 'react-router-dom'
 
 import PriceList from '../components/PriceList'
-import ViewTab from '../components/ViewTab'
 import MonthPicker from '../components/MonthPicker'
 import TotalPrice from '../components/TotalPrice'
 import CreateBtn from '../components/CreateBtn'
@@ -15,12 +14,13 @@ import {
   LIST_VIEW,
   CHART_VIEW,
   TYPE_OUTCOME,
-  TYPE_INCOME,
-  parseToYeatAndMonth,
-  padLeft
+  TYPE_INCOME
 } from '../utility'
 
+// tab文本
 const tabsText = [LIST_VIEW, CHART_VIEW];
+
+// 生成图表显示需要的对象格式
 const generateChartDataByCategory = (items, type = TYPE_INCOME) => {
   let categoryMap = {};
   items.filter(item => item.category.type === type).forEach(item => {

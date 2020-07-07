@@ -1,5 +1,4 @@
 import React from 'react'
-import Ionicon from 'react-ionicons'
 import PropTypes from 'prop-types'
 import {padLeft, range} from '../utility'
 
@@ -22,8 +21,7 @@ class MonthPicker extends React.Component {
   }
 
   handleClick = (event) => {
-    console.log(this.node.contains(event.target));    
-    if (this.node.contains(event.target) && this.buttonNode === event.target) {
+    if (this.buttonNode === event.target) {
       return ;
     }
     if (this.yearNode && this.yearNode.contains(event.target)) {

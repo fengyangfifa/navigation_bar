@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { ResponsiveContainer, Pie, Tooltip, PieChart, Cell } from 'recharts'
-import {Colors} from '../utility'
+import { Colors } from '../utility'
 
 
+// 图表颜色数组
 const ColorsArr = Object.keys(Colors).map(key => Colors[key]);
 const CustomPieChart = ({ title, categoryData }) => {
   if (categoryData.length === 0) {
@@ -15,7 +16,7 @@ const CustomPieChart = ({ title, categoryData }) => {
       <ResponsiveContainer width={'100%'} height={300}>
         <PieChart>
           <Pie 
-            isAnimationActive={false}
+            isAnimationActive={true}
             data={categoryData}
             dataKey="value"
             cx={'50%'}
@@ -37,7 +38,7 @@ const CustomPieChart = ({ title, categoryData }) => {
 
 
 CustomPieChart.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   categoryData: PropTypes.array
 };
 

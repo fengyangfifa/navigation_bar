@@ -7,10 +7,12 @@ import PriceForm from '../components/PriceForm'
 import { TYPE_INCOME, TYPE_OUTCOME } from '../utility'
 import withContext from '../WithContext'
 
+
 const tabsText = [TYPE_OUTCOME, TYPE_INCOME];
 class Create extends React.Component {
   constructor (props) {
     super(props);
+    // 如果是修改，则取出id
     const { id } = this.props.match.params;
     const { items, categories } = props.data;
     this.state = {

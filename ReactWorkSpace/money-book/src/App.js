@@ -11,7 +11,7 @@ import {
   parseToYeatAndMonth
 } from './utility'
 
-
+// 上下文对象
 export const AppContext = React.createContext();
 class App extends React.Component {
   constructor(props) {
@@ -22,6 +22,7 @@ class App extends React.Component {
       currentDate: parseToYeatAndMonth('2018/11/01'),
       isLoading: false
     };
+    // 在发起请求前显示loading
     const withLoading = (cb) => {
       return (...args) => {
         this.setState({
@@ -34,10 +35,12 @@ class App extends React.Component {
       getEditData: withLoading(async(id) => {
         const { items, categories } = this.state;
         let promiseArr = [];
+        // 判断是否需要请求categories
         if (Object.keys(categories).length === 0 ) {
           promiseArr.push(axios.get('/categories'));
         }
         const itemAlreadyFetched = (Object.keys(items).indexOf(id) > -1);
+        // 判断是否需要请求item数据
         if (id && !itemAlreadyFetched) {
           const getUrlWithID = `/items/${id}`;
           promiseArr.push(axios.get(getUrlWithID));
@@ -101,7 +104,6 @@ class App extends React.Component {
           cid: categoryId
         });
         this.setState({
-          // items: {...this.state.items, [newId]: newItem.data},
           isLoading: false
         });
         return newItem;
@@ -115,7 +117,6 @@ class App extends React.Component {
           monthCategory: `${parseDate.year}-${parseDate.month}`
         });
         this.setState({
-          // items: {...this.state.items, [modifiedItem.id]: modifiedItem.data},
           isLoading: false
         });
         return modifiedItem;
@@ -124,10 +125,12 @@ class App extends React.Component {
   }
   render() {
     return (
-      <AppContext.Provider value={{
-        state: this.state,
-        actions: this.actions
-      }}>
+      <AppContext.Provider 
+        value={{
+          state: this.state,
+          actions: this.actions
+        }}
+      >
         <Router>
           <div className="App">
             <Route path="/" exact component={Home}/>

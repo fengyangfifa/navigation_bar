@@ -3,6 +3,7 @@ export const CHART_VIEW = 'chart';
 export const TYPE_INCOME = 'income';
 export const TYPE_OUTCOME = 'outcome';
 
+// 月、日转换为两位数格式
 export const padLeft = (n) => {
   return n < 10 ? '0' + n : n;
 };
@@ -15,6 +16,7 @@ export const range = (size, startAt = 0) => {
   return arr;
 };
 
+// 解析出日期中的年和月
 export const parseToYeatAndMonth = (str) => {
   const date = str ? new Date(str) : new Date();
   return {
@@ -23,6 +25,7 @@ export const parseToYeatAndMonth = (str) => {
   }
 };
 
+// 验证格式是否正确
 export const isValidDate = (dateString) => {
   const regEx = /^\d{4}-\d{2}-\d{2}$/;
   if(!dateString.match(regEx)) return false;  // Invalid format
@@ -39,11 +42,12 @@ export const flatternArr = (arr) => {
   }, {});
 };
 
+// 生成ID
 export const ID = () => {
   return '_' + Math.random().toString(36).substr(2, 9);
 };
 
-
+// 图表的颜色
 export const Colors = {
   blue: '#347eff',
   deepBlue: '#61dafb',
