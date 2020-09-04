@@ -27,21 +27,34 @@
     <button v-on:click="update">修改</button>
   </div>
   <script>
-    const vm = new MVVM({
-      el: "#test",
-      data: {
-        msg: 'fengyang',
-        info: {
-          name: 'fifa'
+    // const vm = new MVVM({
+    //   el: "#test",
+    //   data: {
+    //     msg: 'fengyang',
+    //     info: {
+    //       name: 'fifa'
+    //     }
+    //   },
+    //   methods: {
+    //     update () {
+    //       this.info.name = 'fy';
+    //     }
+    //   }
+    // });
+    // console.log(vm.msg);
+    var data = data2 = {
+      name: 'fengyang',
+      age: 18
+    }
+    Object.keys(data).forEach(key => {
+      Object.defineProperty(data, key, {
+        enumerable: true, // 可枚举
+        configurable: false, // 不能再define
+        get: function () {
+          return '123';
         }
-      },
-      methods: {
-        update () {
-          this.info.name = 'fy';
-        }
-      }
-    });
-    console.log(vm.msg);
+      })
+    })
   </script>
 </body>
 

@@ -1,19 +1,10 @@
 import Vue from 'vue'
-import App from './App'
-import store from './store';
-import './base.css'
+import App from './App.vue'
 
-new Vue({
-	el: "#app",
-	components: {
-		App
-	},
-	template: '<App/>',
-	store
-});
-
-// new Vue({
-// 	el: "#app",
-// 	render: h => h(App),
-// 	store
-// });
+export default new Vue({
+  el: '#app',
+  components: {
+    App
+  },
+  template: '<App/>'
+})

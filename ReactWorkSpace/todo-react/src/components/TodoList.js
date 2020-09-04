@@ -1,0 +1,30 @@
+import React, { Component } from "react";
+import Todo from "./Todo";
+
+class TodoList extends Component {
+
+  componentDidMount() {
+    this.props.fetchTodos();
+  }
+
+  render() {
+    const { todos, toggleTodo } = this.props;
+    return (
+      <ul>
+        {todos.map((todo) => {
+          return (
+            <Todo
+              {...todo}
+              key={todo.id}
+              onClick={() => {
+                toggleTodo(todo.id);
+              }}
+            />
+          );
+        })}
+      </ul>
+    );
+  }
+}
+
+export default TodoList;

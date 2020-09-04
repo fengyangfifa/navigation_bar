@@ -75,6 +75,7 @@ class Home extends React.Component {
   }
 
   render() {
+    // console.log(this.context);    
     const { items, categories, currentDate, isLoading } = this.props.data;
     const { tabView } = this.state;
     const itemsWithCategory = Object.keys(items).map(id => {

@@ -7,6 +7,7 @@ const withContext = (Component) => {
     <AppContext.Consumer>
       {
         ({ state, actions }) => {
+          // Component.contextType = AppContext;
           return (
             <Component 
               {...props} 
